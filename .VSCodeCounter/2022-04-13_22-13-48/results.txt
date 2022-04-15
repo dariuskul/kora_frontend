@@ -1,0 +1,205 @@
+Date : 2022-04-13 22:13:48
+Directory : c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend
+Total : 121 files,  34915 codes, 21 comments, 556 blanks, all 35492 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          3 |     30,447 |          0 |          3 |     30,450 |
+| TypeScript React   |         76 |      3,350 |          7 |        342 |      3,699 |
+| TypeScript         |         37 |      1,035 |         14 |        186 |      1,235 |
+| JSON with Comments |          1 |         28 |          0 |          1 |         29 |
+| Markdown           |          1 |         26 |          0 |         21 |         47 |
+| HTML               |          1 |         20 |          0 |          1 |         21 |
+| CSS                |          1 |          8 |          0 |          2 |         10 |
+| XML                |          1 |          1 |          0 |          0 |          1 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                                        | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                                           |        121 |     34,915 |         21 |        556 |     35,492 |
+| public                                                                                                                                      |          2 |         45 |          0 |          2 |         47 |
+| src                                                                                                                                         |        115 |      4,394 |         21 |        530 |      4,945 |
+| src\Layouts                                                                                                                                 |          4 |        177 |          0 |         17 |        194 |
+| src\Layouts\navigations                                                                                                                     |          2 |        152 |          0 |         13 |        165 |
+| src\assets                                                                                                                                  |          1 |          1 |          0 |          0 |          1 |
+| src\assets\icons                                                                                                                            |          1 |          1 |          0 |          0 |          1 |
+| src\components                                                                                                                              |         21 |      1,240 |          4 |        105 |      1,349 |
+| src\components\containers                                                                                                                   |          1 |          9 |          0 |          3 |         12 |
+| src\components\forms                                                                                                                        |          4 |        316 |          0 |         16 |        332 |
+| src\components\inputs                                                                                                                       |          6 |        360 |          0 |         28 |        388 |
+| src\components\others                                                                                                                       |          3 |        162 |          0 |         17 |        179 |
+| src\components\timer                                                                                                                        |          1 |         53 |          0 |          8 |         61 |
+| src\components\tracking                                                                                                                     |          4 |        233 |          3 |         24 |        260 |
+| src\components\tracking\modals                                                                                                              |          4 |        233 |          3 |         24 |        260 |
+| src\components\userInsights                                                                                                                 |          2 |        107 |          1 |          9 |        117 |
+| src\components\userInsights\lastMonths                                                                                                      |          1 |         45 |          1 |          4 |         50 |
+| src\components\userInsights\topProjects                                                                                                     |          1 |         62 |          0 |          5 |         67 |
+| src\constants                                                                                                                               |          4 |         56 |          0 |         12 |         68 |
+| src\hooks                                                                                                                                   |          1 |         18 |          0 |          2 |         20 |
+| src\pages                                                                                                                                   |         45 |      1,721 |          3 |        192 |      1,916 |
+| src\pages\reports                                                                                                                           |          1 |          3 |          0 |          2 |          5 |
+| src\pages\team                                                                                                                              |          9 |        283 |          1 |         31 |        315 |
+| src\pages\team\components                                                                                                                   |          8 |        201 |          1 |         23 |        225 |
+| src\pages\team\components\dashboard                                                                                                         |          3 |         76 |          0 |          9 |         85 |
+| src\pages\team\components\dashboard\widgets                                                                                                 |          2 |         52 |          0 |          6 |         58 |
+| src\pages\team\components\teamInsigths                                                                                                      |          1 |          4 |          1 |          0 |          5 |
+| src\pages\tracking                                                                                                                          |         32 |      1,338 |          2 |        146 |      1,486 |
+| src\pages\tracking\dashboard                                                                                                                |          6 |        110 |          0 |         12 |        122 |
+| src\pages\tracking\dashboard\components                                                                                                     |          5 |         83 |          0 |         10 |         93 |
+| src\pages\tracking\dashboard\components\AsignedTasks                                                                                        |          2 |         60 |          0 |          7 |         67 |
+| src\pages\tracking\dashboard\components\AsignedTasks\components                                                                             |          1 |         35 |          0 |          5 |         40 |
+| src\pages\tracking\dashboard\components\Statistics                                                                                          |          3 |         23 |          0 |          3 |         26 |
+| src\pages\tracking\dashboard\components\Statistics\components                                                                               |          2 |         16 |          0 |          2 |         18 |
+| src\pages\tracking\project                                                                                                                  |         21 |        934 |          0 |        101 |      1,035 |
+| src\pages\tracking\project\components                                                                                                       |         20 |        840 |          0 |         91 |        931 |
+| src\pages\tracking\project\components\statistics                                                                                            |          2 |          6 |          0 |          4 |         10 |
+| src\pages\tracking\project\components\statistics\components                                                                                 |          1 |          3 |          0 |          2 |          5 |
+| src\pages\tracking\project\components\tasks                                                                                                 |          5 |        226 |          0 |         22 |        248 |
+| src\pages\tracking\timer                                                                                                                    |          5 |        294 |          2 |         33 |        329 |
+| src\pages\tracking\timer\components                                                                                                         |          2 |        114 |          0 |         15 |        129 |
+| src\pages\user                                                                                                                              |          3 |         97 |          0 |         13 |        110 |
+| src\pages\user\profile                                                                                                                      |          1 |         34 |          0 |          2 |         36 |
+| src\pages\user\verify-email                                                                                                                 |          1 |         40 |          0 |          7 |         47 |
+| src\routes                                                                                                                                  |          4 |        152 |          0 |         19 |        171 |
+| src\services                                                                                                                                |          6 |        212 |          2 |         38 |        252 |
+| src\store                                                                                                                                   |         20 |        524 |          0 |         98 |        622 |
+| src\store\modals                                                                                                                            |          2 |         50 |          0 |          5 |         55 |
+| src\store\projects                                                                                                                          |          4 |         72 |          0 |         14 |         86 |
+| src\store\tasks                                                                                                                             |          4 |        101 |          0 |         16 |        117 |
+| src\store\types                                                                                                                             |          4 |        166 |          0 |         39 |        205 |
+| src\store\users                                                                                                                             |          4 |         89 |          0 |         17 |        106 |
+| src\types                                                                                                                                   |          1 |        107 |          5 |          9 |        121 |
+| src\utils                                                                                                                                   |          4 |        118 |          5 |         26 |        149 |
++---------------------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                                                    | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\README.md                                                                     | Markdown           |         26 |          0 |         21 |         47 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\package-lock.json                                                             | JSON               |     30,346 |          0 |          1 |     30,347 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\package.json                                                                  | JSON               |         76 |          0 |          1 |         77 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\public\index.html                                                             | HTML               |         20 |          0 |          1 |         21 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\public\manifest.json                                                          | JSON               |         25 |          0 |          1 |         26 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\App.tsx                                                                   | TypeScript React   |         41 |          0 |          4 |         45 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\Layouts\LayoutPrivate.tsx                                                 | TypeScript React   |         16 |          0 |          2 |         18 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\Layouts\LayoutPublic.tsx                                                  | TypeScript React   |          9 |          0 |          2 |         11 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\Layouts\navigations\Header.tsx                                            | TypeScript React   |         59 |          0 |          3 |         62 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\Layouts\navigations\SideBar.tsx                                           | TypeScript React   |         93 |          0 |         10 |        103 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\assets\icons\time_management.svg                                          | XML                |          1 |          0 |          0 |          1 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\containers\PageContainer.tsx                                   | TypeScript React   |          9 |          0 |          3 |         12 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\LoginForm.tsx                                            | TypeScript React   |         76 |          0 |          5 |         81 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\NotificationsForm.tsx                                    | TypeScript React   |         70 |          0 |          3 |         73 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\ProfileForm.tsx                                          | TypeScript React   |         85 |          0 |          4 |         89 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\RegisterForm.tsx                                         | TypeScript React   |         85 |          0 |          4 |         89 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\Checkbox.tsx                                            | TypeScript React   |         37 |          0 |          5 |         42 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\DateInput.tsx                                           | TypeScript React   |         78 |          0 |          4 |         82 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\EmailInput.tsx                                          | TypeScript React   |         48 |          0 |          6 |         54 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\InputUtil.tsx                                           | TypeScript React   |         76 |          0 |          4 |         80 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\Select.tsx                                              | TypeScript React   |         57 |          0 |          5 |         62 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\TimeInput.tsx                                           | TypeScript React   |         64 |          0 |          4 |         68 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\others\CustomTable.tsx                                         | TypeScript React   |        104 |          0 |          8 |        112 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\others\Loader.tsx                                              | TypeScript React   |         46 |          0 |          6 |         52 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\others\Toast.tsx                                               | TypeScript React   |         12 |          0 |          3 |         15 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\timer\TaskTimer.tsx                                            | TypeScript React   |         53 |          0 |          8 |         61 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\tracking\modals\DialogWithClose.tsx                            | TypeScript React   |         28 |          0 |          4 |         32 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\tracking\modals\EditTimesModal.tsx                             | TypeScript React   |         95 |          0 |          6 |        101 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\tracking\modals\EditUserModal.tsx                              | TypeScript React   |         21 |          0 |          3 |         24 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\tracking\modals\ImportTaskModal.tsx                            | TypeScript React   |         89 |          3 |         11 |        103 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\userInsights\lastMonths\WorkingStatistics.tsx                  | TypeScript React   |         45 |          1 |          4 |         50 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\userInsights\topProjects\TopProjects.tsx                       | TypeScript React   |         62 |          0 |          5 |         67 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\constants\api.ts                                                          | TypeScript         |         32 |          0 |          4 |         36 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\constants\other.ts                                                        | TypeScript         |          2 |          0 |          1 |          3 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\constants\routes.ts                                                       | TypeScript         |         10 |          0 |          2 |         12 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\constants\tokenStorage.ts                                                 | TypeScript         |         12 |          0 |          5 |         17 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\hooks\use-stopwatch.ts                                                    | TypeScript         |         18 |          0 |          2 |         20 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\index.css                                                                 | CSS                |          8 |          0 |          2 |         10 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\index.tsx                                                                 | TypeScript React   |         19 |          0 |          5 |         24 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\reports\Reports.tsx                                                 | TypeScript React   |          3 |          0 |          2 |          5 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\Team.tsx                                                       | TypeScript React   |         82 |          0 |          8 |         90 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\AddNewEmployee.tsx                                  | TypeScript React   |         21 |          0 |          2 |         23 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\AddNewEmployeeForm.tsx                              | TypeScript React   |         74 |          0 |          6 |         80 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\TeamMemberName.tsx                                  | TypeScript React   |         10 |          0 |          2 |         12 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\TeamMemberRole.tsx                                  | TypeScript React   |         16 |          0 |          4 |         20 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\dashboard\Dashboard.tsx                             | TypeScript React   |         24 |          0 |          3 |         27 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\dashboard\widgets\Realtime.tsx                      | TypeScript React   |         20 |          0 |          2 |         22 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\dashboard\widgets\RealtimeUser.tsx                  | TypeScript React   |         32 |          0 |          4 |         36 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\teamInsigths\TeamMemberInsight.tsx                  | TypeScript React   |          4 |          1 |          0 |          5 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\dashboard\Dashboard.tsx                                    | TypeScript React   |         27 |          0 |          2 |         29 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\dashboard\components\AsignedTasks\AsignedTasks.tsx         | TypeScript React   |         25 |          0 |          2 |         27 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\dashboard\components\AsignedTasks\components\TasksList.tsx | TypeScript React   |         35 |          0 |          5 |         40 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\dashboard\components\Statistics\components\BasicInfo.tsx   | TypeScript React   |         14 |          0 |          1 |         15 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\dashboard\components\Statistics\components\TimeInfo.tsx    | TypeScript React   |          2 |          0 |          1 |          3 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\dashboard\components\Statistics\index.tsx                  | TypeScript React   |          7 |          0 |          1 |          8 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\Projects.tsx                                       | TypeScript React   |         94 |          0 |         10 |        104 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\AddUsersToProjectForm.tsx               | TypeScript React   |        106 |          0 |          9 |        115 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\AddUsersToProjectModal.tsx              | TypeScript React   |         21 |          0 |          2 |         23 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\CreateProjectForm.tsx                   | TypeScript React   |         83 |          0 |          6 |         89 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\CreateProjectModal.tsx                  | TypeScript React   |         20 |          0 |          2 |         22 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\InvitedUsers.tsx                        | TypeScript React   |          6 |          0 |          3 |          9 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\InvitedUsersTable.tsx                   | TypeScript React   |        107 |          0 |         10 |        117 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\Project.tsx                             | TypeScript React   |         46 |          0 |          6 |         52 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\ProjectAccess.tsx                       | TypeScript React   |         63 |          0 |          5 |         68 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\ProjectFilters.tsx                      | TypeScript React   |         68 |          0 |          7 |         75 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\ProjectMenu.tsx                         | TypeScript React   |         33 |          0 |          5 |         38 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\ProjectName.tsx                         | TypeScript React   |         20 |          0 |          3 |         23 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\ProjectTabs.tsx                         | TypeScript React   |         26 |          0 |          5 |         31 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\TotalTacked.tsx                         | TypeScript React   |          9 |          0 |          2 |         11 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\statistics\ProjectStatistics.tsx        | TypeScript React   |          3 |          0 |          2 |          5 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\statistics\components\ProjectWidget.tsx | TypeScript React   |          3 |          0 |          2 |          5 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\tasks\CreateTaskForm.tsx                | TypeScript React   |         78 |          0 |          6 |         84 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\tasks\CreateTaskModal.tsx               | TypeScript React   |         34 |          0 |          2 |         36 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\tasks\TaskTime.tsx                      | TypeScript React   |         16 |          0 |          4 |         20 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\tasks\Tasks.tsx                         | TypeScript React   |         35 |          0 |          4 |         39 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\project\components\tasks\TasksTable.tsx                    | TypeScript React   |         63 |          0 |          6 |         69 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\Statistics.tsx                                       | TypeScript React   |         38 |          0 |          4 |         42 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\StopWatch.tsx                                        | TypeScript React   |         22 |          0 |          2 |         24 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\Timer.tsx                                            | TypeScript React   |        120 |          2 |         12 |        134 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\components\AccordionItem.tsx                         | TypeScript React   |         31 |          0 |          2 |         33 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\components\DayEntry.tsx                              | TypeScript React   |         83 |          0 |         13 |         96 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\user\Login.tsx                                                      | TypeScript React   |         23 |          0 |          4 |         27 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\user\profile\Profile.tsx                                            | TypeScript React   |         34 |          0 |          2 |         36 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\user\verify-email\MailVerification.tsx                              | TypeScript React   |         40 |          0 |          7 |         47 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\react-app-env.d.ts                                                        | TypeScript         |          0 |          2 |          1 |          3 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\routes\AdminRoute.tsx                                                     | TypeScript React   |         37 |          0 |          7 |         44 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\routes\MainRouter.tsx                                                     | TypeScript React   |         73 |          0 |          4 |         77 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\routes\PrivateRoute.tsx                                                   | TypeScript React   |         33 |          0 |          6 |         39 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\routes\PublicRoute.tsx                                                    | TypeScript React   |          9 |          0 |          2 |         11 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\admin.service.ts                                                 | TypeScript         |          6 |          0 |          1 |          7 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\auth.service.ts                                                  | TypeScript         |         32 |          0 |          8 |         40 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\middleware.ts                                                    | TypeScript         |         35 |          1 |          6 |         42 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\notification.service.ts                                          | TypeScript         |         37 |          1 |          4 |         42 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\sse.service.ts                                                   | TypeScript         |         22 |          0 |          3 |         25 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\tracking.service.ts                                              | TypeScript         |         80 |          0 |         16 |         96 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\modals\modalSlice.ts                                                | TypeScript         |         13 |          0 |          3 |         16 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\modals\reducer.ts                                                   | TypeScript         |         37 |          0 |          2 |         39 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\projects\actions.ts                                                 | TypeScript         |         36 |          0 |          6 |         42 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\projects\projectsSlice.ts                                           | TypeScript         |         10 |          0 |          2 |         12 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\projects\reducer.ts                                                 | TypeScript         |         13 |          0 |          3 |         16 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\projects\types.ts                                                   | TypeScript         |         13 |          0 |          3 |         16 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\selectors.ts                                                        | TypeScript         |          3 |          0 |          1 |          4 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\store.ts                                                            | TypeScript         |         43 |          0 |          6 |         49 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\tasks\actions.ts                                                    | TypeScript         |         66 |          0 |          9 |         75 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\tasks\reducer.ts                                                    | TypeScript         |         24 |          0 |          5 |         29 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\tasks\taskSlice.ts                                                  | TypeScript         |         10 |          0 |          2 |         12 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\tasks\types.ts                                                      | TypeScript         |          1 |          0 |          0 |          1 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\types\Modal.ts                                                      | TypeScript         |         20 |          0 |          1 |         21 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\types\Project.ts                                                    | TypeScript         |         30 |          0 |         12 |         42 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\types\Task.ts                                                       | TypeScript         |         81 |          0 |         21 |        102 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\types\User.ts                                                       | TypeScript         |         35 |          0 |          5 |         40 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\users\actions.ts                                                    | TypeScript         |         28 |          0 |          3 |         31 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\users\reducer.ts                                                    | TypeScript         |         27 |          0 |          3 |         30 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\users\types.ts                                                      | TypeScript         |         21 |          0 |          7 |         28 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\users\usersSlice.ts                                                 | TypeScript         |         13 |          0 |          4 |         17 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\types\react-table-config.d.ts                                             | TypeScript         |        107 |          5 |          9 |        121 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\utils\error.ts                                                            | TypeScript         |          9 |          0 |          3 |         12 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\utils\notificationts.ts                                                   | TypeScript         |          2 |          0 |          1 |          3 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\utils\timer.ts                                                            | TypeScript         |         94 |          5 |         17 |        116 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\utils\validators.ts                                                       | TypeScript         |         13 |          0 |          5 |         18 |
+| c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\tsconfig.json                                                                 | JSON with Comments |         28 |          0 |          1 |         29 |
+| Total                                                                                                                                       |                    |     34,915 |         21 |        556 |     35,492 |
++---------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
