@@ -15,7 +15,7 @@ export const TRACKING_ENDPOINT = {
   CREATE_PROJECT: '/projects',
   GET_PROJECT: (projectId: number) => `/projects/${projectId}`,
   START_TIME: `/timers/start`,
-  STOP_TIME: '/timers/stop',
+  STOP_TIME: (userId?: number) => `/timers/stop${userId ? `/${userId}` : ''}`,
   GET_TASKS: '/tasks',
   TIME_ENTRIES: '/timers',
   GET_CURRENT_TIMER: '/timers/current',

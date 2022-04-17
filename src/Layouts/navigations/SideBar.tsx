@@ -14,11 +14,12 @@ import { useNavigate } from "react-router-dom";
 import { ArticleOutlined, DashboardOutlined, GroupsOutlined, TimerOutlined } from "@mui/icons-material";
 import { useAppSelector } from "store/selectors";
 import { ADMIN_ROLES } from "constants/other";
+import AssessmentIcon from '@mui/icons-material/Assessment';
 
 export const drawerWidth = 200;
 
 const SIDE_BAR_LINKS = [{ name: 'DASHBOARD', link: '/', icon: <DashboardOutlined /> }, { name: 'TRACKING', link: '/tracking', icon: <TimerOutlined /> }];
-const ADMIN_LINKS = [{ name: 'PROJECTS', link: '/projects', icon: <ArticleOutlined /> }, { name: 'TEAM', link: '/team', icon: <GroupsOutlined /> }];
+const ADMIN_LINKS = [{ name: 'PROJECTS', link: '/projects', icon: <ArticleOutlined /> }, { name: 'TEAM', link: '/team', icon: <GroupsOutlined /> },  { name: "REPORTS", link: '/reports', icon: <AssessmentIcon/> }];
 export const SideBar = () => {
   const navigate = useNavigate();
   const { role } = useAppSelector(s => s.userState);

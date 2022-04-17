@@ -1,8 +1,8 @@
 import axios, { Method, ResponseType } from 'axios';
 import { TokenStorage } from 'constants/tokenStorage';
 // https://kora-be.herokuapp.com/api
-// export const baseUrl = 'http://localhost:3000/api';
-export const baseUrl = 'https://kora-be.herokuapp.com/api';
+export const baseUrl = 'http://localhost:3000/api';
+// export const baseUrl = 'https://kora-be.herokuapp.com/api';
 export const apiClient = (responseType?: ResponseType) => axios.create({
   baseURL: baseUrl,
   responseType,

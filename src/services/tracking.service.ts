@@ -42,8 +42,8 @@ export const fetchTimeEntries = async () => {
   return response;
 };
 
-export const stopTimer = async () => {
-  const response = await apiCall("POST", TRACKING_ENDPOINT.STOP_TIME, true);
+export const stopTimer = async (userId?: number) => {
+  const response = await apiCall("POST", TRACKING_ENDPOINT.STOP_TIME(userId), true);
   return response;
 };
 

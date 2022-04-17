@@ -17,6 +17,9 @@ import { MailVerification } from 'pages/user/verify-email/MailVerification';
 import { AdminRoute } from 'routes/AdminRoute';
 import { Team } from 'pages/team/Team';
 import { Profile } from 'pages/user/profile/Profile';
+import { Reports } from 'pages/reports/Reports';
+import { SystemReport } from 'pages/reports/components/pages/systemReport/SystemReport';
+import { TimerReport } from 'pages/reports/components/pages/timerReport/TimerReport';
 
 const AppRoutes = () => {
   return (
@@ -60,6 +63,22 @@ const AppRoutes = () => {
       <Route path={ROUTES.TEAM} element={(
         <AdminRoute>
           <Team />
+        </AdminRoute>
+      )} />
+      <Route path={ROUTES.REPORTS} element={(
+        <AdminRoute>
+          <Reports />
+        </AdminRoute>
+      )}>
+      </Route>
+      <Route path={ROUTES.SYSTEM_REPORT} element={(
+        <AdminRoute>
+          <SystemReport />
+        </AdminRoute>
+      )} />
+        <Route path={ROUTES.TIMER_REPORT} element={(
+        <AdminRoute>
+          <TimerReport />
         </AdminRoute>
       )} />
     </Switch>
