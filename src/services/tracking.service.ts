@@ -1,7 +1,7 @@
 import { TRACKING_ENDPOINT, USER_ENDPOINT } from "constants/api";
 import { apiCall } from "services/middleware";
 import { TApiProjectItem } from "store/types/Project";
-import { UpdateTimer } from "store/types/Task";
+import { UpdateTask, UpdateTimer } from "store/types/Task";
 
 export const getAllProjects = async (filters?: any) => {
   if (filters) {
@@ -9,6 +9,11 @@ export const getAllProjects = async (filters?: any) => {
     return response;
   }
   const response = await apiCall("GET", TRACKING_ENDPOINT.GET_PROJECTS(), true);
+  return response;
+};
+
+export const updateTask = async (taskId: number, payload: UpdateTask) => {
+  const response = await apiCall("PATCH", TRACKING_ENDPOINT.UPDATE_TASK(taskId), true, payload);
   return response;
 };
 
@@ -88,6 +93,10 @@ export const updateTimer = async (timerId: number, timerInfo: Partial<UpdateTime
   return await apiCall("PATCH", TRACKING_ENDPOINT.UPDATE_TIMER(timerId), true, {
     endDate: timerInfo.endDate,
   })
+}
+
+export const fetchAvailableTasks = async (projectId?: number, assignee?: number) => {
+  return await apiCall("GET", TRACKING_ENDPOINT.GET_AVAILABLE_TASKS(projectId, assignee), true);
 }
 
 

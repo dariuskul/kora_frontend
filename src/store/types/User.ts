@@ -10,6 +10,10 @@ export enum UpdateUser {
   UpdateUser = 'users/UpdateUser',
 }
 
+export enum RemoveUser {
+  RemoveUser = 'users/RemoveUser',
+}
+
 export interface IUsersState {
   readonly id: number;
   readonly authenticated: boolean;

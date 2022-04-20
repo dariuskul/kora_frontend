@@ -24,6 +24,8 @@ export const TRACKING_ENDPOINT = {
   GET_USER_TASKS: (userId?: number) => `/tasks/user-tasks/${userId}`,
   UPDATE_TIMER: (timerId: number) => `/timers/${timerId}`,
   CHECK_CSV: '/tasks/check',
+  GET_AVAILABLE_TASKS: (projectId?: number, assignee?: number) => `/tasks/available-tasks?projectId=${projectId || 'All'}&assignee=${assignee || 'All'}`,
+  UPDATE_TASK: (taskId: number) => `/tasks/${taskId}`,
 }
 
 export const EVENTS_ENDPOINT = {
@@ -33,5 +35,6 @@ export const EVENTS_ENDPOINT = {
 
 export const ADMIN_ENDPOINT = {
   DASHBOARD: '/users/admin/dashboard',
-  REPORT: (project: string, dateFrom: string, dateTo: string) =>  `/reports?project=${project}&dateFrom=${dateFrom}&dateTo=${dateTo}`,
+  REPORT: (project: string, dateFrom: string, dateTo: string) => `/reports?project=${project}&dateFrom=${dateFrom}&dateTo=${dateTo}`,
+  REMOVE_USER: (userId: number) => `/users/${userId}`,
 }

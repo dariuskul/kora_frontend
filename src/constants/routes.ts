@@ -11,4 +11,5 @@ export const ROUTES = {
   REPORTS: '/reports',
   SYSTEM_REPORT: '/reports/system',
   TIMER_REPORT: '/reports/tracking',
+  TASKS: '/tasks',
 }

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { createTask, fetchTimeEntries, getCurrent, getTasks, startTimer, stopTimer } from "services/tracking.service";
-import { CreateNewTask, GetCurrentTimer, GetTasks, GetTimeEntries, StartTimer, StopTimer, TCreateTask } from "store/types/Task";
+import { createTask, fetchAvailableTasks, fetchTimeEntries, getCurrent, getTasks, startTimer, stopTimer } from "services/tracking.service";
+import { CreateNewTask, GetAvailableTasks, GetCurrentTimer, GetTasks, GetTimeEntries, StartTimer, StopTimer, TCreateTask, TGetAvailableTasks } from "store/types/Task";
 
 export const getTimeEntries = createAsyncThunk(GetTimeEntries.GetTimeEntries, async (_, { rejectWithValue }) => {
   try {
@@ -64,6 +64,17 @@ export const createNewTask = createAsyncThunk(CreateNewTask.CreateNewTask, async
   const { description, projectId } = values;
   try {
     const response = await createTask(description, projectId);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return rejectWithValue(error.response?.data.message);
+    }
+  }
+})
+
+export const getAvailableTasks = createAsyncThunk(GetAvailableTasks.GetAvailableTasks, async (values: TGetAvailableTasks, { rejectWithValue }) => {
+  try {
+    const response = await fetchAvailableTasks(values.projectId, values.assigneeId);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -24,6 +24,10 @@ export enum CreateNewTask {
   CreateNewTask = 'tasks/CreateNewTask'
 }
 
+export enum GetAvailableTasks {
+  GetAvailableTasks = 'tasks/GetAvailableTasks'
+}
+
 
 export type TApiTimer = {
   id: number;
@@ -37,9 +41,15 @@ export type TCreateTask = {
   projectId?: number;
 }
 
+export type TGetAvailableTasks = {
+  projectId?: number;
+  assigneeId?: number;
+}
+
 export type TApiTaskItem = {
   id: number;
   description: string;
+  assigneeId: any;
   createdAt: string;
   updatedAt: string;
   projectId: number;
@@ -65,6 +75,8 @@ export interface ITimeEntry {
 
 export type UpdateTimer = Partial<ITimeEntry>;
 
+export type UpdateTask = Partial<TApiTaskItem>;
+
 export interface IProjectEntry {
   id: number;
   endDate: string;
@@ -86,9 +98,13 @@ export interface IWeeklyTimeEntry {
   projectEntries: Array<IDayEntry>;
 }
 
+export interface IAvailableTask extends TApiTaskItem {
+  assignee: { fullName: string; id: number };
+}
 
 export interface ITasks {
   tasks: Array<TApiTaskItem>;
+  availableTasks: Array<IAvailableTask>;
   currentTimer?: ICurrentTimer,
   timeEntries: Array<IWeeklyTimeEntry>;
 }
@@ -99,4 +115,5 @@ export const initialTaskState: ITasks = {
   tasks: [],
   currentTimer: undefined,
   timeEntries: [],
+  availableTasks: [],
 }

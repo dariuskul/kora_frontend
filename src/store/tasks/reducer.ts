@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { getAllTasks, getCurrentTimer, getTimeEntries, startTask, stopTask } from "store/tasks/actions";
+import { getAllTasks, getAvailableTasks, getCurrentTimer, getTimeEntries, startTask, stopTask } from "store/tasks/actions";
 import { ITasks } from "store/types/Task";
 
 const reducer = {
@@ -22,6 +22,9 @@ const thunkReducer = (builder: ActionReducerMapBuilder<ITasks>) => {
   })
   builder.addCase(startTask.fulfilled, (state, { payload }) => {
     state.currentTimer = payload;
+  })
+  builder.addCase(getAvailableTasks.fulfilled, (state, { payload }) => {
+    state.availableTasks = payload;
   })
 };
 

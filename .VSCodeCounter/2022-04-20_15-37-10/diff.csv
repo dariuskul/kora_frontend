@@ -1,0 +1,42 @@
+"filename", "language", "JSON", "TypeScript React", "TypeScript", "comment", "blank", "total"
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\package-lock.json", "JSON", 178, 0, 0, 0, 0, 178
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\package.json", "JSON", 3, 0, 0, 0, 0, 3
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\App.tsx", "TypeScript React", 0, 4, 0, 0, 1, 5
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\Layouts\navigations\SideBar.tsx", "TypeScript React", 0, 28, 0, 0, 0, 28
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\EmailSendForm.tsx", "TypeScript React", 0, 23, 0, 0, 3, 26
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\LoginForm.tsx", "TypeScript React", 0, 7, 0, 0, 1, 8
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\forms\ProfileForm.tsx", "TypeScript React", 0, -1, 0, 0, 0, -1
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\DateInput.tsx", "TypeScript React", 0, -11, 0, 0, 0, -11
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\InputUtil.tsx", "TypeScript React", 0, 1, 0, 0, 0, 1
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\MultiSelect.tsx", "TypeScript React", 0, 59, 0, 0, 5, 64
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\inputs\Select.tsx", "TypeScript React", 0, 1, 0, 0, 0, 1
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\tracking\modals\EditTimesModal.tsx", "TypeScript React", 0, -1, 0, 0, 0, -1
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\components\tracking\modals\ImportTaskModal.tsx", "TypeScript React", 0, -5, 0, 0, 0, -5
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\constants\api.ts", "TypeScript", 0, 0, 3, 0, 1, 4
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\constants\routes.ts", "TypeScript", 0, 0, 4, 0, 0, 4
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\index.tsx", "TypeScript React", 0, 3, 0, 0, 0, 3
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\reports\Reports.tsx", "TypeScript React", 0, 16, 0, 0, 1, 17
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\reports\components\SelectReport.tsx", "TypeScript React", 0, 29, 0, 0, 4, 33
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\reports\components\pages\systemReport\SystemReport.tsx", "TypeScript React", 0, 11, 0, 0, 2, 13
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\reports\components\pages\timerReport\TimerReport.tsx", "TypeScript React", 0, 41, 0, 0, 2, 43
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\reports\components\pages\timerReport\components\Filters.tsx", "TypeScript React", 0, 102, 0, 0, 5, 107
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tasks\Tasks.tsx", "TypeScript React", 0, 31, 0, 1, 5, 37
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\Team.tsx", "TypeScript React", 0, 9, 0, 0, 0, 9
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\RemoveEmployee.tsx", "TypeScript React", 0, 33, 0, 0, 4, 37
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\team\components\dashboard\widgets\RealtimeUser.tsx", "TypeScript React", 0, 22, 0, 0, 0, 22
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\Timer.tsx", "TypeScript React", 0, -1, 0, 0, -1, -2
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\components\AccordionItem.tsx", "TypeScript React", 0, -1, 0, 0, 0, -1
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\tracking\timer\components\DayEntry.tsx", "TypeScript React", 0, -2, 0, 0, -1, -3
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\pages\user\profile\Profile.tsx", "TypeScript React", 0, 7, 0, 0, 1, 8
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\routes\MainRouter.tsx", "TypeScript React", 0, 25, 0, 0, 1, 26
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\admin.service.ts", "TypeScript", 0, 0, 8, 0, 3, 11
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\middleware.ts", "TypeScript", 0, 0, 0, 1, -1, 0
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\services\tracking.service.ts", "TypeScript", 0, 0, 3, 0, 2, 5
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\tasks\actions.ts", "TypeScript", 0, 0, 10, 0, 1, 11
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\tasks\reducer.ts", "TypeScript", 0, 0, 3, 0, 0, 3
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\types\Task.ts", "TypeScript", 0, 0, 8, 0, 2, 10
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\types\User.ts", "TypeScript", 0, 0, 6, 0, 2, 8
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\users\actions.ts", "TypeScript", 0, 0, 11, 0, 1, 12
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\store\users\reducer.ts", "TypeScript", 0, 0, 3, 0, 1, 4
+"c:\Users\Darius\Desktop\Projects\everhoury\everhoury_frontend\src\utils\timer.ts", "TypeScript", 0, 0, -3, 0, 0, -3
+"Total", "-", 181, 430, 56, 2, 45, 714

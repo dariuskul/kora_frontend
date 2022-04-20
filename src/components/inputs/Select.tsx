@@ -45,6 +45,7 @@ export const SelectInput = ({
           variant={type || "outlined"}
           value={input.value}
           labelId={labelId}
+          label={label}
           MenuProps={MenuProps}
         >
           {options.map(opt => (

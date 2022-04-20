@@ -33,10 +33,10 @@ export const TimerReport = () => {
       <Filters setFile={setFile} projects={projects} users={team} />
       {file && <Box textAlign="center" margin="2.5rem auto 0" maxWidth="30rem">
         <Paper>
-        <Typography textAlign="center" fontSize="1.5rem">Report generated!</Typography>
-        <Button onClick={handleDownload}>Click here to download</Button>
+          <Typography textAlign="center" fontSize="1.5rem">Report generated!</Typography>
+          <Button onClick={handleDownload}>Click here to download</Button>
         </Paper>
-        </Box>}
+      </Box>}
     </Box>
   );
 };

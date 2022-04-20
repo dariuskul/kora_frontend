@@ -10,6 +10,7 @@ import { TeamMemberRole } from "pages/team/components/TeamMemberRole";
 import { AddNewEmployeeModal } from "pages/team/components/AddNewEmployee";
 import { CustomTable } from "components/others/CustomTable";
 import { Dashboard } from "pages/team/components/dashboard/Dashboard";
+import { RemoveEmployee } from "pages/team/components/RemoveEmployee";
 
 export const Team = () => {
   const [team, setTeam] = useState<Array<IUser>>([]);
@@ -35,6 +36,14 @@ export const Team = () => {
         accessor: "role",
         Cell: ({ row }: { row: Row<IUser> }) => (
           <TeamMemberRole value={row.original.role} />
+        ),
+      },
+      {
+        Header: " ",
+        width: 100,
+        accessor: "",
+        Cell: ({ row }: { row: Row<IUser> }) => (
+          <RemoveEmployee employee={row.original} />
         ),
       },
     ],

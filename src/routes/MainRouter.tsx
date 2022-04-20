@@ -20,6 +20,7 @@ import { Profile } from 'pages/user/profile/Profile';
 import { Reports } from 'pages/reports/Reports';
 import { SystemReport } from 'pages/reports/components/pages/systemReport/SystemReport';
 import { TimerReport } from 'pages/reports/components/pages/timerReport/TimerReport';
+import { Tasks } from 'pages/tasks/Tasks';
 
 const AppRoutes = () => {
   return (
@@ -50,6 +51,11 @@ const AppRoutes = () => {
           <Timer />
         </PrivateRoute>
       )} />
+      <Route path={ROUTES.TASKS} element={(
+        <PrivateRoute>
+          <Tasks />
+        </PrivateRoute>
+      )} />
       <Route path={ROUTES.PROFILE} element={(
         <PrivateRoute>
           <Profile />
@@ -76,7 +82,7 @@ const AppRoutes = () => {
           <SystemReport />
         </AdminRoute>
       )} />
-        <Route path={ROUTES.TIMER_REPORT} element={(
+      <Route path={ROUTES.TIMER_REPORT} element={(
         <AdminRoute>
           <TimerReport />
         </AdminRoute>
