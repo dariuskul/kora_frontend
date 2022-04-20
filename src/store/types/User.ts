@@ -17,6 +17,7 @@ export interface IUsersState {
   readonly email: string;
   readonly role: string;
   readonly notifyAfter: number;
+  readonly dailySummaries: boolean;
 }
 
 export const initialUsersState: IUsersState = {
@@ -26,6 +27,7 @@ export const initialUsersState: IUsersState = {
   fullName: '',
   role: '',
   notifyAfter: 0,
+  dailySummaries: false,
 }
 
 export interface IUser {
@@ -37,4 +39,5 @@ export interface IUser {
   dateOfBirth: string;
   role: string;
   notifyAfter: number;
+  dailySummaries: boolean;
 }

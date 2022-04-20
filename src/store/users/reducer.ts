@@ -24,6 +24,7 @@ const thunkReducer = (builder: ActionReducerMapBuilder<IUsersState>) => {
   builder.addCase(updateUser.fulfilled, (state, { payload }) => {
     state.notifyAfter = payload.notifyAfter;
     state.fullName = payload.fullName || state.fullName;
+    state.dailySummaries = payload.dailySummaries;
   });
 };
 

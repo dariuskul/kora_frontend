@@ -1,4 +1,5 @@
 import { Box, Button, Paper, Typography } from '@mui/material';
+import { EmailSendForm } from 'components/forms/EmailSendForm';
 import { NotificationsForm } from 'components/forms/NotificationsForm';
 import { SelectInput } from 'components/inputs/Select';
 import { EditUserModal } from 'components/tracking/modals/EditUserModal';
@@ -23,6 +24,12 @@ export const Profile = () => {
           <Box flexDirection="column" display="flex" mt="0.5rem">
             <NotificationsForm />
           </Box>
+        </Box>
+        <Box mt="1rem">
+          <Typography fontSize="1.5rem" variant="h3">
+            Notifications
+          </Typography>
+          <EmailSendForm />
         </Box>
         <Box mt="1.5rem">
           <Button onClick={() => setOpen(true)}>

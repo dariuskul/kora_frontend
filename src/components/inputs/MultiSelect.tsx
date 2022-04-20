@@ -38,13 +38,15 @@ export const MultiSelect = ({
         sx={{ maxWidth: '10rem' }}
         fullWidth
       >
-        {label && <InputLabel id={labelId}>{label}</InputLabel>}
+         <InputLabel id={labelId}>{label}</InputLabel>
         <Select
           {...input}
           fullWidth
           variant={type || "outlined"}
           value={input.value}
           labelId={labelId}
+          id={labelId}
+          label={label}
           MenuProps={MenuProps}
         >
           {options.map(opt => (

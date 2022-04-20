@@ -33,4 +33,5 @@ export const EVENTS_ENDPOINT = {
 
 export const ADMIN_ENDPOINT = {
   DASHBOARD: '/users/admin/dashboard',
+  REPORT: (project: string, dateFrom: string, dateTo: string) =>  `/reports?project=${project}&dateFrom=${dateFrom}&dateTo=${dateTo}`,
 }

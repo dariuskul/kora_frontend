@@ -1,9 +1,11 @@
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField } from '@mui/material';
 import React from 'react';
 import { Field } from 'react-final-form';
 import DateFnsUtils from '@date-io/date-fns';
 import enLocale from 'date-fns/locale/en-US';
+import { DatePicker } from '@mui/x-date-pickers';
 
 interface IInputUtil {
   icon?: React.ReactElement;
@@ -51,29 +53,16 @@ const DateInput: React.FC<IInputUtil> = ({
 }) => (
   <Field name={name} id={id} initialValue={initialValue}>
     {({ input, meta }) => (
-      <MuiPickersUtilsProvider locale={enLocale} utils={DateFnsUtils}>
+      <LocalizationProvider locale={enLocale} dateAdapter={AdapterDateFns}>
         <DatePicker
           {...input}
-          margin="none"
-          required={required}
-          placeholder={placeholder}
-          fullWidth={fullWidth}
-          label={label}
-          autoFocus={autoFocus}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          error={meta.error && meta.touched}
-          helperText={meta.touched ? meta.error : ''}
-          id={id}
-          multiline={multiline}
-          rows={rows}
-          color={color}
           disableFuture
-          disabled={disabled}
-          onClick={handlePasswordClick}
-          variant="dialog"
+          inputFormat="yyyy/MM/dd"
+          value={input.value || new Date()}
+          label={label}
+          renderInput={(params) => <TextField {...params} />}
         />
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     )}
   </Field>
 );

@@ -5,3 +5,8 @@ export const fetchUsersDashboard = async () => {
   const response = await apiCall('GET', `${ADMIN_ENDPOINT.DASHBOARD}`, true);
   return response;
 }
+
+export const getReport = async (project: string, dateFrom: string, dateTo: string) => {
+  const response = await apiCall('GET', `${ADMIN_ENDPOINT.REPORT(project, dateFrom ,dateTo)}`, true, null, 'application/pdf', null, 'blob');
+  return response;
+}
