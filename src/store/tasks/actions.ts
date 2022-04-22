@@ -74,7 +74,7 @@ export const createNewTask = createAsyncThunk(CreateNewTask.CreateNewTask, async
 
 export const getAvailableTasks = createAsyncThunk(GetAvailableTasks.GetAvailableTasks, async (values: TGetAvailableTasks, { rejectWithValue }) => {
   try {
-    const response = await fetchAvailableTasks(values.projectId, values.assigneeId);
+    const response = await fetchAvailableTasks(values.projectId, values.assigneeId, values.status);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

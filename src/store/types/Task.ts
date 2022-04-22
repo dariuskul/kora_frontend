@@ -44,6 +44,7 @@ export type TCreateTask = {
 export type TGetAvailableTasks = {
   projectId?: number;
   assigneeId?: number;
+  status?: string
 }
 
 export type TApiTaskItem = {
@@ -53,8 +54,9 @@ export type TApiTaskItem = {
   createdAt: string;
   updatedAt: string;
   projectId: number;
-  project: TApiProjectItem,
-  timers: Array<ITimeEntry>
+  project: TApiProjectItem;
+  timers: Array<ITimeEntry>;
+  status: string;
 }
 
 interface ICurrentTimer {

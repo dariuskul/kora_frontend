@@ -1,5 +1,6 @@
 import { Box, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { updateTask } from "services/tracking.service";
 import { useAppSelector } from "store/selectors";
 import { useAppThunkDispatch } from "store/store";
@@ -15,14 +16,10 @@ const getOptions = (oldUser: any, currentUser: any) => {
   let options = new Set([]);
 
   options.add({ id: -1, fullName: 'None' })
-  if (oldUser && oldUser.fullName !== 'None') {
-    if (oldUser.id !== currentUser.id) {
-      options.add(oldUser);
-    }
+  if (oldUser.id !== -1 && oldUser.id !== currentUser.id) {
+    options.add(oldUser);
   }
-  if (currentUser) {
-    options.add(currentUser);
-  }
+  options.add(currentUser);
   return options;
 }
 
@@ -39,15 +36,15 @@ const setToArray = (set: Set<any>) => {
 
 export const Assignee: React.FC<IAssignee> = ({ name, oldUserId, taskId }) => {
   const { fullName, id } = useAppSelector((s) => s.userState);
-  const dispatch = useAppThunkDispatch();
-  const [value, setValue] = useState({ id: oldUserId, fullname: name });
+  const [value, setValue] = useState(-1);
+  useEffect(() => {
+    setValue(oldUserId);
+  }, [oldUserId])
   const OPTIONS = setToArray(getOptions({ id: oldUserId, fullName: name }, { id, fullName }));
-  console.log(value, OPTIONS);
   const handleChange = async (e: any) => {
-    console.log(e.target);
     await updateTask(taskId, { assigneeId: e.target.value })
     const findOption = OPTIONS.find(opt => opt.id === e.target.value);
-    setValue(findOption);
+    setValue(findOption.id);
   }
   return (
     <Box>
@@ -55,7 +52,7 @@ export const Assignee: React.FC<IAssignee> = ({ name, oldUserId, taskId }) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={value.id}
+          value={value}
           onChange={handleChange}
         >
           {OPTIONS.map((opt) => (

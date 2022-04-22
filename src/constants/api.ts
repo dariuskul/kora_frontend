@@ -1,40 +1,48 @@
-import { baseUrl } from "services/middleware"
+import { baseUrl } from "services/middleware";
 
 export const USER_ENDPOINT = {
-  LOGIN: '/users/login',
+  LOGIN: "/users/login",
   VERIFY_ACCOUNT: (token: string) => `/users/verification/${token}`,
-  REGISTER: '/users',
-  GET_ALL: '/users',
-  INVITE_USER: '/users/add',
-  GET_DASHBOARD: '/users/dashboard',
-  UPDATE: '/users',
-}
+  REGISTER: "/users",
+  GET_ALL: "/users",
+  INVITE_USER: "/users/add",
+  GET_DASHBOARD: "/users/dashboard",
+  UPDATE: "/users",
+  SEND_RESTORE_PASSWORD_LINK: "/users/restore-password",
+  RESET_PASSWORD: `/users/reset-password`,
+};
 
 export const TRACKING_ENDPOINT = {
-  GET_PROJECTS: (status = 'Active', access = 'All') => `/projects?status=${status}&access=${access}`,
-  CREATE_PROJECT: '/projects',
+  GET_PROJECTS: (status = "Active", access = "All") =>
+    `/projects?status=${status}&access=${access}`,
+  CREATE_PROJECT: "/projects",
   GET_PROJECT: (projectId: number) => `/projects/${projectId}`,
   START_TIME: `/timers/start`,
-  STOP_TIME: (userId?: number) => `/timers/stop${userId ? `/${userId}` : ''}`,
-  GET_TASKS: '/tasks',
-  TIME_ENTRIES: '/timers',
-  GET_CURRENT_TIMER: '/timers/current',
-  CREATE_TASK: '/tasks',
+  STOP_TIME: (userId?: number) => `/timers/stop${userId ? `/${userId}` : ""}`,
+  GET_TASKS: "/tasks",
+  TIME_ENTRIES: "/timers",
+  GET_CURRENT_TIMER: "/timers/current",
+  CREATE_TASK: "/tasks",
   UPDATE_PROJECT: (projectId: number) => `/projects/${projectId}`,
   GET_USER_TASKS: (userId?: number) => `/tasks/user-tasks/${userId}`,
   UPDATE_TIMER: (timerId: number) => `/timers/${timerId}`,
-  CHECK_CSV: '/tasks/check',
-  GET_AVAILABLE_TASKS: (projectId?: number, assignee?: number) => `/tasks/available-tasks?projectId=${projectId || 'All'}&assignee=${assignee || 'All'}`,
+  CHECK_CSV: "/tasks/check",
+  GET_AVAILABLE_TASKS: (projectId?: number, assignee?: number, status?: string) =>
+    `/tasks/available-tasks?projectId=${projectId || "All"}&assignee=${
+      assignee || "All"
+    }&status=${status || 'All'}`,
   UPDATE_TASK: (taskId: number) => `/tasks/${taskId}`,
-}
+  GET_PROJECT_STATISTICS: (projectId: number) => `/projects/${projectId}/statistics`,
+};
 
 export const EVENTS_ENDPOINT = {
   STOP_TIMER_EVENT: `${baseUrl}/timers/events`,
   DASHBOARD: `${baseUrl}/users/admin/dashboard`,
-}
+};
 
 export const ADMIN_ENDPOINT = {
-  DASHBOARD: '/users/admin/dashboard',
-  REPORT: (project: string, dateFrom: string, dateTo: string) => `/reports?project=${project}&dateFrom=${dateFrom}&dateTo=${dateTo}`,
+  DASHBOARD: "/users/admin/dashboard",
+  REPORT: (project: string, dateFrom: string, dateTo: string) =>
+    `/reports?project=${project}&dateFrom=${dateFrom}&dateTo=${dateTo}`,
   REMOVE_USER: (userId: number) => `/users/${userId}`,
-}
+};

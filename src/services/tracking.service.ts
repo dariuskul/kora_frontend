@@ -95,11 +95,15 @@ export const updateTimer = async (timerId: number, timerInfo: Partial<UpdateTime
   })
 }
 
-export const fetchAvailableTasks = async (projectId?: number, assignee?: number) => {
-  return await apiCall("GET", TRACKING_ENDPOINT.GET_AVAILABLE_TASKS(projectId, assignee), true);
+export const fetchAvailableTasks = async (projectId?: number, assignee?: number, status?: string) => {
+  return await apiCall("GET", TRACKING_ENDPOINT.GET_AVAILABLE_TASKS(projectId, assignee, status), true);
 }
 
 
 export const checkCsv = async (file: any) => {
   return await apiCall("POST", TRACKING_ENDPOINT.CHECK_CSV, true, file, 'multipart/form-data')
+}
+
+export const getProjectStatistics = async (projectId: number) => {
+  return await apiCall("GET", TRACKING_ENDPOINT.GET_PROJECT_STATISTICS(projectId), true);
 }

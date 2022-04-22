@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import { SelectReport } from "./components/SelectReport";
 
-const REPORT_TYPES = [{ title: 'System report', link: '/reports/system' }, { title: 'Tracking reports', link: '/reports/tracking' }]
+const REPORT_TYPES = [ { title: 'Tracking reports', link: '/reports/tracking' }]
 
 export const Reports = () => {
   return (

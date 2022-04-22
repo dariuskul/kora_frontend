@@ -12,4 +12,6 @@ export const ROUTES = {
   SYSTEM_REPORT: '/reports/system',
   TIMER_REPORT: '/reports/tracking',
   TASKS: '/tasks',
+  FORGOT_PASSWORD: '/remind-password',
+  RESET_PASSWORD: '/account/restore-password',
 }

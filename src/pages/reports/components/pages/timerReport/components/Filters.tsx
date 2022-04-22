@@ -20,7 +20,6 @@ export const Filters: React.FC<IFilters> = ({ projects, users, setFile }) => {
     setFile(null);
     try {
       const res = await getReport(values.projects, values.dateFrom, values.dateTo);
-      console.log('kazkas', res.data);
       let blob = new Blob([res.data], { type: 'application/pdf' })
       setFile(blob);
     } catch (error) {
@@ -61,17 +60,6 @@ export const Filters: React.FC<IFilters> = ({ projects, users, setFile }) => {
                   name="projects"
                   color="white"
                   label="Select project"
-                  labelId="Select project"
-                />
-                <MultiSelect
-                  type="outlined"
-                  options={USERS}
-                  id="test"
-                  defaultValue={USERS[0]}
-                  disabled={submitting}
-                  name="Users"
-                  color="white"
-                  label="Select user"
                   labelId="Select project"
                 />
                 <DateInput

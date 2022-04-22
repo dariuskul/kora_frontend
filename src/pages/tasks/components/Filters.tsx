@@ -23,12 +23,15 @@ enum EAccess {
 const EStatusArr = [EStatus.Active, EStatus.All, EStatus.Archived];
 const EAccessArr = [EAccess.All, EAccess.Me, EAccess.None];
 
+const STATUS = ['All', 'Active', 'Done']
+
 
 
 export const Filters = () => {
 
   const dispatch = useAppThunkDispatch();
   const { projects } = useAppSelector(s => s.projectsState);
+  const { id } = useAppSelector(s => s.userState);
   const [filters, setFilters] = useState({
     status: EStatus.Active,
     access: EAccess.All,
@@ -37,14 +40,15 @@ export const Filters = () => {
   const projectArr = ['All', ...projects.map(p => p.name)];
 
   const onSubmit = async (values: any) => {
+    const assignee = values.assignee === 'Me' ? id: values.assignee;
     const projectId = values.project === 'All' ? undefined : projects.find(p => p.name === values.project).id;
-    await dispatch(getAvailableTasks({ ...values, projectId }));
+    await dispatch(getAvailableTasks({ assigneeId: assignee, projectId, status: values.status }));
   };
 
 
   return (
     <Paper elevation={2}>
-      <Box width="100%" padding="0.75rem 1.625rem" bgcolor="white">
+      <Box width="100%" padding="0.75rem 1rem" bgcolor="white">
         <Form
           validateOnBlur={false}
           onSubmit={onSubmit}
@@ -69,6 +73,16 @@ export const Filters = () => {
                   disabled={submitting}
                   name="assignee"
                   label="Assignee"
+                  labelId="Access"
+                />
+                <SelectInput
+                  defaultValue={STATUS[0]}
+                  color="white"
+                  options={STATUS}
+                  id="Access"
+                  disabled={submitting}
+                  name="status"
+                  label="Status"
                   labelId="Access"
                 />
                 <Button color="primary" variant="contained" type="submit">

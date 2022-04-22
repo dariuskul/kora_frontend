@@ -21,6 +21,8 @@ import { Reports } from 'pages/reports/Reports';
 import { SystemReport } from 'pages/reports/components/pages/systemReport/SystemReport';
 import { TimerReport } from 'pages/reports/components/pages/timerReport/TimerReport';
 import { Tasks } from 'pages/tasks/Tasks';
+import { RemindPassword } from 'pages/user/remind-password/RemindPassword';
+import { ResetPassword } from 'pages/user/reset-password/ResetPassword';
 
 const AppRoutes = () => {
   return (
@@ -28,6 +30,16 @@ const AppRoutes = () => {
       <Route path={ROUTES.LOGIN} element={(
         <PublicRoute>
           <Login />
+        </PublicRoute>
+      )} />
+      <Route path={ROUTES.FORGOT_PASSWORD} element={(
+        <PublicRoute>
+          <RemindPassword />
+        </PublicRoute>
+      )} />
+      <Route path={ROUTES.RESET_PASSWORD} element={(
+        <PublicRoute>
+          <ResetPassword />
         </PublicRoute>
       )} />
       <Route path={ROUTES.DASHBOARD} element={(

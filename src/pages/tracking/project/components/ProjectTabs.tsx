@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useAppSelector } from 'store/selectors';
 import { TApiProjectItem } from 'store/types/Project';
 import { TApiTaskItem } from 'store/types/Task';
+import { ProjectStatistics } from './statistics/ProjectStatistics';
 
 interface IProjectTabs {
   tasks: Array<TApiTaskItem>;
@@ -26,6 +27,7 @@ export const ProjectTabs: React.FC<IProjectTabs> = ({ project, tasks }) => {
 
       {value === 0 && <Tasks projectId={project.id} tasks={tasks} />}
       {value === 1 && <ProjectAccess project={project} />}
+      {value === 2 && <ProjectStatistics projectId={project.id} />}
     </Box>
   )
 }

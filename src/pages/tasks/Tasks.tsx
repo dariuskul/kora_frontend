@@ -8,24 +8,30 @@ import { useAppSelector } from 'store/selectors';
 import { useAppThunkDispatch } from 'store/store';
 import { getAvailableTasks } from 'store/tasks/actions';
 import { IAvailableTask } from 'store/types/Task';
+import { TaskName } from './components/TaskName';
+import { TaskStatus } from './components/TaskStatus';
 
 export const Tasks = () => {
   const dispatch = useAppThunkDispatch();
   const { availableTasks } = useAppSelector(s => s.tasksState);
-  console.log(availableTasks);
   const columns = React.useMemo(
     () => [
       {
         Header: "Task",
-        accessor: "description",
+        accessor: (row: IAvailableTask) => <TaskName project={row.project.name} taskName={row.description} />
       },
       {
-        Header: "Asignee",
+        Header: "Assignee",
         maxWidth: 200,
         accessor: (row: IAvailableTask) => <Assignee taskId={row.id} oldUserId={row?.assignee?.id || -1} name={row?.assignee?.fullName || "None"} />
       },
+      {
+        Header: "Status",
+        maxWidth: 200,
+        accessor: (row: IAvailableTask) => <TaskStatus status={row.status} taskId={row.id} />
+      },
     ],
-    []
+    [availableTasks]
   );
   // create async useEffect
   useEffect(() => {
@@ -37,7 +43,7 @@ export const Tasks = () => {
       }
     }
     getTasks();
-  }, []);
+  }, [dispatch]);
 
 
 
@@ -45,8 +51,10 @@ export const Tasks = () => {
   return (
     <Box>
       <Typography variant="h4">Tasks</Typography>
+      <Box mt="1.5rem">
       <Filters />
-      <Box margin="0" maxWidth="50rem">
+      </Box>
+      <Box margin="0" maxWidth="70rem">
         <CustomTable searchLabel="Search tasks" columns={columns} data={availableTasks} />
       </Box>
     </Box>

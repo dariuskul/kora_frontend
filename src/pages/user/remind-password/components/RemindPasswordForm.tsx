@@ -12,29 +12,26 @@ import { Toast } from "components/others/Toast";
 import { getErrorMessage } from "utils/error";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/routes";
+import { sendRestorePasswordLink } from "services/auth.service";
 
-export const LoginForm = () => {
+export const RemindPasswordForm = () => {
   const dispatch = useAppThunkDispatch();
   const navigate = useNavigate();
 
-  const validate = (values: ILoginValues) => {
-    const errors: ILoginValues = {
+  const validate = (values: { email: string }) => {
+    const errors: { email: string } = {
       email: "",
-      password: "",
     };
     if (!values.email) {
       errors.email = "Required";
     }
-    if (!values.password) {
-      errors.password = "Required";
-    }
     return Object.values(errors).filter(Boolean).length ? errors : {};
   };
 
-  const onSubmit = async (values: ILoginValues) => {
+  const onSubmit = async (values: { email: string }) => {
     try {
-      await dispatch(login(values)).unwrap();
-      navigate(ROUTES.DASHBOARD);
+      await sendRestorePasswordLink(values.email);
+      toast.success(<Toast message="Please check your email for further steps" />);
     } catch (error) {
       toast.error(<Toast message={getErrorMessage(error)} />)
     }
@@ -42,7 +39,7 @@ export const LoginForm = () => {
   return (
     <Box width="100%" maxWidth="30rem">
       <Typography fontSize="3rem" mb="1rem" align="center">
-        Login
+        Remind password
       </Typography>
       <Form
         validate={validate}
@@ -56,13 +53,6 @@ export const LoginForm = () => {
           >
             <Box display="flex" flexDirection="column" gap="1rem">
               <EmailInput disabled={submitting} id="login__email" />
-              <InputUtil
-                label="Password"
-                id="password-input"
-                name="password"
-                type="password"
-                disabled={submitting}
-              />
               <Button
                 disabled={submitting}
                 color="primary"
@@ -70,7 +60,7 @@ export const LoginForm = () => {
                 variant="contained"
               >
                 <Box gap="0.5rem" alignItems="center" display="flex">
-                  <Typography>Login</Typography>
+                  <Typography>Submit</Typography>
                   {submitting && <StyledLoader />}
                 </Box>
               </Button>
@@ -79,7 +69,7 @@ export const LoginForm = () => {
         )}
       ></Form>
       <Box mt="0.5rem">
-        <Button onClick={() => navigate(ROUTES.FORGOT_PASSWORD)}>Forgot password?</Button>
+        <Button onClick={() => navigate(ROUTES.LOGIN)}>LOGIN</Button>
       </Box>
     </Box>
   );

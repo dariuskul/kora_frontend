@@ -38,3 +38,21 @@ export const update = async (values: IUpdateValues) => {
 
   return response;
 }
+
+export const sendRestorePasswordLink = async (email: string) => {
+  const response = await apiCall('POST', USER_ENDPOINT.SEND_RESTORE_PASSWORD_LINK, false, {
+    email
+  })
+
+  return response;
+}
+
+export const resetPassword = async (email: string, password: string) => {
+  const response = await apiCall('POST', USER_ENDPOINT.RESET_PASSWORD, false, {
+    email,
+    password
+  })
+
+  return response;
+}
+
