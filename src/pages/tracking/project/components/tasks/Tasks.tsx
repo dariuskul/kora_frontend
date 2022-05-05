@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from '@mui/material';
+import { CustomTable } from 'components/others/CustomTable';
 import { CreateTaskModal } from 'pages/tracking/project/components/tasks/CreateTaskModal';
 import { TasksTable } from 'pages/tracking/project/components/tasks/TasksTable';
 import { TaskTime } from 'pages/tracking/project/components/tasks/TaskTime';
@@ -33,7 +34,7 @@ export const Tasks: React.FC<ITasks> = ({ projectId, tasks }) => {
         </Button>
       </Box>
       <CreateTaskModal open={openModal} setOpen={setOpenModal} projectId={projectId} />
-      <TasksTable columns={columns} data={tasks} />
+      <CustomTable searchLabel="Search tasks" columns={columns} data={tasks} />
     </div>
   )
 }

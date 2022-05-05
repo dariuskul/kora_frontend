@@ -5,7 +5,7 @@ import { UpdateTask, UpdateTimer } from "store/types/Task";
 
 export const getAllProjects = async (filters?: any) => {
   if (filters) {
-    const response = await apiCall("GET", TRACKING_ENDPOINT.GET_PROJECTS(filters.status, filters.access), true);
+    const response = await apiCall("GET", TRACKING_ENDPOINT.GET_PROJECTS(filters.status, filters.access, filters.client), true);
     return response;
   }
   const response = await apiCall("GET", TRACKING_ENDPOINT.GET_PROJECTS(), true);
@@ -74,6 +74,7 @@ export const createTask = async (description: string, projectId?: number) => {
 
 export const updateProject = async (projectId: number, projectInfo: Partial<TApiProjectItem>) => {
   return await apiCall("PUT", TRACKING_ENDPOINT.UPDATE_PROJECT(projectId), true, {
+    name: projectInfo.name,
     users: projectInfo.users,
     isPublic: projectInfo.isPublic,
     isArchived: projectInfo.isArchived,

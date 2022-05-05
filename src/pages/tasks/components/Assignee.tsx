@@ -42,6 +42,7 @@ export const Assignee: React.FC<IAssignee> = ({ name, oldUserId, taskId }) => {
   }, [oldUserId])
   const OPTIONS = setToArray(getOptions({ id: oldUserId, fullName: name }, { id, fullName }));
   const handleChange = async (e: any) => {
+    e.stopPropagation()
     await updateTask(taskId, { assigneeId: e.target.value })
     const findOption = OPTIONS.find(opt => opt.id === e.target.value);
     setValue(findOption.id);

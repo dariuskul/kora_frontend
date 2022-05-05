@@ -18,6 +18,7 @@ export const TaskStatus: React.FC<ITaskStatus> = ({ status, taskId }) => {
     setValue(status);
   }, [status])
   const handleChange = async (e: any) => {
+    e.stopPropagation();
     await updateTask(taskId, { status: e.target.value })
     setValue(status);
   }

@@ -80,7 +80,7 @@ export const Team = () => {
         <Typography fontSize="1.5rem" variant="h3">
           Team
         </Typography>
-        <Button onClick={() => setFormOpen(true)} variant="contained">
+        <Button id="addNewEmployee" onClick={() => setFormOpen(true)} variant="contained">
           <Typography variant="body1">ADD NEW EMPLOYEE</Typography>
         </Button>
       </Box>

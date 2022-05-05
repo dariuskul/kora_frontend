@@ -52,10 +52,10 @@ export const DayEntry: React.FC<IDayEntry> = ({ day, times }) => {
             <Box display={currentTimer?.task?.id === item.task.id ? 'block' : 'none'} id="timer">
               <TaskTimer timer={item.task} />
             </Box>
-            <ProjectBox gap="0.5rem" alignItems="center" display="flex" onClick={(e) => handleProjectClick(e, item.task.project.id)} sx={{ cursor: 'pointer' }} mr="1rem" ml="auto">
+            {item.task.project && <ProjectBox gap="0.5rem" alignItems="center" display="flex" onClick={(e) => handleProjectClick(e, item.task.project.id)} sx={{ cursor: 'pointer' }} mr="1rem" ml="auto">
               {item.task.project.isJiraProject ? <ProjectIcon src={jiraImage} /> : <Typography fontWeight="700">KR</Typography>}
               <ProjectName width="10rem" textAlign="left">{item.task.project.name}</ProjectName>
-            </ProjectBox>
+            </ProjectBox>}
           </DayEntryWrapper>
         ))}
       </Box>

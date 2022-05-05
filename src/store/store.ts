@@ -3,8 +3,12 @@ import { useDispatch } from 'react-redux';
 import persistReducer from 'redux-persist/es/persistReducer';
 import persistStore from 'redux-persist/es/persistStore';
 import storage from 'redux-persist/lib/storage';
+import clientSlice from 'store/clients/clientSlice';
+import { IClientState } from 'store/clients/types';
 import modalSlice from 'store/modals/modalSlice';
 import projectsSlice from 'store/projects/projectsSlice';
+import settingsSlice from 'store/settings/settingsSlice';
+import { ISettingsState } from 'store/settings/types';
 import taskSlice from 'store/tasks/taskSlice';
 import { IModalState } from 'store/types/Modal';
 import { TInitialProjectState } from 'store/types/Project';
@@ -18,6 +22,8 @@ export interface IAppState {
   projectsState: TInitialProjectState,
   tasksState: ITasks,
   modalState: IModalState,
+  settingsState: ISettingsState,
+  clientsState: IClientState,
 }
 
 const persistConfig = {
@@ -33,6 +39,8 @@ export const configStore = (preloadedState: DeepPartial<RootState>) => {
     projectsState: projectsSlice,
     tasksState: taskSlice,
     modalState: modalSlice,
+    settingsState: settingsSlice,
+    clientsState: clientSlice,
   });
   const persistedReducer = persistReducer(persistConfig, rootReducer);
   const store = configureStore({

@@ -1,3 +1,4 @@
+import { IClient } from "store/clients/types";
 import { TApiTaskItem, TApiTimer } from "store/types/Task"
 import { IUser } from "store/types/User";
 
@@ -28,6 +29,7 @@ export type TApiProjectItem = {
   isPublic: boolean;
   isArchived: boolean;
   isJiraProject: boolean;
+  client?: IClient;
 }
 
 

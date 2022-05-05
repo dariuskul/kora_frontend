@@ -13,4 +13,22 @@ export class TokenStorage {
     return localStorage.getItem(TokenStorage.TOKEN);
   }
 
+  public static setLanguage(language: string): void {
+    localStorage.setItem('language', language);
+  }
+
+  public static getLanguage(): string {
+    return localStorage.getItem('language') || 'EN';
+  }
+
+  public static setWarning(warning: string): void {
+    localStorage.setItem('warning', warning);
+  }
+  public static getWarning(): string {
+    return localStorage.getItem('warning') || '';
+  }
+  public static clearWarning(): void {
+    localStorage.removeItem('warning');
+  }
+
 }

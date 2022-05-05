@@ -30,7 +30,7 @@ export const AddNewEmployeeForm: React.FC<IAddNewEmployeeForm> = ({ onClose }) =
   const onSubmit = async (values: IAddEmployeevalues) => {
     try {
       await inviteUser(values);
-      toast.success(<Toast message="Project created successfully" />)
+      toast.success(<Toast message="User added successfully" />)
       onClose?.();
     } catch (error) {
       toast.error(<Toast message={getErrorMessage(error)} />)
@@ -59,6 +59,7 @@ export const AddNewEmployeeForm: React.FC<IAddNewEmployeeForm> = ({ onClose }) =
               <Box width="100%" maxWidth="10rem">
                 <Button
                   fullWidth
+                  id="employeeAddSubmit"
                   disabled={submitting}
                   color="primary"
                   type="submit"

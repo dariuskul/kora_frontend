@@ -14,4 +14,5 @@ export const ROUTES = {
   TASKS: '/tasks',
   FORGOT_PASSWORD: '/remind-password',
   RESET_PASSWORD: '/account/restore-password',
+  CLIENTS: "/clients",
 }

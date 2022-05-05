@@ -9,10 +9,18 @@ import { useAppSelector } from 'store/selectors';
 import { stopTask } from 'store/tasks/actions';
 import { initTimerEvents } from 'services/sse.service';
 import 'moment/locale/en-gb'
+import { useTranslation } from 'react-i18next';
+import 'moment/locale/lt';
+import moment from 'moment';
 const url = "http://localhost:3000/stream"
 export const App = () => {
   const dispatch = useAppThunkDispatch();
   const { authenticated, id } = useAppSelector(s => s.userState)
+  const language = TokenStorage.getLanguage().toLocaleLowerCase();
+  const { t } = useTranslation();
+  useEffect(() => {
+    moment().locale(language || 'en-gb');
+  }, [language])
   useEffect(() => {
     const userToken = TokenStorage.getToken();
     const notificationService = new NotificationService();
@@ -21,8 +29,9 @@ export const App = () => {
     }
     const { timerStopped } = initTimerEvents(userToken);
     timerStopped.addEventListener('message', (e) => {
-      const data = JSON.parse(e.data);
-      if (data.includes(id)) {
+      const { showNotifsTo, showWarning } = JSON.parse(e.data);
+      console.log(showNotifsTo);
+      if (showNotifsTo.includes(id)) {
         try {
           dispatch(stopTask()).then(() => {
             notificationService.showNotification('Your current timer was stopped');
@@ -30,7 +39,15 @@ export const App = () => {
         } catch (error) {
 
         }
+      }
 
+      if (showWarning.includes(id)) {
+        if (TokenStorage.getWarning()) {
+
+        } else {
+          notificationService.showNotification('Your timer is running pretty long, it will be stopped after 30 seconds!');
+          TokenStorage.setWarning(id.toString());
+        }
       }
     });
 
@@ -38,6 +55,8 @@ export const App = () => {
       timerStopped.close();
     };
   }, [authenticated]);
+
+  // remove dublicates from array of objects
   return (
     <>
       <CssBaseline />

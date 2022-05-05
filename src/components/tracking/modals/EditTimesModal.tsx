@@ -63,7 +63,7 @@ export const EditTimesModal: React.FC<IEditTimesModal> = () => {
           <Typography fontSize="1.5rem">
             <strong>{task.description}</strong>
           </Typography>
-          <Typography variant="subtitle1">#{task.project.name}</Typography>
+          {task.project ? <Typography variant="subtitle1">#{task.project.name}</Typography> : null}
         </Box>
       </DialogTitle>
       <DialogContent>

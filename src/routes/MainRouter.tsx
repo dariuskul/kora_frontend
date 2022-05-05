@@ -23,6 +23,7 @@ import { TimerReport } from 'pages/reports/components/pages/timerReport/TimerRep
 import { Tasks } from 'pages/tasks/Tasks';
 import { RemindPassword } from 'pages/user/remind-password/RemindPassword';
 import { ResetPassword } from 'pages/user/reset-password/ResetPassword';
+import { Clients } from 'pages/clients/Clients';
 
 const AppRoutes = () => {
   return (
@@ -92,6 +93,11 @@ const AppRoutes = () => {
       <Route path={ROUTES.SYSTEM_REPORT} element={(
         <AdminRoute>
           <SystemReport />
+        </AdminRoute>
+      )} />
+      <Route path={ROUTES.CLIENTS} element={(
+        <AdminRoute>
+          <Clients />
         </AdminRoute>
       )} />
       <Route path={ROUTES.TIMER_REPORT} element={(

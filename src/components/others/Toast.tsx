@@ -9,7 +9,7 @@ interface IToast {
 export const Toast: React.FC<IToast> = ({ message }) => {
   return (
     <Box>
-      <Typography fontSize="0.875rem">{message}</Typography>
-    </Box>
+      <Typography id="toast" fontSize="0.875rem">{message}</Typography>
+    </Box >
   )
 }

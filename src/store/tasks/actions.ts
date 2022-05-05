@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { createTask, fetchAvailableTasks, fetchTimeEntries, getCurrent, getTasks, startTimer, stopTimer } from "services/tracking.service";
 import { CreateNewTask, GetAvailableTasks, GetCurrentTimer, GetTasks, GetTimeEntries, StartTimer, StopTimer, TCreateTask, TGetAvailableTasks } from "store/types/Task";
+import { TokenStorage } from "constants/tokenStorage";
 
 export const getTimeEntries = createAsyncThunk(GetTimeEntries.GetTimeEntries, async (_, { rejectWithValue }) => {
   try {
@@ -29,6 +30,7 @@ export const getAllTasks = createAsyncThunk(GetTasks.GetTasks, async (_, { rejec
 export const startTask = createAsyncThunk(StartTimer.StartTimer, async (id: number, { rejectWithValue }) => {
   try {
     const response = await startTimer(id);
+    TokenStorage.clearWarning();
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -40,6 +42,7 @@ export const startTask = createAsyncThunk(StartTimer.StartTimer, async (id: numb
 export const stopTask = createAsyncThunk(StopTimer.StopTimer, async (_, { rejectWithValue }) => {
   try {
     await stopTimer();
+    TokenStorage.clearWarning();
     const response = await fetchTimeEntries();
     return response.data;
   } catch (error) {

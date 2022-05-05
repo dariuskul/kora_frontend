@@ -6,7 +6,11 @@ export interface IModalState {
   importTaskModal: {
     open: boolean;
     data: any;
-  }
+  },
+  editTaskModal: {
+    open: boolean;
+    data: any;
+  },
 }
 
 export const initialModalState: IModalState = {
@@ -17,5 +21,9 @@ export const initialModalState: IModalState = {
   importTaskModal: {
     open: false,
     data: null,
-  }
+  },
+  editTaskModal: {
+    open: false,
+    data: null,
+  },
 };

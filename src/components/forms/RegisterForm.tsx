@@ -55,7 +55,7 @@ export const RegisterForm: React.FC<IRegisterForm> = ({ email }) => {
                 <TextField variant="standard" value={email} disabled />
               </Tooltip>
               <Box>
-                <DateInput disabled={submitting} id="tate" label="Birthday" name="dateOfBirth" />
+                <DateInput disabled={submitting} id="register-date" label="Birthday" name="dateOfBirth" />
               </Box>
               <InputUtil
                 id="fullName-input"
@@ -74,6 +74,7 @@ export const RegisterForm: React.FC<IRegisterForm> = ({ email }) => {
               <Button
                 disabled={submitting}
                 color="primary"
+                id="registerSubmit"
                 type="submit"
                 variant="contained"
               >

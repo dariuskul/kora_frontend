@@ -11,6 +11,7 @@ export const Dashboard = () => {
     const test = initRealTimeDashBord(userToken)
     test.addEventListener('message', (e) => {
       const data = JSON.parse(e.data);
+      console.log(data);
       setInfo(data);
     });
 

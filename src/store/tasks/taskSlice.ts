@@ -9,4 +9,9 @@ const taskSlice = createSlice({
   reducers: reducer
 })
 
+export const {
+  stopManually
+} = taskSlice.actions;
+
+
 export default taskSlice.reducer;

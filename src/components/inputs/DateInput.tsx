@@ -58,7 +58,7 @@ const DateInput: React.FC<IInputUtil> = ({
           {...input}
           disableFuture
           inputFormat="yyyy/MM/dd"
-          value={input.value || new Date()}
+          value={input?.value}
           label={label}
           renderInput={(params) => <TextField {...params} />}
         />

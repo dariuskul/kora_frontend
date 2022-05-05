@@ -12,6 +12,7 @@ import { Toast } from "components/others/Toast";
 import { getErrorMessage } from "utils/error";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/routes";
+import { getProjects } from "store/projects/actions";
 
 export const LoginForm = () => {
   const dispatch = useAppThunkDispatch();
@@ -34,6 +35,7 @@ export const LoginForm = () => {
   const onSubmit = async (values: ILoginValues) => {
     try {
       await dispatch(login(values)).unwrap();
+      await dispatch(getProjects('')).unwrap();
       navigate(ROUTES.DASHBOARD);
     } catch (error) {
       toast.error(<Toast message={getErrorMessage(error)} />)
@@ -67,6 +69,7 @@ export const LoginForm = () => {
                 disabled={submitting}
                 color="primary"
                 type="submit"
+                id="loginFormSubmit"
                 variant="contained"
               >
                 <Box gap="0.5rem" alignItems="center" display="flex">

@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ConfirmProvider } from 'material-ui-confirm';
 
+import './i18n';
+
 const { store, persistor } = configStore({} as never);
 
 ReactDOM.render(

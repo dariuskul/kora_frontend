@@ -10,7 +10,7 @@ const modalSlice = createSlice({
 })
 
 export const {
-  closeEditModal, openEditModal, closeImportTaskModal, openImportTaskModal
+  closeEditModal, openEditModal, closeImportTaskModal, openImportTaskModal, closeEditTaskModal, openEditTaskModal
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

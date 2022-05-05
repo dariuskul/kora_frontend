@@ -33,7 +33,26 @@ const reducer = {
       ...state,
       ...initialModalState
     }
+  },
+  openEditTaskModal(state: IModalState, payload: any) {
+    return {
+      ...state,
+      editTaskModal: {
+        open: true,
+        data: payload.payload,
+      },
+    }
+  },
+  closeEditTaskModal(state: IModalState) {
+    return {
+      ...state,
+      editTaskModal: {
+        open: null,
+        data: null,
+      },
+    }
   }
+
 };
 
 export { reducer };

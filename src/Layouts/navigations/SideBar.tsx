@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 
 import {
   Box,
+  Button,
   Divider,
   Drawer,
   List,
@@ -21,6 +22,8 @@ import { useAppSelector } from "store/selectors";
 import { ADMIN_ROLES } from "constants/other";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import { useTranslation } from "react-i18next";
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 
 export const drawerWidth = 200;
 
@@ -29,12 +32,15 @@ const SIDE_BAR_LINKS = [
   { name: "TRACKING", link: "/tracking", icon: <TimerOutlined /> },
   { name: "TASKS", link: "/tasks", icon: <FormatListBulletedIcon /> },
 ];
+
 const ADMIN_LINKS = [
   { name: "PROJECTS", link: "/projects", icon: <ArticleOutlined /> },
   { name: "TEAM", link: "/team", icon: <GroupsOutlined /> },
   { name: "REPORTS", link: "/reports", icon: <AssessmentIcon /> },
+  { name: "CLIENTS", link: "/clients", icon: <ContactMailIcon /> },
 ];
 export const SideBar = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { role } = useAppSelector((s) => s.userState);
 
@@ -63,13 +69,13 @@ export const SideBar = () => {
           >
             <StyledListItem>
               {item?.icon}
-              <Typography ml="0.5rem">{item.name}</Typography>
+              <Typography ml="0.5rem">{t(item.name)}</Typography>
             </StyledListItem>
           </StyledBox>
         ))}
       </>
     );
-  }, [goToRoute, role]);
+  }, [goToRoute, role, t]);
 
   return (
     <Drawer
@@ -94,13 +100,16 @@ export const SideBar = () => {
               >
                 <StyledListItem>
                   {item?.icon}
-                  <Typography ml="0.5rem">{item.name}</Typography>
+                  <Typography ml="0.5rem">{t(item.name)}</Typography>
                 </StyledListItem>
               </StyledBox>
             ))}
             {AdminLinks}
           </Box>
         </List>
+      </Box>
+      <Box mt="auto">
+        <Button fullWidth>Synchronize data</Button>
       </Box>
     </Drawer>
   );

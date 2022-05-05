@@ -1,0 +1,31 @@
+{
+  "topProjects": "Top Projektai",
+  "monthlySummary": "Mėnesinė apžvalga",
+  "myTasks": "Mano užduotys",
+  "months": {
+    "January": "Sausis",
+    "February": "Vasaris",
+    "March": "Kovas",
+    "April": "Balandis",
+    "May": "Gegužė",
+    "June": "Birželis",
+    "July": "Liepa",
+    "August": "Rugpjūtis",
+    "September": "Rugsėjis",
+    "October": "Spalis",
+    "November": "Lapkritis",
+    "December": "Gruodis"
+  },
+  "TRACKING": "LAIKO SEKIMAS",
+  "PROJECTS": "PROJEKTAI",
+  "TASKS": "UŽDUOTYS",
+  "DASHBOARD": "PAGRINDINIS",
+  "TEAM": "KOMANDA",
+  "REPORTS": "ATASKAITOS",
+  "CLIENTS": "KLIENTAI",
+  "totalTime": "Bendras laikas:",
+  "timeSpent": "Praleista laiko",
+  "selectTask": "Pasirinkite užduotį",
+  "stopTimer": "Sustabdyti",
+  "startTimer": "Pradėti"
+}

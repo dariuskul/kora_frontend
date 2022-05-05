@@ -13,8 +13,8 @@ export const USER_ENDPOINT = {
 };
 
 export const TRACKING_ENDPOINT = {
-  GET_PROJECTS: (status = "Active", access = "All") =>
-    `/projects?status=${status}&access=${access}`,
+  GET_PROJECTS: (status = "Active", access = "All", client = -1) =>
+    `/projects?status=${status}&access=${access}&client=${client}`,
   CREATE_PROJECT: "/projects",
   GET_PROJECT: (projectId: number) => `/projects/${projectId}`,
   START_TIME: `/timers/start`,
@@ -28,8 +28,7 @@ export const TRACKING_ENDPOINT = {
   UPDATE_TIMER: (timerId: number) => `/timers/${timerId}`,
   CHECK_CSV: "/tasks/check",
   GET_AVAILABLE_TASKS: (projectId?: number, assignee?: number, status?: string) =>
-    `/tasks/available-tasks?projectId=${projectId || "All"}&assignee=${
-      assignee || "All"
+    `/tasks/available-tasks?projectId=${projectId || "All"}&assignee=${assignee || "All"
     }&status=${status || 'All'}`,
   UPDATE_TASK: (taskId: number) => `/tasks/${taskId}`,
   GET_PROJECT_STATISTICS: (projectId: number) => `/projects/${projectId}/statistics`,
@@ -45,4 +44,11 @@ export const ADMIN_ENDPOINT = {
   REPORT: (project: string, dateFrom: string, dateTo: string) =>
     `/reports?project=${project}&dateFrom=${dateFrom}&dateTo=${dateTo}`,
   REMOVE_USER: (userId: number) => `/users/${userId}`,
+  REMOVE_TASK: (taskId: string) => `/tasks/${taskId}`,
+  GET_USER_PERFORMANCE: `/reports/performance`,
+  GET_CLIENTS: `/clients`,
+  CREATE_CLIENT: `/clients`,
+  DELETE_CLIENT: (id: number) => `/clients/${id}`,
+  UPDATE_CLIENT: (id: number) => `/clients/${id}`,
+  ADD_CLIENT_TO_PROJECT: (id: number) => `/clients/add-client/${id}`,
 };

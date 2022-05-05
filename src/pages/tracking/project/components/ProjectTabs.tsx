@@ -1,5 +1,6 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { ProjectAccess } from 'pages/tracking/project/components/ProjectAccess';
+import { ProjecttSettings } from 'pages/tracking/project/components/ProjectSettings';
 import { Tasks } from 'pages/tracking/project/components/tasks/Tasks';
 import React, { useState } from 'react';
 import { useAppSelector } from 'store/selectors';
@@ -28,6 +29,7 @@ export const ProjectTabs: React.FC<IProjectTabs> = ({ project, tasks }) => {
       {value === 0 && <Tasks projectId={project.id} tasks={tasks} />}
       {value === 1 && <ProjectAccess project={project} />}
       {value === 2 && <ProjectStatistics projectId={project.id} />}
+      {value === 3 && <ProjecttSettings />}
     </Box>
   )
 }

@@ -3,6 +3,12 @@ import { getAllTasks, getAvailableTasks, getCurrentTimer, getTimeEntries, startT
 import { ITasks } from "store/types/Task";
 
 const reducer = {
+  stopManually: (state: ITasks) => {
+    return {
+      ...state,
+      currentTimer: undefined,
+    }
+  }
 };
 
 const thunkReducer = (builder: ActionReducerMapBuilder<ITasks>) => {
