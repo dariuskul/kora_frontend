@@ -1,3 +1,5 @@
+
+/* istanbul ignore next */
 import { TApiProjectItem } from "store/types/Project";
 import { IUser } from "store/types/User";
 

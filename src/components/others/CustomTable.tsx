@@ -19,6 +19,7 @@ interface ITable {
   searchLabel: string;
   loading?: boolean;
   onCellClick?: (row: any) => void;
+  maxWidth?: string;
 }
 
 export const CustomTable: React.FC<ITable> = ({
@@ -26,7 +27,8 @@ export const CustomTable: React.FC<ITable> = ({
   columns,
   searchLabel,
   loading,
-  onCellClick
+  onCellClick,
+  maxWidth,
 }) => {
 
   const [value, setValue] = useState('');
@@ -48,7 +50,7 @@ export const CustomTable: React.FC<ITable> = ({
   }
 
   return (
-    <Paper elevation={3} >
+    <Paper sx={{ maxWidth: maxWidth || 1200, margin: '0 auto' }} elevation={3} >
       <Box borderRadius="0.25rem" p="0.75rem" bgcolor="white" mt="2rem">
         <Box mb="1rem">
           <TextField

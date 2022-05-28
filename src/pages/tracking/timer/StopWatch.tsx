@@ -9,7 +9,7 @@ interface IStopWatch {
 export const StopWatch: React.FC<IStopWatch> = ({ time }) => {
   const { hours, minutes, seconds } = formatTimer(time);
   return (
-    <Box>
+    <Box data-testid="stopWatch">
       <Typography fontWeight="600" fontSize="2rem" component="span">
         {hours}:
       </Typography>

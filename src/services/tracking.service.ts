@@ -108,3 +108,7 @@ export const checkCsv = async (file: any) => {
 export const getProjectStatistics = async (projectId: number) => {
   return await apiCall("GET", TRACKING_ENDPOINT.GET_PROJECT_STATISTICS(projectId), true);
 }
+
+export const syncData = async () => {
+  return await apiCall("GET", TRACKING_ENDPOINT.SYNC_DATA, true);
+}

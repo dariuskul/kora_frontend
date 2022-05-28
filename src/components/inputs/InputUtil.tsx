@@ -56,6 +56,7 @@ const InputUtil: React.FC<IInputUtil> = ({
         margin="none"
         required={required}
         placeholder={placeholder}
+        inputProps={{ "data-testid": "inputUtil" }}
         fullWidth={fullWidth}
         label={label}
         autoFocus={autoFocus}

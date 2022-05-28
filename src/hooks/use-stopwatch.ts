@@ -7,10 +7,9 @@ export const useStopWatch = (initialTime = 0) => {
   const [time, setTime] = useState(initialTime);
   const [running, setRunning] = useState(false);
   useEffect(() => {
-    let interval: any;
+    let interval: number;
 
     var end = Date.now() * 1000;
-    console.log(end);
     if (running) {
       interval = workerTimers.setInterval(() => {
         setTime((prevTime) => prevTime + 1000);

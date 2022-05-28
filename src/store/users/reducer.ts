@@ -1,6 +1,6 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { initialUsersState, IUsersState } from "store/types/User";
-import { login, removeEmployee, updateUser } from "store/users/actions";
+import { getTeam, login, removeEmployee, updateUser } from "store/users/actions";
 
 const reducer = {
   logout(state: IUsersState) {
@@ -22,9 +22,12 @@ const thunkReducer = (builder: ActionReducerMapBuilder<IUsersState>) => {
     state.notifyAfter = payload.notifyAfter;
   });
   builder.addCase(updateUser.fulfilled, (state, { payload }) => {
-    state.notifyAfter = payload.notifyAfter;
-    state.fullName = payload.fullName || state.fullName;
-    state.dailySummaries = payload.dailySummaries;
+    state.notifyAfter = payload?.notifyAfter || state.notifyAfter;
+    state.fullName = payload?.fullName || state.fullName;
+    state.dailySummaries = payload?.dailySummaries || state.dailySummaries;
+  });
+  builder.addCase(getTeam.fulfilled, (state, { payload }) => {
+    state.team = payload;
   });
   builder.addCase(removeEmployee.fulfilled, (state, { payload }) => {
   });

@@ -22,6 +22,7 @@ export interface IUsersState {
   readonly role: string;
   readonly notifyAfter: number;
   readonly dailySummaries: boolean;
+  readonly team: Array<IUser>;
 }
 
 export const initialUsersState: IUsersState = {
@@ -32,6 +33,7 @@ export const initialUsersState: IUsersState = {
   role: '',
   notifyAfter: 0,
   dailySummaries: false,
+  team: [],
 }
 
 export interface IUser {

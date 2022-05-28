@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
-import { getAllTasks, getAvailableTasks, getCurrentTimer, getTimeEntries, startTask, stopTask } from "store/tasks/actions";
+import { createNewTask, getAllTasks, getAvailableTasks, getCurrentTimer, getTimeEntries, startTask, stopTask } from "store/tasks/actions";
 import { ITasks } from "store/types/Task";
 
 const reducer = {
@@ -32,6 +32,10 @@ const thunkReducer = (builder: ActionReducerMapBuilder<ITasks>) => {
   builder.addCase(getAvailableTasks.fulfilled, (state, { payload }) => {
     state.availableTasks = payload;
   })
+  builder.addCase(createNewTask.fulfilled, (state, { payload }) => {
+    state.tasks.push(payload);
+    state.availableTasks.push(payload);
+  });
 };
 
 

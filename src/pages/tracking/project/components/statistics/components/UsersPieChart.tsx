@@ -24,7 +24,6 @@ export const formatToHoursAndMinutes = (time: number) => {
 };
 
 const renderActiveShape = (props) => {
-  console.log(props);
   const RADIAN = Math.PI / 180;
   const {
     cx,
@@ -105,7 +104,7 @@ export const UsersPieChart: React.FC<IUsersPieChart> = ({
   const [value, setValue] = useState(0);
   return (
     <Box mt="1rem">
-    <Typography fontSize="1.5rem" variant="h4" align="center">Project time distribution pie chart between team members</Typography>
+      <Typography fontSize="1.5rem" variant="h4" align="center">Project time distribution pie chart between team members</Typography>
       <PieChart width={600} height={250}>
         <Pie
           activeShape={renderActiveShape}

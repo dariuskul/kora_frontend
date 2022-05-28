@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { getAllProjects, postProject, updateProject } from "services/tracking.service";
+import { getAllProjects, postProject, syncData, updateProject } from "services/tracking.service";
 import { CreateProject, GetProjects, UpdateProject } from "store/types/Project";
 import { ICreateProjectValues, IUpdateProject } from "store/projects/types";
 
@@ -39,3 +39,14 @@ export const modifyProject = createAsyncThunk(UpdateProject.UpdateProject, async
     }
   }
 })
+
+export const synchronize = createAsyncThunk('SYNC_DATA', async (_, { rejectWithValue }) => {
+  try {
+    await syncData();
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      return rejectWithValue(error.response?.data.message);
+    }
+  }
+})
+

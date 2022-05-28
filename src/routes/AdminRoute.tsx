@@ -9,7 +9,7 @@ import { IAppState, useAppThunkDispatch } from "store/store"
 import { TokenStorage } from "constants/tokenStorage"
 import { isJwtValid } from "utils/validators"
 import { logout } from "store/users/usersSlice"
-import { ADMIN_ROLES } from "constants/other"
+import { ADMIN_ROLES, MODERATOR_ROLES } from "constants/other"
 
 export const AdminRoute: React.FC = ({ children }) => {
   const { authenticated, role } = useSelector((s: IAppState) => s.userState);
@@ -32,7 +32,7 @@ export const AdminRoute: React.FC = ({ children }) => {
     }
   }
 
-  if (!ADMIN_ROLES.includes(role)) {
+  if (!ADMIN_ROLES.includes(role) && !MODERATOR_ROLES.includes(role)) {
     return <Navigate to={ROUTES.DASHBOARD} />
   }
 

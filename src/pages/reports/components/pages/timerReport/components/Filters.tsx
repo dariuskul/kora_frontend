@@ -1,3 +1,4 @@
+import React from 'react';
 import { validate } from "@material-ui/pickers";
 import { Box, Button, Paper, TextField, Tooltip } from "@mui/material";
 import DateInput from "components/inputs/DateInput";
@@ -23,7 +24,7 @@ export const Filters: React.FC<IFilters> = ({ projects, users, setFile }) => {
       let blob = new Blob([res.data], { type: 'application/pdf' })
       setFile(blob);
     } catch (error) {
-      
+
     }
   }
 

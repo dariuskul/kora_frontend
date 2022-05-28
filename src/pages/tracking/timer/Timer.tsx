@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 
 
 
-export const Timer = () => {
+export const Timer = React.memo(() => {
   const dispatch = useAppThunkDispatch();
   const { t } = useTranslation();
   const { time, running, setRunning, setTime } = useStopWatch();
@@ -119,19 +119,19 @@ export const Timer = () => {
             renderOption={(props, option, { selected }) => (
               <li {...props}>
                 {option.description}
-                {option.project?.name}
+                <StyledStrong>{option.project?.name || 'No project'}</StyledStrong>
               </li>
             )}
             disabled={running}
             sx={{ ":disabled": { color: 'black' } }}
             isOptionEqualToValue={(option, value) => option.id === value.id}
-            getOptionLabel={(option) => option.description}
             freeSolo
             disablePortal
             groupBy={option => option?.project?.name || 'No project'}
             value={currentTimer?.task}
             onChange={(e, value) => setSelected(value as TApiTaskItem)}
             options={filteredTasks}
+            getOptionLabel={(option) => option.description}
             renderInput={(params) => (
               <   TextField {...params} label={t('selectTask')} />
             )}
@@ -154,11 +154,15 @@ export const Timer = () => {
       {Information}
     </Box>
   );
-};
+});
 
 const StyledLoader = styled(CircularProgress)({
   width: '1.25rem !important',
   height: '1.25rem !important',
   color: 'white',
+})
+
+const StyledStrong = styled('strong')({
+  marginLeft: '0.5rem',
 })
 

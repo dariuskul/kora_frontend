@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 
-import { App } from 'App';
 import './index.css';
-import { configStore } from 'store/store';
+import { configStore } from './store/store';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ConfirmProvider } from 'material-ui-confirm';
 
 import './i18n';
+import { App } from 'App';
 
 const { store, persistor } = configStore({} as never);
 

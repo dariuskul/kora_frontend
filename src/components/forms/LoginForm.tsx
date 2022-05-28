@@ -12,7 +12,7 @@ import { Toast } from "components/others/Toast";
 import { getErrorMessage } from "utils/error";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "constants/routes";
-import { getProjects } from "store/projects/actions";
+import { getProjects, synchronize } from "store/projects/actions";
 
 export const LoginForm = () => {
   const dispatch = useAppThunkDispatch();
@@ -35,6 +35,7 @@ export const LoginForm = () => {
   const onSubmit = async (values: ILoginValues) => {
     try {
       await dispatch(login(values)).unwrap();
+      await dispatch(synchronize()).unwrap();
       await dispatch(getProjects('')).unwrap();
       navigate(ROUTES.DASHBOARD);
     } catch (error) {
@@ -44,7 +45,7 @@ export const LoginForm = () => {
   return (
     <Box width="100%" maxWidth="30rem">
       <Typography fontSize="3rem" mb="1rem" align="center">
-        Login
+        Login to Kora
       </Typography>
       <Form
         validate={validate}
@@ -55,6 +56,7 @@ export const LoginForm = () => {
             style={{ width: "100%" }}
             onSubmit={handleSubmit}
             id="loginForm"
+            data-testid="loginFormSubmit"
           >
             <Box display="flex" flexDirection="column" gap="1rem">
               <EmailInput disabled={submitting} id="login__email" />

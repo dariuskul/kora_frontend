@@ -1,3 +1,4 @@
+import React from 'react';
 import { DialogContent, Typography } from "@mui/material";
 import DialogWithClose from "components/tracking/modals/DialogWithClose";
 import { AddUsersToProjectForm } from "pages/tracking/project/components/AddUsersToProjectForm";

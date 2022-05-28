@@ -7,7 +7,7 @@ export const USER_ENDPOINT = {
   GET_ALL: "/users",
   INVITE_USER: "/users/add",
   GET_DASHBOARD: "/users/dashboard",
-  UPDATE: "/users",
+  UPDATE: (id?: number) => `/users/${id || ''}`,
   SEND_RESTORE_PASSWORD_LINK: "/users/restore-password",
   RESET_PASSWORD: `/users/reset-password`,
 };
@@ -20,6 +20,7 @@ export const TRACKING_ENDPOINT = {
   START_TIME: `/timers/start`,
   STOP_TIME: (userId?: number) => `/timers/stop${userId ? `/${userId}` : ""}`,
   GET_TASKS: "/tasks",
+  SYNC_DATA: `/timers/synchronize`,
   TIME_ENTRIES: "/timers",
   GET_CURRENT_TIMER: "/timers/current",
   CREATE_TASK: "/tasks",

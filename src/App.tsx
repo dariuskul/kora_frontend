@@ -12,6 +12,7 @@ import 'moment/locale/en-gb'
 import { useTranslation } from 'react-i18next';
 import 'moment/locale/lt';
 import moment from 'moment';
+import { stopManually } from 'store/tasks/taskSlice';
 const url = "http://localhost:3000/stream"
 export const App = () => {
   const dispatch = useAppThunkDispatch();
@@ -33,9 +34,8 @@ export const App = () => {
       console.log(showNotifsTo);
       if (showNotifsTo.includes(id)) {
         try {
-          dispatch(stopTask()).then(() => {
-            notificationService.showNotification('Your current timer was stopped');
-          });
+          dispatch(stopManually());
+          notificationService.showNotification('Your current timer was stopped');
         } catch (error) {
 
         }
@@ -50,10 +50,6 @@ export const App = () => {
         }
       }
     });
-
-    return () => {
-      timerStopped.close();
-    };
   }, [authenticated]);
 
   // remove dublicates from array of objects

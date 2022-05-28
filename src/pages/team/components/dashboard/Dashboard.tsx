@@ -8,15 +8,17 @@ export const Dashboard = () => {
   const [info, setInfo] = useState()
   useEffect(() => {
     const userToken = TokenStorage.getToken();
-    const test = initRealTimeDashBord(userToken)
-    test.addEventListener('message', (e) => {
-      const data = JSON.parse(e.data);
-      console.log(data);
-      setInfo(data);
-    });
+    let realTimeDashboard: any;
+    if (userToken) {
+      realTimeDashboard = initRealTimeDashBord(userToken)
+      realTimeDashboard.addEventListener('message', (e) => {
+        const data = JSON.parse(e.data);
+        setInfo(data);
+      });
+    }
 
     return () => {
-      test.close();
+      realTimeDashboard?.close();
     };
   }, []);
   return (

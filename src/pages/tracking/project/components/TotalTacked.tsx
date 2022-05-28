@@ -1,3 +1,4 @@
+import React from 'react';
 import { calculateTotalProjectTime, convertTimeToHoursAndMinutes, formatTime } from "utils/timer"
 
 

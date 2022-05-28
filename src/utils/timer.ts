@@ -39,8 +39,11 @@ export const calculateTotalTaskTime = (timeEntries: Array<ITimeEntry>) => {
 
 export const calculateTotalProjectTime = (project: TApiProjectItem) => {
   let totalTime = 0;
+  if (!project) return 0;
   const tasks = project.tasks;
-
+  if (!tasks) {
+    return 0;
+  }
   tasks.forEach(task => {
     totalTime += calculateTotalTaskTime(task.timers);
   })

@@ -1,3 +1,4 @@
+import React from 'react';
 import { IconButton } from "@mui/material"
 import { DeleteForever } from "@mui/icons-material";
 import { useConfirm } from "material-ui-confirm";
@@ -29,7 +30,7 @@ export const RemoveEmployee: React.FC<IRemoveEmployee> = ({ employee }) => {
     }
   }
   return (
-    <IconButton onClick={handleClick}>
+    <IconButton sx={{ maxWidth: 100 }} onClick={handleClick}>
       <DeleteForever color="error" />
     </IconButton>
   )

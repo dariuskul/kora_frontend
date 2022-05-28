@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 export interface ISettingsState {
   language: string;
 }

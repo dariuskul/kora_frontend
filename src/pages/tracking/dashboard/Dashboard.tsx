@@ -19,20 +19,10 @@ export const DashBoard = () => {
     getDashBoardInfo();
   }, []);
 
-  const localliseTopProjectsDate = (topProjects: any) => {
-    const newTopProjects = topProjects.map((project: any) => {
-      const newProject = { ...project };
-      newProject.startDate = new Date(project.startDate).toLocaleDateString();
-      newProject.endDate = new Date(project.endDate).toLocaleDateString();
-      return newProject;
-    });
-    return newTopProjects;
-  }
-
   return (
     <Box>
       <Statistics />
-      <Box margin="1.5rem auto 0" alignItems="center" width="100%" display="flex" gap="2rem" flexWrap="wrap">
+      <Box justifyContent="center" margin="1.5rem auto 0" alignItems="center" width="100%" display="flex" gap="2rem" flexWrap="wrap">
         <TopProjects topProjects={info?.topProjects || []} />
         <WorkingStatistics statistics={info?.last6Months || []} />
       </Box>

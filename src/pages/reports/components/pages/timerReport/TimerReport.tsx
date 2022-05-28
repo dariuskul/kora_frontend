@@ -10,7 +10,7 @@ import moment from "moment";
 export const TimerReport = () => {
   const { projects } = useAppSelector(s => s.projectsState);
   const [team, setTeam] = useState<Array<IUser>>([]);
-  const [file, setFile] = useState<Blob>(null);
+  const [file, setFile] = useState<Blob | null>(null);
   useEffect(() => {
     const getTeam = async () => {
       try {
@@ -37,6 +37,9 @@ export const TimerReport = () => {
           <Button onClick={handleDownload}>Click here to download</Button>
         </Paper>
       </Box>}
+
+      {!file && <Box textAlign="center" margin="2.5rem auto 0" maxWidth="50rem">
+        <Typography fontSize="2rem" fontWeight="400">No reports generated</Typography></Box>}
     </Box>
   );
 };

@@ -57,12 +57,12 @@ export const ProjectWidget: React.FC<IProjectWidget> = ({
               Longest tasks
             </Typography>
             <Box display="flex" flexDirection="column" gap="0.5rem">
-            {longestTasks.map((item, idx) => (
-              <Box gap="0.5rem" justifyContent="space-between" display="flex" pb="0.25rem" borderBottom={idx < longestTasks.length - 1 && "1px solid rgba(224, 224, 224, 1)"}  key={item.name}>
-                <Typography sx={{ cursor: 'pointer' }} fontWeight="500">{item.name}</Typography>
-                <Typography sx={{ cursor: 'pointer' }} fontWeight="500">{item.time}h</Typography>
-              </Box>
-            ))}
+              {longestTasks.map((item, idx) => (
+                <Box gap="0.5rem" justifyContent="space-between" display="flex" pb="0.25rem" borderBottom={idx < longestTasks.length - 1 && "1px solid rgba(224, 224, 224, 1)"} key={item.name}>
+                  <Typography sx={{ cursor: 'pointer' }} fontWeight="500">{item.name}</Typography>
+                  <Typography sx={{ cursor: 'pointer' }} fontWeight="500">{item.time}h</Typography>
+                </Box>
+              ))}
             </Box>
           </Box>
         </Paper>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Toolbar } from "@mui/material";
+import { Box, Paper, Toolbar } from "@mui/material";
 
 import { Header } from "Layouts/navigations/Header";
 import { SideBar } from "Layouts/navigations/SideBar";
@@ -11,7 +11,7 @@ export const LayoutPrivate: React.FC = ({ children }) => {
       <SideBar />
       <Box sx={{ flexGrow: 1, p: 3 }} component="main">
         <Toolbar />
-        {children}
+        <Paper sx={{ padding: '1rem' }}>{children}</Paper>
       </Box>
     </Box>
   )

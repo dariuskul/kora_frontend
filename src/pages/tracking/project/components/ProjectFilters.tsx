@@ -25,7 +25,7 @@ const EAccessArr = [EAccess.All, EAccess.Public, EAccess.Private];
 
 export const ProjectFilters = () => {
   const dispatch = useAppThunkDispatch();
-  const { clients } = useAppSelector(s => s.clientsState);
+  const clients = useAppSelector(s => s.clientsState);
   const [filters, setFilters] = useState({
     status: EStatus.Active,
     access: EAccess.Private,
@@ -84,7 +84,7 @@ export const ProjectFilters = () => {
                         <MenuItem key='None' value={-1}>
                           None
                         </MenuItem>
-                        {clients.map(opt => (
+                        {clients?.clients?.map(opt => (
                           <MenuItem key={opt.name} value={opt.id}>
                             {opt.name.length ? opt.name : 'None'}
                           </MenuItem>

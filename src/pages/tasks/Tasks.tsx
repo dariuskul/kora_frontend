@@ -43,7 +43,7 @@ export const Tasks = () => {
         Header: "Status",
         maxWidth: 200,
         accessor: (row: IAvailableTask) => (
-          <TaskStatus status={row.status} taskId={row.id} />
+          <TaskStatus key={row.id} status={row.status} taskId={row.id} />
         ),
       },
     ],

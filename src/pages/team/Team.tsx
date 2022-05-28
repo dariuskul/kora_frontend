@@ -11,12 +11,17 @@ import { AddNewEmployeeModal } from "pages/team/components/AddNewEmployee";
 import { CustomTable } from "components/others/CustomTable";
 import { Dashboard } from "pages/team/components/dashboard/Dashboard";
 import { RemoveEmployee } from "pages/team/components/RemoveEmployee";
+import { EditTeamMember } from "pages/team/components/EditTeamMember";
+import { useAppSelector } from "store/selectors";
+import { getTeam } from "store/users/actions";
+import { useAppThunkDispatch } from "store/store";
 
 export const Team = () => {
-  const [team, setTeam] = useState<Array<IUser>>([]);
   const [value, setValue] = useState(0);
   const [loading, setLoading] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
+  const { team } = useAppSelector(s => s.userState);
+  const dispatch = useAppThunkDispatch();
 
   const columns = React.useMemo(
     () => [
@@ -39,11 +44,19 @@ export const Team = () => {
         ),
       },
       {
-        Header: " ",
-        width: 100,
+        id: 'delete',
         accessor: "",
+        width: 100,
         Cell: ({ row }: { row: Row<IUser> }) => (
           <RemoveEmployee employee={row.original} />
+        ),
+      },
+      {
+        id: 'edit',
+        accessor: "",
+        width: 100,
+        Cell: ({ row }: { row: Row<IUser> }) => (
+          <EditTeamMember employee={row.original} />
         ),
       },
     ],
@@ -51,18 +64,7 @@ export const Team = () => {
   );
 
   useEffect(() => {
-    const getTeam = async () => {
-      setLoading(true);
-      try {
-        const users = await getAllUsers();
-        setTeam(users.data);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getTeam();
+    dispatch(getTeam());
   }, []);
 
   if (loading) {
@@ -87,10 +89,10 @@ export const Team = () => {
       <Paper>
         <Tabs variant="scrollable" allowScrollButtonsMobile scrollButtons="auto" value={value} onChange={(e: React.SyntheticEvent, newValue: number) => setValue(newValue)} aria-label="basic tabs example">
           <Tab label="Members" />
-          <Tab label="Info" />
+          <Tab label="Timers" />
         </Tabs>
       </Paper>
-      {value === 0 && <CustomTable searchLabel="Search team" loading={loading} data={team} columns={columns} />}
+      {value === 0 && <CustomTable maxWidth="56.25rem" searchLabel="Search team" loading={loading} data={team} columns={columns} />}
       {value === 1 && <Dashboard />}
       <AddNewEmployeeModal open={formOpen} setOpen={setFormOpen} />
     </Box>

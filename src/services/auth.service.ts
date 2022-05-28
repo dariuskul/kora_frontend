@@ -34,7 +34,7 @@ export const inviteUser = async (values: IAddEmployeevalues) => {
 }
 
 export const update = async (values: IUpdateValues) => {
-  const response = await apiCall('PATCH', USER_ENDPOINT.UPDATE, true, values)
+  const response = await apiCall('PATCH', USER_ENDPOINT.UPDATE(values.id), true, values)
 
   return response;
 }

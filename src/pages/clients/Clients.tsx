@@ -20,7 +20,7 @@ export const Clients = () => {
       try {
         await dispatch(fetchClients()).unwrap();
       } catch (error) {
-        console.log(error);
+        throw error;
       }
     }
     clientsFetch();
@@ -46,7 +46,7 @@ export const Clients = () => {
         <Typography fontSize="1.5rem" variant="h3">
           Clients
         </Typography>
-        <Button onClick={() => setCreateModal(true)} variant="contained">Create new client</Button>
+        <Button id="newCLient" onClick={() => setCreateModal(true)} variant="contained">Create new client</Button>
       </Box>
       {clients && <CustomTable searchLabel='Search clients' columns={columns} data={clients} />}
       <CreateClientModal onClose={() => setCreateModal(false)} open={openCreateModal} />

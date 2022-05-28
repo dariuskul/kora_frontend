@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 
 import {
   Box,
@@ -24,6 +24,10 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { useTranslation } from "react-i18next";
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import { synchronize } from "store/projects/actions";
+import { toast } from "react-toastify";
+import { useAppThunkDispatch } from "store/store";
+import { getErrorMessage } from "utils/error";
 
 export const drawerWidth = 200;
 
@@ -33,14 +37,21 @@ const SIDE_BAR_LINKS = [
   { name: "TASKS", link: "/tasks", icon: <FormatListBulletedIcon /> },
 ];
 
+const MODERATOR_LINKS = [
+  { name: "PROJECTS", link: "/projects", icon: <ArticleOutlined /> },
+  { name: "TEAM", link: "/team", icon: <GroupsOutlined /> },
+];
+
 const ADMIN_LINKS = [
   { name: "PROJECTS", link: "/projects", icon: <ArticleOutlined /> },
   { name: "TEAM", link: "/team", icon: <GroupsOutlined /> },
   { name: "REPORTS", link: "/reports", icon: <AssessmentIcon /> },
   { name: "CLIENTS", link: "/clients", icon: <ContactMailIcon /> },
 ];
-export const SideBar = () => {
+export const SideBar = memo(() => {
   const { t } = useTranslation();
+  const [loading, setLoading] = React.useState(false);
+  const dispatch = useAppThunkDispatch();
   const navigate = useNavigate();
   const { role } = useAppSelector((s) => s.userState);
 
@@ -54,13 +65,27 @@ export const SideBar = () => {
     [navigate]
   );
 
-  const AdminLinks = React.useMemo(() => {
-    if (!ADMIN_ROLES.includes(role)) return null;
+  const handleSync = async () => {
+    setLoading(true);
+    try {
+      await dispatch(synchronize()).unwrap();
+      toast.success(t("SYNC_SUCCESS"));
+    } catch (error) {
+      toast.error(getErrorMessage(error));
+    } finally {
+      setLoading(false);
+    }
+  }
 
+  const AdminLinks = React.useMemo(() => {
+    const links = role === 'moderator' ? MODERATOR_LINKS : role === 'admin' ? ADMIN_LINKS : null;
+    if (!links) {
+      return null;
+    }
     return (
       <>
         <Divider />
-        {ADMIN_LINKS.map((item) => (
+        {links.map((item) => (
           <StyledBox
             key={item.link}
             onClick={() => goToRoute(item.link)}
@@ -109,11 +134,11 @@ export const SideBar = () => {
         </List>
       </Box>
       <Box mt="auto">
-        <Button fullWidth>Synchronize data</Button>
+        <Button disabled={loading} onClick={handleSync} fullWidth>Synchronize data</Button>
       </Box>
     </Drawer>
   );
-};
+});
 
 const StyledListItem = styled(ListItem)({
   padding: "0 1.5rem",

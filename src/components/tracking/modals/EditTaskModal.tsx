@@ -41,8 +41,6 @@ export const EditTaskModal: React.FC = () => {
     return null;
   }
 
-  console.log(editTaskModal);
-
   const handleChange = async (e: any) => {
     setValue(e.target.value);
   };
@@ -71,7 +69,7 @@ export const EditTaskModal: React.FC = () => {
       await removeTask(editTaskModal.data.id);
       toast.success(<Toast message="Task deleted" />);
     } catch (error) {
-      toast.error(<Toast message={error.message} />);
+      toast.error(<Toast message={error?.message} />);
     } finally {
       setLoading(false);
     }

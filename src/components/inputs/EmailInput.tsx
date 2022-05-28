@@ -40,6 +40,7 @@ const EmailInput: React.FC<IEmailInput> = ({
           variant="standard"
           disabled={disabled}
           id={id}
+          inputProps={{ "data-testid": "emailInput" }}
           onChange={e => {
             input.onChange(e);
             onChange?.(e);

@@ -1,5 +1,6 @@
-import { Action, combineReducers, configureStore, DeepPartial, StateFromReducersMapObject, ThunkDispatch } from '@reduxjs/toolkit';
+import { Action, combineReducers, configureStore, DeepPartial, getDefaultMiddleware, StateFromReducersMapObject, ThunkDispatch } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import persistReducer from 'redux-persist/es/persistReducer';
 import persistStore from 'redux-persist/es/persistStore';
 import storage from 'redux-persist/lib/storage';
@@ -47,6 +48,10 @@ export const configStore = (preloadedState: DeepPartial<RootState>) => {
     reducer: persistedReducer,
     preloadedState,
     devTools: process.env.NODE_ENV !== 'production',
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
   const persistor = persistStore(store);
   return { store, persistor };
