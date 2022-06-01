@@ -44,12 +44,12 @@ export const InvitedUsersTable: React.FC<IInvitedUsersTable> = ({
     onSearchChange(e.target.value);
   };
 
-  if (!data.length && !loading) {
-    return null;
-  }
+  // if (!data.length && !loading) {
+  //   return null;
+  // }
 
   return (
-    <Paper elevation={3} >
+    <Paper sx={{ maxWidth: '30rem' }} elevation={3} >
       <Box borderRadius="0.25rem" p="0.75rem" bgcolor="white" mt="2rem">
         <Box mb="1rem">
           <TextField

@@ -9,6 +9,8 @@ import { InvitedUsersTable } from 'pages/tracking/project/components/InvitedUser
 import { AddUsersToProjectModal } from 'pages/tracking/project/components/AddUsersToProjectModal';
 import { useAppSelector } from 'store/selectors';
 import { addClientToProject } from 'services/admin.service';
+import { useTranslation } from 'react-i18next';
+import { RemoveUser } from 'pages/tracking/project/components/RemoveUser';
 
 interface IProjectAccess {
   project: TApiProjectItem;
@@ -19,8 +21,9 @@ export const ProjectAccess: React.FC<IProjectAccess> = ({ project }) => {
   const { clients } = useAppSelector(s => s.clientsState);
   const [addUsersFormOpen, setAddUsersFormOpen] = useState(false);
   const [selectedClient, setSelectedClient] = useState(project.client);
+  const { t } = useTranslation();
   const { isPublic, id } = project;
-
+  console.log(project);
   const columns = React.useMemo(() => [
     {
       Header: 'NAME',
@@ -29,10 +32,13 @@ export const ProjectAccess: React.FC<IProjectAccess> = ({ project }) => {
       minWidth: 300,
     },
     {
-      Header: 'Role',
-      accessor: 'role',
-      width: '15%',
-    },
+      id: 'removeUser',
+      accessor: (row: TApiProjectItem) => {
+        return (
+          <RemoveUser project={project.id} row={row} />
+        )
+      },
+    }
   ], []);
   useEffect(() => {
     const updateVisibility = async () => {

@@ -3,6 +3,7 @@ import { SelectInput } from "components/inputs/Select";
 import React from "react";
 import { useState } from "react";
 import { Form } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import { getProjects } from "store/projects/actions";
 import { useAppSelector } from "store/selectors";
 import { useAppThunkDispatch } from "store/store";
@@ -28,7 +29,7 @@ const STATUS = ['All', 'Active', 'Done']
 
 
 export const Filters = () => {
-
+  const { t } = useTranslation();
   const dispatch = useAppThunkDispatch();
   const { projects } = useAppSelector(s => s.projectsState);
   const { id } = useAppSelector(s => s.userState);
@@ -40,7 +41,7 @@ export const Filters = () => {
   const projectArr = ['All', ...projects.map(p => p.name)];
 
   const onSubmit = async (values: any) => {
-    const assignee = values.assignee === 'Me' ? id: values.assignee;
+    const assignee = values.assignee === 'Me' ? id : values.assignee;
     const projectId = values.project === 'All' ? undefined : projects.find(p => p.name === values.project).id;
     await dispatch(getAvailableTasks({ assigneeId: assignee, projectId, status: values.status }));
   };
@@ -62,7 +63,7 @@ export const Filters = () => {
                   id="status"
                   disabled={submitting}
                   name="project"
-                  label="Project"
+                  label={t('project')}
                   labelId="status"
                 />
                 <SelectInput
@@ -72,7 +73,7 @@ export const Filters = () => {
                   id="Access"
                   disabled={submitting}
                   name="assignee"
-                  label="Assignee"
+                  label={t('assignee')}
                   labelId="Access"
                 />
                 <SelectInput
@@ -82,7 +83,7 @@ export const Filters = () => {
                   id="Access"
                   disabled={submitting}
                   name="status"
-                  label="Status"
+                  label={t('status')}
                   labelId="Access"
                 />
                 <Button color="primary" variant="contained" type="submit">

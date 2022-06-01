@@ -19,7 +19,8 @@ export const AddUsersToProjectForm: React.FC<IAddUsersToProjectForm> = ({ projec
   const [team, setTeam] = useState<Array<IUser>>([]);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<Array<IUser>>([]);
-
+  // filter out the users that are already in the project
+  const filteredUsers = team.filter(u => !project.users.some(p => p.id === u.id));
   useEffect(() => {
     const getTeam = async () => {
       setLoading(true);
@@ -69,9 +70,10 @@ export const AddUsersToProjectForm: React.FC<IAddUsersToProjectForm> = ({ projec
                 <InputLabel id="demo-multiple-chip-label">Members</InputLabel>
                 <Select
                   labelId="demo-multiple-chip-label"
-                  id="demo-multiple-chip"
+                  id="demo-multiple-chip-label"
                   multiple
                   value={selected}
+                  label="Members"
                   onChange={(e) => onChange(e)}
                   renderValue={(selected) => (
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -81,7 +83,7 @@ export const AddUsersToProjectForm: React.FC<IAddUsersToProjectForm> = ({ projec
                     </Box>
                   )}
                 >
-                  {team.map((name) => (
+                  {filteredUsers.map((name) => (
                     <MenuItem
                       key={name.id}
                       value={name as any}

@@ -1,4 +1,4 @@
-import { Typography, Box, styled } from '@mui/material';
+import { Typography, Box, styled, Tooltip } from '@mui/material';
 import { TaskTimer } from 'components/timer/TaskTimer';
 import { ROUTES } from 'constants/routes';
 import moment from 'moment';
@@ -46,17 +46,19 @@ export const DayEntry: React.FC<IDayEntry> = ({ day, times }) => {
       </Box>
       <Box display="flex" flexDirection="column">
         {grouped?.map(item => (
-          <DayEntryWrapper key={`${item.time}_item_time`} onClick={() => handleClick(item)} sx={{ cursor: 'pointer' }} color={item.forced ? 'red' : 'black'} padding="1rem 0.5rem" display="flex" alignItems="center" borderBottom="1px dashed #e8e8e8">
-            <Typography fontWeight="500">{formatTime(item.time.hours, item.time.minutes)}</Typography>
-            <Typography ml="1rem">{item.task.description}</Typography>
-            <Box display={currentTimer?.task?.id === item.task.id ? 'block' : 'none'} id="timer">
-              <TaskTimer timer={item.task} />
-            </Box>
-            {item.task.project && <ProjectBox gap="0.5rem" alignItems="center" display="flex" onClick={(e) => handleProjectClick(e, item.task.project.id)} sx={{ cursor: 'pointer' }} mr="1rem" ml="auto">
-              {item.task.project.isJiraProject ? <ProjectIcon src={jiraImage} /> : <Typography fontWeight="700">KR</Typography>}
-              <ProjectName width="10rem" textAlign="left">{item.task.project.name}</ProjectName>
-            </ProjectBox>}
-          </DayEntryWrapper>
+          <Tooltip key={`${item.task.description}_item_time`} placement='top-end' title={item.forced ? <Typography fontSize="1rem">Timer was automatically stopped</Typography> : ''}>
+            <DayEntryWrapper onClick={() => handleClick(item)} sx={{ cursor: 'pointer' }} color={item.forced ? 'red' : 'black'} padding="1rem 0.5rem" display="flex" alignItems="center" borderBottom="1px dashed #e8e8e8">
+              <Typography fontWeight="500">{formatTime(item.time.hours, item.time.minutes)}</Typography>
+              <Typography ml="1rem">{item.task.description}</Typography>
+              <Box display={currentTimer?.task?.id === item.task.id ? 'block' : 'none'} id="timer">
+                <TaskTimer timer={item.task} />
+              </Box>
+              {item.task.project && <ProjectBox gap="0.5rem" alignItems="center" display="flex" onClick={(e) => handleProjectClick(e, item.task.project.id)} sx={{ cursor: 'pointer' }} mr="1rem" ml="auto">
+                {item.task.project.isJiraProject ? <ProjectIcon src={jiraImage} /> : <Typography fontWeight="700">KR</Typography>}
+                <ProjectName width="10rem" textAlign="left">{item.task.project.name}</ProjectName>
+              </ProjectBox>}
+            </DayEntryWrapper>
+          </Tooltip>
         ))}
       </Box>
     </Box >

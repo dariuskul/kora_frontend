@@ -112,3 +112,20 @@ export const getProjectStatistics = async (projectId: number) => {
 export const syncData = async () => {
   return await apiCall("GET", TRACKING_ENDPOINT.SYNC_DATA, true);
 }
+
+export const removeUserFromProject = async (projectId: number, userId: number) => {
+  return await apiCall("patch", TRACKING_ENDPOINT.REMOVE_USER_FROM_PROJECT, true, {
+    projectId,
+    userId
+  });
+};
+
+
+export const editTaskTimer = async (taskId: number, duration: number, date: string, userId: number) => {
+  return await apiCall("PATCH", TRACKING_ENDPOINT.EDIT_TASK_TIMER, true, {
+    taskId,
+    duration,
+    date,
+    userId,
+  });
+}

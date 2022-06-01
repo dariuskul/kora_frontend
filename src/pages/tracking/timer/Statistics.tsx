@@ -7,10 +7,14 @@ import { useAppSelector } from "store/selectors";
 import { AccordionItem } from "pages/tracking/timer/components/AccordionItem";
 import { EditTimesModal } from "components/tracking/modals/EditTimesModal";
 
-export const Statistics = () => {
+interface IStatistics {
+  entries?: any;
+}
+
+export const Statistics: React.FC<IStatistics> = ({ entries }) => {
   const { timeEntries } = useAppSelector((s) => s.tasksState);
   const [openEdit, setOpenEdit] = useState(false);
-  const formattedTimeEntries = timeEntries;
+  const formattedTimeEntries = entries || timeEntries;
   if (!timeEntries.length) {
     return null;
   }
@@ -23,7 +27,7 @@ export const Statistics = () => {
           flexDirection="column"
           gap="0.5rem"
         >
-          {formattedTimeEntries.map((timeEntry, idx) => (
+          {formattedTimeEntries.map((timeEntry: any) => (
             <div key={timeEntry.week}>
               <AccordionItem
                 summaryTitle={`${moment(new Date(timeEntry.startDate)).format(

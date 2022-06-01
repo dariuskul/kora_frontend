@@ -12,7 +12,7 @@ export const CreateNewTaskModal: React.FC<ICreateNewTaskModal> = ({ open, setOpe
   return (
     <DialogWithClose fullWidth open={open} onClose={() => setOpen(false)}>
       <DialogTitle>Create new task</DialogTitle>
-      <NewTaskForm />
+      <NewTaskForm onClose={() => setOpen(false)} />
     </DialogWithClose>
   )
 }

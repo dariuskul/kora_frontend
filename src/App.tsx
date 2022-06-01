@@ -19,19 +19,19 @@ export const App = () => {
   const { authenticated, id } = useAppSelector(s => s.userState)
   const language = TokenStorage.getLanguage().toLocaleLowerCase();
   const { t } = useTranslation();
+  const userToken = TokenStorage.getToken();
   useEffect(() => {
-    moment().locale(language || 'en-gb');
-  }, [language])
-  useEffect(() => {
-    const userToken = TokenStorage.getToken();
     const notificationService = new NotificationService();
     if (notificationService.getPermission() === 'default') {
       notificationService.getPermission();
     }
+    if (!userToken) {
+      return;
+    }
     const { timerStopped } = initTimerEvents(userToken);
     timerStopped.addEventListener('message', (e) => {
+      console.log(e);
       const { showNotifsTo, showWarning } = JSON.parse(e.data);
-      console.log(showNotifsTo);
       if (showNotifsTo.includes(id)) {
         try {
           dispatch(stopManually());
@@ -41,18 +41,17 @@ export const App = () => {
         }
       }
 
-      if (showWarning.includes(id)) {
-        if (TokenStorage.getWarning()) {
-
-        } else {
-          notificationService.showNotification('Your timer is running pretty long, it will be stopped after 30 seconds!');
-          TokenStorage.setWarning(id.toString());
-        }
-      }
+      // if (showWarning.includes(id)) {
+      //   if (TokenStorage.getWarning()) {
+      //     return;
+      //   } else {
+      //     notificationService.showNotification('Your timer is running pretty long, it will be stopped after 30 seconds!');
+      //     TokenStorage.setWarning(id.toString());
+      //   }
+      // }
     });
-  }, [authenticated]);
+  }, [authenticated, userToken]);
 
-  // remove dublicates from array of objects
   return (
     <>
       <CssBaseline />

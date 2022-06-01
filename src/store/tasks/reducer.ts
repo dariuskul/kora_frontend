@@ -1,9 +1,11 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
+import { TokenStorage } from "constants/tokenStorage";
 import { createNewTask, getAllTasks, getAvailableTasks, getCurrentTimer, getTimeEntries, startTask, stopTask } from "store/tasks/actions";
 import { ITasks } from "store/types/Task";
 
 const reducer = {
   stopManually: (state: ITasks) => {
+    TokenStorage.clearWarning();
     return {
       ...state,
       currentTimer: undefined,

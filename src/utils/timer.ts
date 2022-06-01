@@ -60,12 +60,19 @@ export const convertTimeToHoursAndMinutes = (time: number) => {
   return { hours, minutes };
 }
 
+const convertToHoursAndMinutes = (time: number) => {
+  const hours = Math.floor(time / 3600000);
+  const minutes = Math.floor((time - hours * 3600000) / 60000);
+  const seconds = Math.floor((time - hours * 3600000 - minutes * 60000) / 1000);
+  return { hours: hours.toString().padStart(2, '0'), minutes: minutes.toString().padStart(2, '0') }
+}
+
 
 export const calculateTimeBetweenDates = (startDate: string, endDate: string) => {
   if (!startDate || !endDate) {
     return 0;
   }
-  const time = Number(new Date(endDate)) - Number(new Date(startDate));
+  const time = moment(endDate).diff(moment(startDate));
   return time;
 }
 
@@ -75,7 +82,7 @@ export const calculateTotalDayTime = ({ times }) => {
   times.forEach(project => {
     totalTime += calculateTimeBetweenDates(project.startDate, project.endDate)
   })
-  return convertTimeToHoursAndMinutes(totalTime);
+  return convertToHoursAndMinutes(totalTime);
 }
 
 export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
@@ -84,8 +91,11 @@ export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
     return [];
   }
   timers.forEach(timer => {
-    if (items.has(timer.task.id) && items.get(timer.task.id).forced === timer.forced) {
+    if (items.has(timer.task.id)) {
       const item = items.get(timer.task.id);
+      if (!item) {
+        return;
+      }
       item.time += calculateTimeBetweenDates(timer.startDate, timer.endDate);
       item.allData.push(timer)
     }
@@ -98,11 +108,9 @@ export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
       })
     }
   })
-
-  // convert task times to hours and minutes
   const itemsArray = Array.from(items.values());
   itemsArray.forEach(item => {
-    item.time = convertTimeToHoursAndMinutes(item.time);
+    item.time = convertToHoursAndMinutes(item.time);
   })
   return itemsArray;
 }

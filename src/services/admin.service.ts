@@ -22,8 +22,8 @@ export const removeTask = async (taskId: string) => {
   return response;
 }
 
-export const getUsersPerformance = async () => {
-  const response = await apiCall('GET', `${ADMIN_ENDPOINT.GET_USER_PERFORMANCE}`, true);
+export const getUsersPerformance = async (userId: number, projects: Array<number>, from: string, to: string) => {
+  const response = await apiCall('GET', `${ADMIN_ENDPOINT.GET_USER_PERFORMANCE(userId, projects, from, to)}`, true);
   return response;
 }
 

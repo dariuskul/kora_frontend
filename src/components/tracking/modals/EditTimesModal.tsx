@@ -10,13 +10,14 @@ import {
 import { Toast } from "components/others/Toast";
 import DialogWithClose from "components/tracking/modals/DialogWithClose";
 import moment from "moment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-final-form";
 import { toast } from "react-toastify";
-import { updateTimer } from "services/tracking.service";
+import { editTaskTimer, updateTimer } from "services/tracking.service";
 import { closeEditModal } from "store/modals/modalSlice";
 import { useAppSelector } from "store/selectors";
 import { useAppThunkDispatch } from "store/store";
+import { getTimeEntries } from "store/tasks/actions";
 import { formatDate, formatDateShort } from "utils/timer";
 
 interface IEditTimesModal {
@@ -27,6 +28,23 @@ interface IEditTimesModal {
 
 export const EditTimesModal: React.FC<IEditTimesModal> = () => {
   const { timerEditModal } = useAppSelector((s) => s.modalState);
+  const { id } = useAppSelector((s) => s.userState);
+  const [input, setInput] = useState<any>();
+  const [error, setError] = useState<any>();
+  useEffect(() => {
+    const timeEntries = timerEditModal?.data?.item?.allData;
+    if (timeEntries) {
+      const duration = timeEntries.reduce((acc: any, curr: any) => {
+        const startDate = moment(curr.startDate);
+        const endDate = moment(curr.endDate);
+        const durations = moment.duration(endDate.diff(startDate));
+        return acc + durations.asMilliseconds()
+      }, 0);
+      const durationFormatted = moment.utc(duration).format("HH:mm:ss");
+      setInput(durationFormatted);
+    }
+
+  }, [timerEditModal]);
   const [loading, setLoading] = useState(false);
   const dispatch = useAppThunkDispatch();
   const handleClose = () => {
@@ -40,22 +58,52 @@ export const EditTimesModal: React.FC<IEditTimesModal> = () => {
   const task = timerEditModal.data.item.task;
   const timeEntries = timerEditModal.data.item.allData;
 
-  const regex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
-  const handleChange = async (e: any, item: any) => {
-    const timeAndDate = e.target.value.split(":");
-    setLoading(true);
+  console.log(timeEntries);
+
+  // calculate duration from timeEntries (startDate and endDate) using moment
+
+  const handleChange = (e: any) => {
+    // if wrote like "1h" or "1h 30m" make it "01:30:00" with 2 digits
+    const regex = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
+    setInput(e.target.value);
     if (regex.test(e.target.value)) {
-      const newDate = moment(item.endDate)
-        .set("hour", timeAndDate[0])
-        .set("minute", timeAndDate[1])
-        .format();
-      await updateTimer(item.id, { endDate: newDate });
-      toast.success(<Toast message="Time entry updated " />);
-    } else {
-      e.target.value = formatDate(item.endDate);
+      setError(undefined);
     }
-    setLoading(false);
   };
+  const formatInput = () => {
+    // check if input is "HH:mm:ss" format where numbers can go up to 99
+    // if not, set error
+    const regex = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
+    if (!regex.test(input)) {
+      setError("Format should be: 00:00:00");
+      return;
+    }
+  };
+
+  const onSubmit = async () => {
+    const regex = /([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
+    if (!regex.test(input)) {
+      setError("Format should be: 00:00:00");
+      return;
+    }
+    setLoading(true);
+    const startDate = timeEntries[0].startDate;
+    const taskId = timeEntries[0].task.id;
+    if (!taskId) {
+      return;
+    }
+    // convert "HH:mm:ss" to milliseconds
+    const duration = moment.duration(input).asMilliseconds();
+    setLoading(true);
+    try {
+      await editTaskTimer(taskId, duration, moment(startDate).format('YYYY-MM-DD'), id);
+      await dispatch(getTimeEntries());
+    } catch (error) {
+
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <DialogWithClose open={timerEditModal.open} onClose={handleClose}>
       <DialogTitle>
@@ -64,36 +112,16 @@ export const EditTimesModal: React.FC<IEditTimesModal> = () => {
             <strong>{task.description}</strong>
           </Typography>
           {task.project ? <Typography variant="subtitle1">#{task.project.name}</Typography> : null}
+          <Typography fontWeight="700">{formatDateShort(timeEntries[0].startDate)}</Typography>
         </Box>
       </DialogTitle>
       <DialogContent>
-        {formatDateShort(timeEntries[0].startDate)}
-        <Typography>Time entries</Typography>
-        <Box
-          maxHeight="20rem"
-          overflow="hidden scroll"
-          display="flex"
-          flexDirection="column"
-          gap="0.25rem"
-        >
-          {timeEntries.map((item: any) => (
-            <Box gap="0.5rem" display="flex" key={item.id}>
-              <TextField
-                color={item.forced ? "primary" : "warning"}
-                value={formatDate(item.startDate)}
-                disabled
-              ></TextField>{" "}
-              -
-              <TextField
-                disabled={loading}
-                sx={{ input: { color: item.forced ? "red" : "black" } }}
-                onBlur={(e) => handleChange(e, item)}
-                defaultValue={formatDate(item.endDate)}
-              />
-            </Box>
-          ))}
-        </Box>
+        <TextField error={!!error} helperText={error ?? ''} sx={{ marginTop: '0.5rem' }} onBlur={formatInput} label="Duration" onChange={handleChange} value={input} />
       </DialogContent>
+      <DialogActions>
+        <Button disabled={loading} onClick={handleClose}>Cancel</Button>
+        <Button disabled={loading} onClick={onSubmit}>Save</Button>
+      </DialogActions>
     </DialogWithClose>
   );
 };

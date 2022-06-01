@@ -39,7 +39,7 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
 
   const onSubmit = async (values: TCreateTask) => {
     const findId = projects.find((p) => p.name === values.project);
-    const findSimiliar = availableTasks.find((t) => t.description.includes(values.description) && t.project.id === findId?.id);
+    const findSimiliar = availableTasks.find((t) => t.description.includes(values.description) && t?.project?.id === findId?.id);
     if (findSimiliar) {
       await confirm({
         title: "Similar task found",
@@ -48,7 +48,7 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
         cancellationText: "Cancel",
       });
     }
-    const projectId = findId ? findId.id : "";
+    const projectId = findId ? findId?.id : "";
     if (projectId) {
       try {
         await dispatch(createNewTask({ description: values.description, projectId })).unwrap();
@@ -63,6 +63,7 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
         onClose();
       }
       catch (error) {
+        console.log('erroras', error);
         toast.error(<Toast message={getErrorMessage(error)} />)
       }
     }

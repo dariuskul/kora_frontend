@@ -1,21 +1,30 @@
 import { Box, Button } from '@mui/material';
 import InputUtil from 'components/inputs/InputUtil';
 import { SelectInput } from 'components/inputs/Select';
+import { Toast } from 'components/others/Toast';
 import React from 'react';
 import { Form } from 'react-final-form';
-import { useAppSelector, useAppThunkDispatch } from 'store/selectors';
+import { toast } from 'react-toastify';
+import { useAppSelector } from 'store/selectors';
+import { useAppThunkDispatch } from 'store/store';
 import { IUser } from 'store/types/User';
+import { updateEmployee, updateUser } from 'store/users/actions';
 
 interface ITeamMemberForm {
   user: IUser;
 }
 
 export const TeamMemberForm: React.FC<ITeamMemberForm> = ({ user }) => {
-  const { role } = useAppSelector(s => s.userState);
+  const { role, id } = useAppSelector(s => s.userState);
   const dispatch = useAppThunkDispatch();
   const availableRoles = role === 'admin' ? ['admin', 'moderator', 'user'] : ['moderator', 'user'];
-  const handleSumbit = (values: any) => {
-    dispatch(updateUser(values)).unwrap();
+  const handleSumbit = async (values: any) => {
+    try {
+      await dispatch(updateEmployee({ ...values, id: user.id, role: values.role.toLocaleLowerCase() || user.role })).unwrap();
+      toast.success(<Toast message='User updated' />);
+    } catch (error) {
+
+    }
   }
   return (
     <Form
@@ -52,7 +61,7 @@ export const TeamMemberForm: React.FC<ITeamMemberForm> = ({ user }) => {
               name="email"
               type="email"
             />
-            <SelectInput id="role-seelection" label="Role" defaultValue={user.role.toUpperCase()} color="black" disabled={submitting} labelId="role" name='role' options={availableRoles.map(item => item.toUpperCase())} />
+            {user.id !== id && <SelectInput id="role-seelection" label="Role" defaultValue={user.role.toUpperCase()} color="black" disabled={submitting} labelId="role" name='role' options={availableRoles.map(item => item.toUpperCase())} />}
             <Button
               disabled={submitting}
               color="primary"

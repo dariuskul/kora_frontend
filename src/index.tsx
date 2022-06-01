@@ -13,6 +13,7 @@ import { ConfirmProvider } from 'material-ui-confirm';
 import './i18n';
 import { App } from 'App';
 
+
 const { store, persistor } = configStore({} as never);
 
 ReactDOM.render(

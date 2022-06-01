@@ -19,12 +19,14 @@ import { Statistics } from "pages/tracking/timer/Statistics";
 import { TApiTaskItem } from "store/types/Task";
 import { getRunningTimerTime } from "utils/timer";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "hooks/useQuery";
 
 
 
 export const Timer = React.memo(() => {
   const dispatch = useAppThunkDispatch();
   const { t } = useTranslation();
+  const { isTablet } = useQuery();
   const { time, running, setRunning, setTime } = useStopWatch();
   const [loading, setLoading] = useState(false);
   const { currentTimer, tasks, timeEntries } = useAppSelector(
@@ -43,7 +45,11 @@ export const Timer = React.memo(() => {
     };
     fetchTasks();
   }, [dispatch]);
-
+  useEffect(() => {
+    if (currentTimer) {
+      setSelected(currentTimer.task);
+    }
+  }, [currentTimer]);
   useEffect(() => {
     if (!currentTimer) {
       setRunning(false);
@@ -98,7 +104,7 @@ export const Timer = React.memo(() => {
     // sort by project name if there is a project name
     const copyArr = [...tasks];
     const sortedTasks = copyArr.sort((a, b) => {
-      if (a?.projectId && b?.projectId) {
+      if (a?.projectId && b?.projectId && a?.project?.name && b?.project?.name) {
         return a.project.name.localeCompare(b.project.name);
       }
       return 0;
@@ -131,25 +137,46 @@ export const Timer = React.memo(() => {
             value={currentTimer?.task}
             onChange={(e, value) => setSelected(value as TApiTaskItem)}
             options={filteredTasks}
-            getOptionLabel={(option) => option.description}
+            getOptionLabel={(option) => option.description || option}
             renderInput={(params) => (
               <   TextField {...params} label={t('selectTask')} />
             )}
           />
-          <StopWatch time={time} />
-          <Button
-            color={currentTimer ? "error" : "primary"}
-            onClick={() => handleStartTimer()}
-            disabled={!selected && !running}
-            sx={{ minHeight: '36px' }}
-            variant="contained"
-          >
-            <Box gap="1rem" alignItems="center" display="flex">
-              {!loading && <Typography>{currentTimer ? t('stopTimer') : t('startTimer')}</Typography>}
-              {loading && <StyledLoader />}
-            </Box>
-          </Button>
+          {!isTablet && (
+            <>
+              <StopWatch time={time} />
+              <Button
+                color={currentTimer ? "error" : "primary"}
+                onClick={() => handleStartTimer()}
+                disabled={!selected && !running}
+                sx={{ minHeight: '36px', minWidth: '6rem' }}
+                variant="contained"
+              >
+                <Box gap="1rem" alignItems="center" display="flex">
+                  {!loading && <Typography margin="0 0.25rem">{currentTimer ? t('stopTimer') : t('startTimer')}</Typography>}
+                  {loading && <StyledLoader />}
+                </Box>
+              </Button>
+            </>
+          )}
         </Box>
+        {isTablet && (
+          <Box mt="0.5rem" justifyContent="space-between" display="flex">
+            <StopWatch time={time} />
+            <Button
+              color={currentTimer ? "error" : "primary"}
+              onClick={() => handleStartTimer()}
+              disabled={!selected && !running}
+              sx={{ minHeight: '36px', minWidth: '6rem' }}
+              variant="contained"
+            >
+              <Box gap="1rem" alignItems="center" display="flex">
+                {!loading && <Typography margin="0 0.25rem">{currentTimer ? t('stopTimer') : t('startTimer')}</Typography>}
+                {loading && <StyledLoader />}
+              </Box>
+            </Button>
+          </Box>
+        )}
       </Paper>
       {Information}
     </Box>

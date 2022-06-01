@@ -13,7 +13,7 @@ interface IWorkingStatistics {
   statistics: Array<IStatistic>;
 }
 
-const normaliseData = (value) => {
+const normaliseData = (value: number) => {
   // convert miliseconds to hours
   const hours = Math.floor(value / 3600000);
   return `${hours}h`
@@ -25,7 +25,7 @@ export const WorkingStatistics: React.FC<IWorkingStatistics> = React.memo(({ sta
     return null;
   }
 
-  const localiseMonth = (value) => {
+  const localiseMonth = (value: any) => {
     return `${t(`months.${value}`)}`;
   }
   return (
@@ -43,7 +43,7 @@ export const WorkingStatistics: React.FC<IWorkingStatistics> = React.memo(({ sta
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis tickFormatter={(value) => localiseMonth(value)} padding={{ left: 30, right: 30 }} fontSize="0.875rem" dataKey="month" />
                 <YAxis tickFormatter={(value) => normaliseData(value)} fontSize="0.875rem" />
-                <Tooltip content={({ active, payload, label }) => <TimeDisplay active={active} payload={payload} label={label} isMonthly />} />
+                <Tooltip content={({ active, payload, label }) => <TimeDisplay active={!!active} payload={payload} label={label} isMonthly />} />
                 <Legend />
                 <Line name={t('timeSpent')} stroke="#1976d2" dataKey="time" fill="#1976d2" />
               </LineChart>

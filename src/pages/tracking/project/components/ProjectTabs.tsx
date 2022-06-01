@@ -23,13 +23,11 @@ export const ProjectTabs: React.FC<IProjectTabs> = ({ project, tasks }) => {
         <Tab label="Tasks" />
         <Tab label="Access" />
         <Tab label="Statistics" />
-        <Tab label="Settings" />
       </Tabs>
 
-      {value === 0 && <Tasks projectId={project.id} tasks={tasks} />}
+      {value === 0 && <Tasks isJira={project.isJiraProject} projectId={project.id} tasks={tasks} />}
       {value === 1 && <ProjectAccess project={project} />}
       {value === 2 && <ProjectStatistics projectId={project.id} />}
-      {value === 3 && <ProjecttSettings />}
     </Box>
   )
 }

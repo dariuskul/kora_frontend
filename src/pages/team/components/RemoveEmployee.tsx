@@ -7,6 +7,7 @@ import { useAppThunkDispatch } from "store/store";
 import { removeEmployee } from "store/users/actions";
 import { toast } from "react-toastify";
 import { Toast } from "components/others/Toast";
+import { useAppSelector } from 'store/selectors';
 
 interface IRemoveEmployee {
   employee: IUser;
@@ -14,6 +15,7 @@ interface IRemoveEmployee {
 
 export const RemoveEmployee: React.FC<IRemoveEmployee> = ({ employee }) => {
   const confirm = useConfirm();
+  const { id } = useAppSelector(s => s.userState);
   const dispatch = useAppThunkDispatch();
   const handleClick = async () => {
     try {
@@ -30,8 +32,8 @@ export const RemoveEmployee: React.FC<IRemoveEmployee> = ({ employee }) => {
     }
   }
   return (
-    <IconButton sx={{ maxWidth: 100 }} onClick={handleClick}>
-      <DeleteForever color="error" />
+    <IconButton disabled={employee.id === id} sx={{ maxWidth: 100 }} onClick={handleClick}>
+      <DeleteForever color={employee.id === id ? 'disabled' : 'error'} />
     </IconButton>
   )
 }

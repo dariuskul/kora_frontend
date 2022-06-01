@@ -5,7 +5,7 @@ import React from 'react';
 import { Field } from 'react-final-form';
 import DateFnsUtils from '@date-io/date-fns';
 import enLocale from 'date-fns/locale/en-US';
-import { DatePicker } from '@mui/x-date-pickers';
+import { DatePicker, MobileDatePicker } from '@mui/x-date-pickers';
 
 interface IInputUtil {
   icon?: React.ReactElement;
@@ -37,28 +37,15 @@ interface IInputUtil {
 const DateInput: React.FC<IInputUtil> = ({
   name,
   label,
-  placeholder,
-  color,
-  rows,
-  multiline = false,
-  autoFocus = false,
-  fullWidth = false,
-  required = false,
-  onFocus,
-  onBlur,
-  handlePasswordClick,
-  disabled,
   id,
   initialValue,
 }) => (
   <Field name={name} id={id} initialValue={initialValue}>
     {({ input, meta }) => (
       <LocalizationProvider locale={enLocale} dateAdapter={AdapterDateFns}>
-        <DatePicker
+        <MobileDatePicker
           {...input}
-          disableFuture
-          inputFormat="yyyy/MM/dd"
-          value={input?.value}
+          value={new Date(input.value).getDate() ? input.value : new Date()}
           label={label}
           renderInput={(params) => <TextField {...params} />}
         />

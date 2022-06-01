@@ -1,6 +1,7 @@
 import { Box, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { updateTask } from "services/tracking.service";
 import { useAppSelector } from "store/selectors";
 import { useAppThunkDispatch } from "store/store";
@@ -36,6 +37,7 @@ const setToArray = (set: Set<any>) => {
 
 export const Assignee: React.FC<IAssignee> = ({ name, oldUserId, taskId }) => {
   const { fullName, id } = useAppSelector((s) => s.userState);
+  const { t } = useTranslation();
   const [value, setValue] = useState(-1);
   useEffect(() => {
     setValue(oldUserId);
@@ -54,11 +56,12 @@ export const Assignee: React.FC<IAssignee> = ({ name, oldUserId, taskId }) => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={value}
+          onClick={e => e.stopPropagation()}
           onChange={handleChange}
         >
           {OPTIONS.map((opt) => (
             <MenuItem key={opt.value} value={opt.id}>
-              {opt.fullName === fullName ? "Me" : opt.fullName}
+              {opt.fullName === fullName ? t("Me") : t(opt.fullName)}
             </MenuItem>
           ))}
         </Select>

@@ -9,6 +9,7 @@ import { ProjectTabs } from "pages/tracking/project/components/ProjectTabs";
 import { ProjectMenu } from "pages/tracking/project/components/ProjectMenu";
 import { TApiTaskItem } from "store/types/Task";
 import EditIcon from '@mui/icons-material/Edit';
+import { jiraImage } from "pages/tracking/timer/components/DayEntry";
 
 export const Project = () => {
   const params: Params<string> = useParams();
@@ -56,10 +57,10 @@ export const Project = () => {
       <Loader loading={loading} />
       <Box>
         <Box alignItems="center" display="flex" gap="0.5rem">
-          {editingName ? <TextField onKeyDown={handeProjectNameChange} onBlur={handeProjectNameChange} sx={{ fontSize: '2rem' }} defaultValue={project.name} /> : <Typography fontSize="2rem">{project.name}</Typography>}
-          <IconButton onClick={() => setEditingName(prev => !prev)}>
+          <img src={jiraImage} /> {editingName ? <TextField onKeyDown={handeProjectNameChange} onBlur={handeProjectNameChange} sx={{ fontSize: '2rem' }} defaultValue={project.name} /> : <Typography fontSize="2rem">{project.name}</Typography>}
+          {!project.isJiraProject ? <IconButton onClick={() => setEditingName(prev => !prev)}>
             <EditIcon />
-          </IconButton>
+          </IconButton> : null}
           <ProjectMenu {...project} />
         </Box>
         {project?.tasks ? <ProjectTabs project={project} tasks={project.tasks || [] as Array<TApiTaskItem>} /> : null}

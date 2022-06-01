@@ -6,6 +6,7 @@ import { Assignee } from "pages/tasks/components/Assignee";
 import { Filters } from "pages/tasks/components/Filters";
 import { CreateNewTaskModal } from "pages/tasks/components/new-task/CreateNewTaskModal";
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Row } from "react-table";
 import { openEditTaskModal } from "store/modals/modalSlice";
 import { getProjects } from "store/projects/actions";
@@ -19,17 +20,18 @@ import { TaskStatus } from "./components/TaskStatus";
 export const Tasks = () => {
   const dispatch = useAppThunkDispatch();
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
   const { availableTasks } = useAppSelector((s) => s.tasksState);
   const columns = React.useMemo(
     () => [
       {
-        Header: "Task",
+        Header: t('task'),
         accessor: (row: IAvailableTask) => (
           <TaskName project={row?.project?.name} taskName={row.description} />
         ),
       },
       {
-        Header: "Assignee",
+        Header: t("assignee"),
         maxWidth: 200,
         accessor: (row: IAvailableTask) => (
           <Assignee
@@ -40,7 +42,7 @@ export const Tasks = () => {
         ),
       },
       {
-        Header: "Status",
+        Header: t('status'),
         maxWidth: 200,
         accessor: (row: IAvailableTask) => (
           <TaskStatus key={row.id} status={row.status} taskId={row.id} />
@@ -68,16 +70,16 @@ export const Tasks = () => {
 
   return (
     <Box>
-      <Typography variant="h4">Tasks</Typography>
+      <Typography variant="h4">{t('tasks')}</Typography>
       <Box mt="1.5rem">
         <Filters />
       </Box>
       <Box margin="0" maxWidth="70rem">
         <Box mt="1rem">
-          <Button onClick={() => setOpen(true)} variant="contained">Create new task</Button>
+          <Button onClick={() => setOpen(true)} variant="contained">{t('createNewTask')}</Button>
         </Box>
         <CustomTable
-          searchLabel="Search tasks"
+          searchLabel={t('searchTasks')}
           onCellClick={handleClick}
           columns={columns}
           data={availableTasks}

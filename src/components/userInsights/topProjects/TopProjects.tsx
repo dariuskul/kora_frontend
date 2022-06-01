@@ -28,7 +28,7 @@ export const TimeDisplay: React.FC<ITimeDisplay> = React.memo(({ active, label, 
     return (
       <Paper>
         <Box borderRadius="0.625rem" p="0.5rem 1rem" ml="auto" bgcolor="white">
-          {isMonthly && <Typography fontWeight="700">{t(`${label}`)}</Typography>}
+          {isMonthly && <Typography fontWeight="700">{t(`months.${label}`)}</Typography>}
           <Box gap="0.5rem" display="flex">
             <Typography>{t('totalTime')}</Typography>
             <Typography fontWeight="700">{`${content.hours}h ${content.minutes}m`}</Typography>
@@ -51,14 +51,14 @@ export const TopProjects: React.FC<ITopProjects> = React.memo(({ topProjects }) 
             <ResponsiveContainer width="99%" height="100%">
               <BarChart
                 layout="vertical"
-                margin={{ left: 16 }}
+                margin={{ left: 30 }}
                 height={300}
                 data={topProjects}
               >
                 <CartesianGrid strokeDasharray="4 3" />
                 <XAxis fontSize="0.875rem" type="number" hide />
                 <YAxis fontSize="0.875rem" type="category" dataKey="name" />
-                <Tooltip content={({ active, payload, label }) => <TimeDisplay active={active} payload={payload} label={t(label)} />} />
+                <Tooltip content={({ active, payload, label }) => <TimeDisplay active={!!active} payload={payload} label={t(label)} />} />
                 <Bar stroke="#1976d2" dataKey="time" fill="#1976d2" />
               </BarChart>
             </ResponsiveContainer>

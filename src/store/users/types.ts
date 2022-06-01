@@ -25,4 +25,8 @@ interface IUpdateType extends IUser {
   password: string;
 }
 
-export type IUpdateValues = Partial<IUpdateType>;
+type PartialValues = Partial<IUpdateType>;
+
+export interface IUpdateValues extends PartialValues {
+  id: number;
+}

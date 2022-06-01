@@ -15,7 +15,7 @@ export const EditTeamMember: React.FC<IEditTeamMember> = ({ employee }) => {
   return (
     <>
       <IconButton onClick={() => setOpen(true)}>
-        <EditIcon />
+        <EditIcon color='primary' />
       </IconButton>
       <EditTeamMemberModal open={open} setOpen={setOpen} employee={employee} />
     </>

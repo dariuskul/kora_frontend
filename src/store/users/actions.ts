@@ -31,7 +31,7 @@ export const updateUser = createAsyncThunk(UpdateUser.UpdateUser, async (values:
   }
 })
 
-export const updateEmployee = createAsyncThunk('User/UPDATE-EPMPLOYEE', async (values: IUpdateValues, { rejectWithValue }) => {
+export const updateEmployee = createAsyncThunk('User/UPDATE-EPMPLOYEEE', async (values: IUpdateValues, { rejectWithValue }) => {
   try {
     await update(values);
     return values;

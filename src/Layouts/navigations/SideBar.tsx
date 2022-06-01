@@ -24,25 +24,25 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { useTranslation } from "react-i18next";
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-import { synchronize } from "store/projects/actions";
+import { getProjects, synchronize } from "store/projects/actions";
 import { toast } from "react-toastify";
 import { useAppThunkDispatch } from "store/store";
 import { getErrorMessage } from "utils/error";
 
 export const drawerWidth = 200;
 
-const SIDE_BAR_LINKS = [
+export const SIDE_BAR_LINKS = [
   { name: "DASHBOARD", link: "/", icon: <DashboardOutlined /> },
   { name: "TRACKING", link: "/tracking", icon: <TimerOutlined /> },
   { name: "TASKS", link: "/tasks", icon: <FormatListBulletedIcon /> },
 ];
 
-const MODERATOR_LINKS = [
+export const MODERATOR_LINKS = [
   { name: "PROJECTS", link: "/projects", icon: <ArticleOutlined /> },
   { name: "TEAM", link: "/team", icon: <GroupsOutlined /> },
 ];
 
-const ADMIN_LINKS = [
+export const ADMIN_LINKS = [
   { name: "PROJECTS", link: "/projects", icon: <ArticleOutlined /> },
   { name: "TEAM", link: "/team", icon: <GroupsOutlined /> },
   { name: "REPORTS", link: "/reports", icon: <AssessmentIcon /> },
@@ -69,7 +69,8 @@ export const SideBar = memo(() => {
     setLoading(true);
     try {
       await dispatch(synchronize()).unwrap();
-      toast.success(t("SYNC_SUCCESS"));
+      await dispatch(getProjects()).unwrap();
+
     } catch (error) {
       toast.error(getErrorMessage(error));
     } finally {
@@ -134,7 +135,7 @@ export const SideBar = memo(() => {
         </List>
       </Box>
       <Box mt="auto">
-        <Button disabled={loading} onClick={handleSync} fullWidth>Synchronize data</Button>
+        <Button disabled={loading} onClick={handleSync} fullWidth>{t('synchronizeData')}</Button>
       </Box>
     </Drawer>
   );

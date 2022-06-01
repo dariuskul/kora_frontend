@@ -3,6 +3,7 @@ import { CustomTable } from 'components/others/CustomTable';
 import { CreateClientModal } from 'pages/clients/components/CreateClientModal';
 import { DeleteClient } from 'pages/clients/components/DeleteClient';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Row } from 'react-table';
 import { getClients } from 'services/admin.service';
 import { fetchClients } from 'store/clients/actions';
@@ -13,6 +14,7 @@ import { useAppThunkDispatch } from 'store/store';
 export const Clients = () => {
   const { clients } = useAppSelector(s => s.clientsState);
   const dispatch = useAppThunkDispatch();
+  const { t } = useTranslation();
   const [openCreateModal, setCreateModal] = useState(false);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export const Clients = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Client",
+        Header: t('client'),
         accessor: 'name'
       },
       {
@@ -44,11 +46,11 @@ export const Clients = () => {
     <Box>
       <Box display="flex" justifyContent="space-between" mt="1rem">
         <Typography fontSize="1.5rem" variant="h3">
-          Clients
+          {t('clients')}
         </Typography>
-        <Button id="newCLient" onClick={() => setCreateModal(true)} variant="contained">Create new client</Button>
+        <Button id="newCLient" onClick={() => setCreateModal(true)} variant="contained">{t('createNewClient')}</Button>
       </Box>
-      {clients && <CustomTable searchLabel='Search clients' columns={columns} data={clients} />}
+      {clients && <CustomTable searchLabel={t('searchClients')} columns={columns} data={clients} />}
       <CreateClientModal onClose={() => setCreateModal(false)} open={openCreateModal} />
     </Box>
   );
