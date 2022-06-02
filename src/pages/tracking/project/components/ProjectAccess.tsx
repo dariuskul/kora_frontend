@@ -23,7 +23,6 @@ export const ProjectAccess: React.FC<IProjectAccess> = ({ project }) => {
   const [selectedClient, setSelectedClient] = useState(project.client);
   const { t } = useTranslation();
   const { isPublic, id } = project;
-  console.log(project);
   const columns = React.useMemo(() => [
     {
       Header: 'NAME',

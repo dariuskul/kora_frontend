@@ -58,8 +58,6 @@ export const EditTimesModal: React.FC<IEditTimesModal> = () => {
   const task = timerEditModal.data.item.task;
   const timeEntries = timerEditModal.data.item.allData;
 
-  console.log(timeEntries);
-
   // calculate duration from timeEntries (startDate and endDate) using moment
 
   const handleChange = (e: any) => {

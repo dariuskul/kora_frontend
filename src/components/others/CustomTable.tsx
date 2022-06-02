@@ -20,6 +20,7 @@ interface ITable {
   loading?: boolean;
   onCellClick?: (row: any) => void;
   maxWidth?: string;
+  disabledSearch?: boolean;
 }
 
 export const CustomTable: React.FC<ITable> = ({
@@ -29,6 +30,7 @@ export const CustomTable: React.FC<ITable> = ({
   loading,
   onCellClick,
   maxWidth,
+  disabledSearch
 }) => {
 
   const [value, setValue] = useState('');
@@ -52,7 +54,7 @@ export const CustomTable: React.FC<ITable> = ({
   return (
     <Paper sx={{ maxWidth: maxWidth || 1200, margin: '0 auto' }} elevation={3} >
       <Box borderRadius="0.25rem" p="0.75rem" bgcolor="white" mt="2rem">
-        <Box mb="1rem">
+        {disabledSearch && <Box mb="1rem">
           <TextField
             value={value}
             autoFocus
@@ -67,7 +69,7 @@ export const CustomTable: React.FC<ITable> = ({
               ),
             }}
           />
-        </Box>
+        </Box>}
         <Box overflow="hidden auto" maxHeight="40rem">
           <Table stickyHeader {...getTableProps()}>
             <TableHead>

@@ -30,7 +30,6 @@ export const App = () => {
     }
     const { timerStopped } = initTimerEvents(userToken);
     timerStopped.addEventListener('message', (e) => {
-      console.log(e);
       const { showNotifsTo, showWarning } = JSON.parse(e.data);
       if (showNotifsTo.includes(id)) {
         try {

@@ -17,7 +17,6 @@ export const TaskStatus: React.FC<ITaskStatus> = ({ status, taskId }) => {
   const [value, setValue] = useState('');
   const { t } = useTranslation();
   useEffect(() => {
-    console.log(status)
     setValue(status);
   }, [status])
   const handleChange = async (e: any) => {

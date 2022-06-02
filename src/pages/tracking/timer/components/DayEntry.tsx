@@ -48,6 +48,7 @@ export const DayEntry: React.FC<IDayEntry> = ({ day, times }) => {
         {grouped?.map(item => (
           <Tooltip key={`${item.task.description}_item_time`} placement='top-end' title={item.forced ? <Typography fontSize="1rem">Timer was automatically stopped</Typography> : ''}>
             <DayEntryWrapper onClick={() => handleClick(item)} sx={{ cursor: 'pointer' }} color={item.forced ? 'red' : 'black'} padding="1rem 0.5rem" display="flex" alignItems="center" borderBottom="1px dashed #e8e8e8">
+
               <Typography fontWeight="500">{formatTime(item.time.hours, item.time.minutes)}</Typography>
               <Typography ml="1rem">{item.task.description}</Typography>
               <Box display={currentTimer?.task?.id === item.task.id ? 'block' : 'none'} id="timer">

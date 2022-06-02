@@ -91,7 +91,7 @@ export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
     return [];
   }
   timers.forEach(timer => {
-    if (items.has(timer.task.id)) {
+    if (items.has(timer.task.id) && timer.forced === items?.get(timer.task.id).forced) {
       const item = items.get(timer.task.id);
       if (!item) {
         return;
