@@ -4,6 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Link,
   TextField,
   Typography,
 } from "@mui/material";
@@ -106,9 +107,15 @@ export const EditTimesModal: React.FC<IEditTimesModal> = () => {
     <DialogWithClose open={timerEditModal.open} onClose={handleClose}>
       <DialogTitle>
         <Box flexDirection="column" display="flex">
-          <Typography fontSize="1.5rem">
-            <strong>{task.description}</strong>
-          </Typography>
+          {task.taskLink ? (
+            <Link target="_blank" underline="none" href={task.taskLink}>
+              {task.description}
+            </Link>
+          ) : (
+            <Typography fontSize="1.5rem">
+              <strong>{task.description}</strong>
+            </Typography>
+          )}
           {task.project ? <Typography variant="subtitle1">#{task.project.name}</Typography> : null}
           <Typography fontWeight="700">{formatDateShort(timeEntries[0].startDate)}</Typography>
         </Box>

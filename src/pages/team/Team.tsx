@@ -15,6 +15,7 @@ import { EditTeamMember } from "pages/team/components/EditTeamMember";
 import { useAppSelector } from "store/selectors";
 import { getTeam } from "store/users/actions";
 import { useAppThunkDispatch } from "store/store";
+import { useTranslation } from "react-i18next";
 
 export const Team = () => {
   const [value, setValue] = useState(0);
@@ -22,22 +23,23 @@ export const Team = () => {
   const [formOpen, setFormOpen] = useState(false);
   const { team } = useAppSelector(s => s.userState);
   const dispatch = useAppThunkDispatch();
+  const { t } = useTranslation();
 
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
+        Header: t('fullName'),
         accessor: "fullName",
         Cell: ({ row }: { row: Row<IUser> }) => (
           <TeamMemberName value={row.original.fullName} />
         ),
       },
       {
-        Header: "Email address",
+        Header: t('emailAddress'),
         accessor: "email",
       },
       {
-        Header: "Role",
+        Header: t('role'),
         accessor: "role",
         Cell: ({ row }: { row: Row<IUser> }) => (
           <TeamMemberRole value={row.original.role} />

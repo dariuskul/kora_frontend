@@ -40,7 +40,7 @@ export const Project = () => {
     return null;
   }
 
-  const handeProjectNameChange = async (e) => {
+  const handeProjectNameChange = async (e: any) => {
     if (!e.target.value) {
       return;
     }
@@ -57,13 +57,13 @@ export const Project = () => {
       <Loader loading={loading} />
       <Box>
         <Box alignItems="center" display="flex" gap="0.5rem">
-          <img src={jiraImage} /> {editingName ? <TextField onKeyDown={handeProjectNameChange} onBlur={handeProjectNameChange} sx={{ fontSize: '2rem' }} defaultValue={project.name} /> : <Typography fontSize="2rem">{project.name}</Typography>}
+          {project.isJiraProject ? <img src={jiraImage} /> : null} {editingName ? <TextField onKeyDown={handeProjectNameChange} onBlur={handeProjectNameChange} sx={{ fontSize: '2rem' }} defaultValue={project.name} /> : <Typography fontSize="2rem">{project.name}</Typography>}
           {!project.isJiraProject ? <IconButton onClick={() => setEditingName(prev => !prev)}>
             <EditIcon />
           </IconButton> : null}
           <ProjectMenu {...project} />
         </Box>
-        {project?.tasks ? <ProjectTabs project={project} tasks={project.tasks || [] as Array<TApiTaskItem>} /> : null}
+        {project?.tasks ? <ProjectTabs setProject={setProject} project={project} tasks={project.tasks || [] as Array<TApiTaskItem>} /> : null}
       </Box>
     </>
   )

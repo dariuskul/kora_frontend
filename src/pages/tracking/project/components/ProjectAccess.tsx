@@ -20,7 +20,7 @@ export const ProjectAccess: React.FC<IProjectAccess> = ({ project }) => {
   const [value, setValue] = useState(project.isPublic ? 0 : 1);
   const { clients } = useAppSelector(s => s.clientsState);
   const [addUsersFormOpen, setAddUsersFormOpen] = useState(false);
-  const [selectedClient, setSelectedClient] = useState(project.client);
+  const [selectedClient, setSelectedClient] = useState(project.client || clients[0]);
   const { t } = useTranslation();
   const { isPublic, id } = project;
   const columns = React.useMemo(() => [
@@ -55,7 +55,8 @@ export const ProjectAccess: React.FC<IProjectAccess> = ({ project }) => {
   }, [value]);
 
   useEffect(() => {
-    setSelectedClient(project?.client || clients[0]);
+    const findSelectedClient = clients.find(c => c.id === project.clientId);
+    setSelectedClient(findSelectedClient || clients[0]);
   }, [project])
 
 
@@ -66,7 +67,9 @@ export const ProjectAccess: React.FC<IProjectAccess> = ({ project }) => {
       await addClientToProject(project.id, findClient.id);
     }
   };
-
+  if (!project) {
+    return null;
+  }
   return (
     <Box padding="1rem">
       <Typography fontWeight="600" fontSize="1.25rem">Client</Typography>

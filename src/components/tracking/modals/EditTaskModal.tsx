@@ -1,7 +1,7 @@
+import { Tooltip } from "@material-ui/core";
 import {
   Box,
   Button,
-  DialogActions,
   DialogContent,
   DialogTitle,
   TextField,
@@ -11,19 +11,18 @@ import { Toast } from "components/others/Toast";
 import DialogWithClose from "components/tracking/modals/DialogWithClose";
 import { useAdmin } from "hooks/use-admin";
 import { useConfirm } from "material-ui-confirm";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
-import { Form } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { removeTask } from "services/admin.service";
 import { updateTask, updateTimer } from "services/tracking.service";
 import { closeEditModal } from "store/modals/modalSlice";
 import { useAppSelector } from "store/selectors";
 import { useAppThunkDispatch } from "store/store";
-import { formatDate, formatDateShort } from "utils/timer";
 
 export const EditTaskModal: React.FC = () => {
   const { editTaskModal } = useAppSelector((s) => s.modalState);
+  const { t } = useTranslation();
   const confirm = useConfirm();
   const isAdmin = useAdmin();
   const [value, setValue] = useState(editTaskModal.data?.description);
@@ -60,10 +59,10 @@ export const EditTaskModal: React.FC = () => {
   const handleDelete = async () => {
     setLoading(true);
     await confirm({
-      title: "Are you sure you want to delete this task?",
-      description: "All tracking data about this task will be lost and you will not be able to restore it!",
-      confirmationText: "Confirm",
-      cancellationText: "Cancel",
+      title: t('areYouSureToDeleteTask'),
+      description: t('allTrackingDataAboutTaskWillBeDeleted'),
+      confirmationText: t('confirm'),
+      cancellationText: t('cancel'),
     });
     try {
       await removeTask(editTaskModal.data.id);
@@ -74,20 +73,23 @@ export const EditTaskModal: React.FC = () => {
       setLoading(false);
     }
   }
+  const isJiraTask = editTaskModal.data.taskLink;
   return (
     <DialogWithClose open={editTaskModal.open} onClose={handleClose}>
       <DialogTitle>
         <Box flexDirection="column" display="flex">
-          Edit task
+          <Typography variant="h6">{t("editTask")}</Typography>
         </Box>
       </DialogTitle>
       <DialogContent>
-        <Box mt="0.5rem">
-          <TextField onChange={handleChange} label="Task name" defaultValue={value || editTaskModal.data.description} />
-        </Box>
+        <Tooltip placement="top" title={!!isJiraTask ? <Typography>{t('jiraTask')}</Typography> : ''}>
+          <Box mt="0.5rem">
+            <TextField disabled={!!isJiraTask} onChange={handleChange} label="Task name" defaultValue={value || editTaskModal.data.description} />
+          </Box>
+        </Tooltip>
         <Box display="flex" gap="0.5rem" mt="0.5rem">
-          <Button onClick={handleSubmit} disabled={loading || !value?.length} variant="contained">Save</Button>
-          {isAdmin && <Button onClick={handleDelete} variant="contained" color="error">Delete task</Button>}
+          <Button onClick={handleSubmit} disabled={loading || !value?.length || isJiraTask} variant="contained">{t('save')}</Button>
+          {isAdmin && <Button onClick={handleDelete} disabled={isJiraTask} variant="contained" color="error">{t('deleteTask')}</Button>}
         </Box>
       </DialogContent>
     </DialogWithClose>

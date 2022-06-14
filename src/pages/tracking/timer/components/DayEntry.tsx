@@ -9,6 +9,7 @@ import { useAppSelector } from 'store/selectors';
 import { useAppThunkDispatch } from 'store/store';
 import { IProjectEntry } from 'store/types/Task';
 import { formatTime, groupTimersByTask } from 'utils/timer';
+import 'moment/locale/lt';
 
 interface IDayEntry {
   day: string;
@@ -38,29 +39,57 @@ export const DayEntry: React.FC<IDayEntry> = ({ day, times }) => {
   }
 
   if (!grouped) return null;
+
+  const dayTime = useMemo(() => {
+    // calculate total time for day and convert to hours and minutes
+    const totalTime = grouped.reduce((acc, cur) => {
+      return acc + cur.nonFormatted;
+    }
+      , 0);
+    // convert miliseconds to hours and minutes
+    const hours = Math.floor(totalTime / 3600000);
+    const minutes = Math.floor((totalTime % 3600000) / 60000);
+    return `${hours}h ${minutes}m`;
+  }, [grouped]);
+
+  const getToolTipTitle = (hours: number, forced?: boolean) => {
+    if (forced) {
+      return { color: 'red', text: 'Timer was automatically stopped' }
+    }
+    if (hours > 8) {
+      return { color: '#efbc45', text: 'Requires attention' }
+    }
+    return { color: 'black', text: null };
+  }
+
+
   return (
     <Box>
       <Box marginTop="1.5rem" display="flex" alignItems="center" gap="0.5rem" pb="0.5rem" borderBottom="2px solid #e8e8e8 " mb="0.5rem">
-        <Typography>{moment(new Date(day)).format('dddd')}</Typography>
+        <Typography>{moment(new Date(day)).locale('lt').format('dddd')}</Typography>
         <Typography fontSize="0.875rem">{moment(new Date(day)).format('MMM DD')}</Typography>
+        <Typography fontWeight="700" fontSize="0.875rem">{dayTime}</Typography>
       </Box>
       <Box display="flex" flexDirection="column">
-        {grouped?.map(item => (
-          <Tooltip key={`${item.task.description}_item_time`} placement='top-end' title={item.forced ? <Typography fontSize="1rem">Timer was automatically stopped</Typography> : ''}>
-            <DayEntryWrapper onClick={() => handleClick(item)} sx={{ cursor: 'pointer' }} color={item.forced ? 'red' : 'black'} padding="1rem 0.5rem" display="flex" alignItems="center" borderBottom="1px dashed #e8e8e8">
+        {grouped?.map(item => {
+          const toolTipTitle = getToolTipTitle(item.time.hours, item.forced);
+          return (
+            <Tooltip key={`${item.task.description}_item_time`} placement='top-end' title={<Typography>{toolTipTitle.text ?? ''}</Typography>}>
+              <DayEntryWrapper onClick={() => handleClick(item)} sx={{ cursor: 'pointer' }} color={toolTipTitle.color} padding="1rem 0.5rem" display="flex" alignItems="center" borderBottom="1px dashed #e8e8e8">
 
-              <Typography fontWeight="500">{formatTime(item.time.hours, item.time.minutes)}</Typography>
-              <Typography ml="1rem">{item.task.description}</Typography>
-              <Box display={currentTimer?.task?.id === item.task.id ? 'block' : 'none'} id="timer">
-                <TaskTimer timer={item.task} />
-              </Box>
-              {item.task.project && <ProjectBox gap="0.5rem" alignItems="center" display="flex" onClick={(e) => handleProjectClick(e, item.task.project.id)} sx={{ cursor: 'pointer' }} mr="1rem" ml="auto">
-                {item.task.project.isJiraProject ? <ProjectIcon src={jiraImage} /> : <Typography fontWeight="700">KR</Typography>}
-                <ProjectName width="10rem" textAlign="left">{item.task.project.name}</ProjectName>
-              </ProjectBox>}
-            </DayEntryWrapper>
-          </Tooltip>
-        ))}
+                <Typography fontWeight="500">{formatTime(item.time.hours, item.time.minutes)}</Typography>
+                <Typography ml="1rem">{item.task.description}</Typography>
+                <Box display={currentTimer?.task?.id === item.task.id ? 'block' : 'none'} id="timer">
+                  <TaskTimer timer={item.task} />
+                </Box>
+                {item.task.project && <ProjectBox gap="0.5rem" alignItems="center" display="flex" onClick={(e) => handleProjectClick(e, item.task.project.id)} sx={{ cursor: 'pointer' }} mr="1rem" ml="auto">
+                  {item.task.project.isJiraProject ? <ProjectIcon src={jiraImage} /> : <Typography fontWeight="700">KR</Typography>}
+                  <ProjectName width="10rem" textAlign="left">{item.task.project.name}</ProjectName>
+                </ProjectBox>}
+              </DayEntryWrapper>
+            </Tooltip>
+          )
+        })}
       </Box>
     </Box >
   )

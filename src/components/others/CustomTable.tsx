@@ -52,7 +52,7 @@ export const CustomTable: React.FC<ITable> = ({
   }
 
   return (
-    <Paper sx={{ maxWidth: maxWidth || 1200, margin: '0 auto' }} elevation={3} >
+    <Paper sx={{ maxWidth: maxWidth || 1200 }} elevation={3} >
       <Box borderRadius="0.25rem" p="0.75rem" bgcolor="white" mt="2rem">
         {disabledSearch && <Box mb="1rem">
           <TextField

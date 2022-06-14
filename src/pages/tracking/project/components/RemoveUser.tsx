@@ -2,6 +2,8 @@ import { IconButton } from '@mui/material';
 import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { removeUserFromProject } from 'services/tracking.service';
+import { toast } from 'react-toastify';
+import { Toast } from 'components/others/Toast';
 
 export const RemoveUser = ({ row, project }: any) => {
   const id = row?.id;
@@ -9,7 +11,7 @@ export const RemoveUser = ({ row, project }: any) => {
     try {
       await removeUserFromProject(project, id);
     } catch (error) {
-      console.log(error);
+      toast.error(<Toast message="Error removing user" />);
     }
   }
   return (

@@ -10,7 +10,7 @@ export const TaskName: React.FC<ITaskName> = ({ project, taskName }) => {
     return (
         <div>
             <Box display="flex" flexDirection="column">
-                <Typography fontSize="1.5rem" variant="h3">{taskName}</Typography>
+                <Typography fontSize="1.25rem" variant="h3">{taskName}</Typography>
                 {project && <Typography fontSize="0.875rem" variant="subtitle1">#{project}</Typography >}
             </Box>
         </div>

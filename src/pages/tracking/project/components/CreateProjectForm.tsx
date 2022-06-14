@@ -12,6 +12,7 @@ import { ICreateProjectValues } from "store/projects/types";
 import { createProject } from "store/projects/actions";
 import CheckBox from "components/inputs/Checkbox";
 import { InfoOutlined } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 interface ICreateProjectForm {
   onClose?: () => void;
@@ -19,6 +20,7 @@ interface ICreateProjectForm {
 
 export const CreateProjectForm: React.FC<ICreateProjectForm> = ({ onClose }) => {
   const dispatch = useAppThunkDispatch();
+  const { t } = useTranslation();
 
   const validate = (values: ICreateProjectValues) => {
     const errors: ICreateProjectValues = {
@@ -53,15 +55,15 @@ export const CreateProjectForm: React.FC<ICreateProjectForm> = ({ onClose }) => 
           >
             <Box display="flex" flexDirection="column" gap="1rem">
               <InputUtil
-                label="Project name"
+                label={t('projectName')}
                 id="project-name"
                 name="name"
                 type="text"
                 disabled={submitting}
               />
               <Box display="flex" alignItems="center">
-                <CheckBox name="isPublic" id="project-public" label="Public" />
-                <Tooltip title="Project will be visible to all employees">
+                <CheckBox name="isPublic" id="project-public" label={t('public')} />
+                <Tooltip title={t('projectWillBevisibleToAll')}>
                   <InfoOutlined />
                 </Tooltip>
               </Box>
@@ -74,7 +76,7 @@ export const CreateProjectForm: React.FC<ICreateProjectForm> = ({ onClose }) => 
                   variant="contained"
                 >
                   <Box alignItems="center" display="flex">
-                    <Typography mr="0.5rem">Create</Typography>
+                    <Typography mr="0.5rem">{t('create')}</Typography>
                     {submitting && <CircularProgress size="1rem" />}
                   </Box>
                 </Button>

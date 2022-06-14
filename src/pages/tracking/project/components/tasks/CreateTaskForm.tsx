@@ -16,9 +16,10 @@ import { createNewTask } from "store/tasks/actions";
 interface ICreateProjectForm {
   onClose?: () => void;
   projectId?: number;
+  setProject: (project: any) => void;
 }
 
-export const CreateTaskForm: React.FC<ICreateProjectForm> = ({ onClose, projectId }) => {
+export const CreateTaskForm: React.FC<ICreateProjectForm> = ({ onClose, projectId, setProject }) => {
   const dispatch = useAppThunkDispatch();
 
   const validate = (values: TCreateTask) => {
@@ -33,7 +34,8 @@ export const CreateTaskForm: React.FC<ICreateProjectForm> = ({ onClose, projectI
 
   const onSubmit = async (values: TCreateTask) => {
     try {
-      await dispatch(createNewTask({ ...values, projectId })).unwrap();
+      const response = await dispatch(createNewTask({ ...values, projectId })).unwrap();
+      setProject((prevState: any) => ({ ...prevState, tasks: [...prevState.tasks, response], timers: [] }));
       toast.success(<Toast message="Task created successfully" />)
       onClose?.();
     } catch (error) {

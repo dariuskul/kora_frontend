@@ -30,6 +30,7 @@ export type TApiProjectItem = {
   isArchived: boolean;
   isJiraProject: boolean;
   client?: IClient;
+  clientId?: number;
 }
 
 

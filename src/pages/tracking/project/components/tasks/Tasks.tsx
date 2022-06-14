@@ -12,9 +12,10 @@ interface ITasks {
   tasks: Array<any>;
   projectId: number;
   isJira: boolean;
+  setProject: (project: any) => void;
 }
 
-export const Tasks: React.FC<ITasks> = ({ projectId, tasks, isJira }) => {
+export const Tasks: React.FC<ITasks> = ({ projectId, tasks, isJira, setProject }) => {
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
 
@@ -22,6 +23,11 @@ export const Tasks: React.FC<ITasks> = ({ projectId, tasks, isJira }) => {
     {
       Header: `Task (${tasks.length} tasks)`,
       accessor: 'description',
+      Cell: ({ row: { original } }: any) => (
+        <div>
+          <Typography fontSize="1.25rem" fontWeight="500" variant="body2">{original.description}</Typography>
+        </div>
+      )
     },
     {
       Header: 'Time',
@@ -36,7 +42,7 @@ export const Tasks: React.FC<ITasks> = ({ projectId, tasks, isJira }) => {
           <Typography variant="body1">{t('createNewTask')}</Typography>
         </Button>}
       </Box>
-      <CreateTaskModal open={openModal} setOpen={setOpenModal} projectId={projectId} />
+      <CreateTaskModal setProject={setProject} open={openModal} setOpen={setOpenModal} projectId={projectId} />
       <CustomTable searchLabel="Search tasks" columns={columns} data={tasks} />
     </div>
   )

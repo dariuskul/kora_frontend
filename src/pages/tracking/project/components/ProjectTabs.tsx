@@ -11,10 +11,11 @@ import { ProjectStatistics } from './statistics/ProjectStatistics';
 interface IProjectTabs {
   tasks: Array<TApiTaskItem>;
   project: TApiProjectItem;
+  setProject: (project: TApiProjectItem) => void;
 }
 
 
-export const ProjectTabs: React.FC<IProjectTabs> = ({ project, tasks }) => {
+export const ProjectTabs: React.FC<IProjectTabs> = ({ project, tasks, setProject }) => {
   const [value, setValue] = useState(0);
 
   return (
@@ -25,7 +26,7 @@ export const ProjectTabs: React.FC<IProjectTabs> = ({ project, tasks }) => {
         <Tab label="Statistics" />
       </Tabs>
 
-      {value === 0 && <Tasks isJira={project.isJiraProject} projectId={project.id} tasks={tasks} />}
+      {value === 0 && <Tasks setProject={setProject} isJira={project.isJiraProject} projectId={project.id} tasks={tasks} />}
       {value === 1 && <ProjectAccess project={project} />}
       {value === 2 && <ProjectStatistics projectId={project.id} />}
     </Box>

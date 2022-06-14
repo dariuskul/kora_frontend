@@ -11,16 +11,17 @@ interface ICreateProjectModal {
   open: boolean;
   setOpen: (open: boolean) => void;
   projectId?: number;
+  setProject: (project: any) => void;
 }
 
-export const CreateTaskModal: React.FC<ICreateProjectModal> = ({ open, setOpen, projectId }) => {
+export const CreateTaskModal: React.FC<ICreateProjectModal> = ({ open, setOpen, projectId, setProject }) => {
   const dispatch = useAppThunkDispatch();
   return (
     <DialogWithClose fullWidth open={open} onClose={() => setOpen(false)}>
       <DialogContent>
         <Typography fontSize="1.5rem">Create task</Typography>
         <DialogContent sx={{ padding: 0 }}>
-          <CreateTaskForm onClose={() => setOpen(false)} projectId={projectId} />
+          <CreateTaskForm setProject={setProject} onClose={() => setOpen(false)} projectId={projectId} />
         </DialogContent>
         <DialogContent>
           <Typography align="center">Or</Typography>

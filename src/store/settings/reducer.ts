@@ -7,6 +7,12 @@ const reducer = {
       ...state,
       language: payload.payload,
     }
+  },
+  setTimerWillStop(state: ISettingsState, payload: any) {
+    return {
+      ...state,
+      timerWillStop: payload.payload,
+    }
   }
 };
 

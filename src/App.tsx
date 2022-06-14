@@ -10,16 +10,22 @@ import { stopTask } from 'store/tasks/actions';
 import { initTimerEvents } from 'services/sse.service';
 import 'moment/locale/en-gb'
 import { useTranslation } from 'react-i18next';
-import 'moment/locale/lt';
-import moment from 'moment';
+import moment from "moment";
+import 'moment/dist/locale/lt';
+import i18n from 'i18n';
 import { stopManually } from 'store/tasks/taskSlice';
+import { setTimerWillStop } from 'store/settings/settingsSlice';
 const url = "http://localhost:3000/stream"
 export const App = () => {
   const dispatch = useAppThunkDispatch();
   const { authenticated, id } = useAppSelector(s => s.userState)
-  const language = TokenStorage.getLanguage().toLocaleLowerCase();
   const { t } = useTranslation();
   const userToken = TokenStorage.getToken();
+  const language = i18n.language;
+  useEffect(() => {
+    console.log(language.toLocaleLowerCase())
+    moment.locale(language.toLocaleLowerCase());
+  }, [language])
   useEffect(() => {
     const notificationService = new NotificationService();
     if (notificationService.getPermission() === 'default') {
@@ -30,7 +36,12 @@ export const App = () => {
     }
     const { timerStopped } = initTimerEvents(userToken);
     timerStopped.addEventListener('message', (e) => {
-      const { showNotifsTo, showWarning } = JSON.parse(e.data);
+      console.log(e);
+      const { showNotifsTo, showWarning, willStop } = JSON.parse(e.data);
+      const element = willStop[0];
+      if (typeof element === 'number') {
+        dispatch(setTimerWillStop(element))
+      }
       if (showNotifsTo.includes(id)) {
         try {
           dispatch(stopManually());

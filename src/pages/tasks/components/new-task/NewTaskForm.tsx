@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import InputUtil from "components/inputs/InputUtil";
@@ -14,6 +14,7 @@ import { createNewTask } from "store/tasks/actions";
 import { SelectInput } from "components/inputs/Select";
 import { useAppSelector } from "store/selectors";
 import { useConfirm } from "material-ui-confirm";
+import { useTranslation } from "react-i18next";
 
 export type TCreateTask = {
   description: string;
@@ -25,7 +26,11 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
   const dispatch = useAppThunkDispatch();
   const confirm = useConfirm();
   const { availableTasks } = useAppSelector((s) => s.tasksState);
-  const { projects } = useAppSelector((s) => s.projectsState);
+  const { projects: initialProjects } = useAppSelector((s) => s.projectsState);
+  const { t } = useTranslation();
+  const projects = useMemo(() => {
+    return initialProjects.filter(project => !project.isJiraProject);
+  }, []);
 
   const validate = (values: TCreateTask) => {
     const errors: TCreateTask = {
@@ -63,15 +68,14 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
         onClose();
       }
       catch (error) {
-        console.log('erroras', error);
         toast.error(<Toast message={getErrorMessage(error)} />)
       }
     }
   };
 
-  const options = ['None', ...projects.map((p) => p.name)];
+  const options = [t('none'), ...projects.map((p) => p.name)];
   return (
-    <Box p="1.5rem" width="100%">
+    <Box p="0.5rem 1.5rem" width="100%">
       <Form
         validate={validate}
         validateOnBlur={false}
@@ -84,7 +88,7 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
           >
             <Box display="flex" flexDirection="column" gap="1rem">
               <InputUtil
-                label="Task name"
+                label={t('taskName')}
                 id="project-name"
                 name="description"
                 type="text"
@@ -92,7 +96,7 @@ export const NewTaskForm: React.FC<any> = ({ onClose }) => {
               />
               <SelectInput
                 id="project-select"
-                label="Select project"
+                label={t('selectProject')}
                 color="primary"
                 labelId="project"
                 name="project"

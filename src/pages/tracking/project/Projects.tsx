@@ -16,9 +16,11 @@ import { TotalTracked } from "pages/tracking/project/components/TotalTacked";
 import { CustomTable } from "components/others/CustomTable";
 import { useNavigate } from "react-router-dom";
 import { ProjectFilters } from "pages/tracking/project/components/ProjectFilters";
+import { useTranslation } from "react-i18next";
 
 export const Projects = () => {
   const { projects } = useAppSelector((s) => s.projectsState);
+  const { t } = useTranslation();
 
   const dispatch = useAppThunkDispatch();
   const navigate = useNavigate();
@@ -29,7 +31,7 @@ export const Projects = () => {
   const columns = React.useMemo(
     () => [
       {
-        Header: "NAME",
+        Header: t('name'),
         accessor: "name",
         Cell: ({ row }: { row: Row<TApiProjectItem> }) => (
           <ProjectName value={row} />
@@ -38,23 +40,25 @@ export const Projects = () => {
         minWidth: 300,
       },
       {
-        Header: "Number of tasks",
+        Header: t('numberOfTasks'),
         accessor: (row: TApiProjectItem) => {
           return row.tasks.length;
         },
         width: "15%",
       },
       {
-        Header: "TRACKED",
+        Header: t('trackedHours'),
         Cell: ({ row }: { row: Row<TApiProjectItem> }) => (
           <TotalTracked value={row.original} />
         ),
       },
       {
-        Header: "ACCESS",
-        Cell: ({ row }: { row: Row<TApiProjectItem> }) => (
-          <div>{row.original.isPublic ? "Public" : "Private"}</div>
-        ),
+        Header: t('access'),
+        Cell: ({ row }: { row: Row<TApiProjectItem> }) => {
+          return (
+            <div>{row.original.isPublic ? t('public') : t('private')}</div>
+          )
+        },
         accessor: (row: TApiProjectItem) => {
           return row.isPublic ? "public" : "private";
         },
@@ -85,15 +89,15 @@ export const Projects = () => {
     <Box>
       <Box mb="1rem" alignItems="center" justifyContent="space-between" display="flex">
         <Typography fontSize="2rem" variant="h3">
-          Projects
+          {t('projects')}
         </Typography>
-        <Button onClick={() => setOpenCreateModal(true)} variant="contained">Create new project</Button>
+        <Button onClick={() => setOpenCreateModal(true)} variant="contained">{t('createNewProject')}</Button>
       </Box>
       <ProjectFilters />
       <Loader loading={loading} size="5rem" />
       <CustomTable
         onCellClick={onCellClick}
-        searchLabel="Search projects"
+        searchLabel={t('searchProjects')}
         columns={columns}
         data={projects}
       />

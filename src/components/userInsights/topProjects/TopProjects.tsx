@@ -42,6 +42,8 @@ export const TimeDisplay: React.FC<ITimeDisplay> = React.memo(({ active, label, 
 
 export const TopProjects: React.FC<ITopProjects> = React.memo(({ topProjects }) => {
   const { t } = useTranslation();
+  // show max 5 projects
+  const topProjectsToDisplay = topProjects?.slice(0, 5);
   return (
     <Box maxWidth="40rem" width="100%">
       <Paper>
@@ -53,7 +55,7 @@ export const TopProjects: React.FC<ITopProjects> = React.memo(({ topProjects }) 
                 layout="vertical"
                 margin={{ left: 30 }}
                 height={300}
-                data={topProjects}
+                data={topProjectsToDisplay}
               >
                 <CartesianGrid strokeDasharray="4 3" />
                 <XAxis fontSize="0.875rem" type="number" hide />

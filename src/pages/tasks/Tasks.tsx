@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { CustomTable } from "components/others/CustomTable";
 import { EditTaskModal } from "components/tracking/modals/EditTaskModal";
 import { EditTimesModal } from "components/tracking/modals/EditTimesModal";
@@ -71,13 +71,15 @@ export const Tasks = () => {
   return (
     <Box>
       <Typography variant="h4">{t('tasks')}</Typography>
-      <Box mt="1.5rem">
-        <Filters />
-      </Box>
+      <Paper elevation={2}>
+        <Stack p="0 1rem 0 0" justifyContent="space-between" alignItems="center" direction="row" display="flex" mt="1.5rem">
+          <Filters />
+          <Box width='12%'>
+            <Button onClick={() => setOpen(true)} variant="contained">{t('createNewTask')}</Button>
+          </Box>
+        </Stack>
+      </Paper>
       <Box margin="0" maxWidth="70rem">
-        <Box mt="1rem">
-          <Button onClick={() => setOpen(true)} variant="contained">{t('createNewTask')}</Button>
-        </Box>
         <CustomTable
           searchLabel={t('searchTasks')}
           onCellClick={handleClick}

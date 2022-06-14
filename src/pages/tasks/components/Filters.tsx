@@ -48,52 +48,50 @@ export const Filters = () => {
 
 
   return (
-    <Paper elevation={2}>
-      <Box width="100%" padding="0.75rem 1rem" bgcolor="white">
-        <Form
-          validateOnBlur={false}
-          onSubmit={onSubmit}
-          render={({ handleSubmit, submitting, values }) => (
-            <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-              <Box display="flex" gap="0.5rem" alignItems="center">
-                <SelectInput
-                  defaultValue={projectArr[0]}
-                  color="white"
-                  options={projectArr}
-                  id="status"
-                  disabled={submitting}
-                  name="project"
-                  label={t('project')}
-                  labelId="status"
-                />
-                <SelectInput
-                  defaultValue={EAccess.All}
-                  color="white"
-                  options={EAccessArr}
-                  id="Access"
-                  disabled={submitting}
-                  name="assignee"
-                  label={t('assignee')}
-                  labelId="Access"
-                />
-                <SelectInput
-                  defaultValue={STATUS[0]}
-                  color="white"
-                  options={STATUS}
-                  id="Access"
-                  disabled={submitting}
-                  name="status"
-                  label={t('status')}
-                  labelId="Access"
-                />
-                <Button color="primary" variant="contained" type="submit">
-                  Apply
-                </Button>
-              </Box>
-            </form>
-          )}
-        />
-      </Box>
-    </Paper>
+    <Box width="100%" padding="0.75rem 1rem" bgcolor="white">
+      <Form
+        validateOnBlur={false}
+        onSubmit={onSubmit}
+        render={({ handleSubmit, submitting, values }) => (
+          <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+            <Box display="flex" gap="0.5rem" alignItems="center">
+              <SelectInput
+                defaultValue={projectArr[0]}
+                color="white"
+                options={projectArr}
+                id="status"
+                disabled={submitting}
+                name="project"
+                label={t('project')}
+                labelId="status"
+              />
+              <SelectInput
+                defaultValue={EAccess.All}
+                color="white"
+                options={EAccessArr}
+                id="Access"
+                disabled={submitting}
+                name="assignee"
+                label={t('assignee')}
+                labelId="Access"
+              />
+              <SelectInput
+                defaultValue={STATUS[0]}
+                color="white"
+                options={STATUS}
+                id="Access"
+                disabled={submitting}
+                name="status"
+                label={t('status')}
+                labelId="Access"
+              />
+              <Button color="primary" variant="contained" type="submit">
+                {t('apply')}
+              </Button>
+            </Box>
+          </form>
+        )}
+      />
+    </Box>
   );
 };

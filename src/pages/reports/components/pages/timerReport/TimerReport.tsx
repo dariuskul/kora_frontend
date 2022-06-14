@@ -6,11 +6,13 @@ import { IUser } from "store/types/User";
 import { Filters } from "./components/Filters";
 import { saveAs } from 'file-saver'
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 export const TimerReport = () => {
   const { projects } = useAppSelector(s => s.projectsState);
   const [team, setTeam] = useState<Array<IUser>>([]);
   const [file, setFile] = useState<Blob | null>(null);
+  const { t } = useTranslation();
   useEffect(() => {
     const getTeam = async () => {
       try {
@@ -28,18 +30,18 @@ export const TimerReport = () => {
   return (
     <Box>
       <Typography fontSize="1.5rem" variant="h3">
-        Tracking reports
+        {t('trackingReports')}
       </Typography>
       <Filters setFile={setFile} projects={projects} users={team} />
       {file && <Box textAlign="center" margin="2.5rem auto 0" maxWidth="30rem">
         <Paper>
-          <Typography textAlign="center" fontSize="1.5rem">Report generated!</Typography>
-          <Button onClick={handleDownload}>Click here to download</Button>
+          <Typography textAlign="center" fontSize="1.5rem">{t('reportGenerated')}</Typography>
+          <Button onClick={handleDownload}>{t('clickToDownload')}</Button>
         </Paper>
       </Box>}
 
       {!file && <Box textAlign="center" margin="2.5rem auto 0" maxWidth="50rem">
-        <Typography fontSize="2rem" fontWeight="400">No reports generated</Typography></Box>}
+        <Typography fontSize="2rem" fontWeight="400">{t('notGenerated')}</Typography></Box>}
     </Box>
   );
 };

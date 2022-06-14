@@ -97,7 +97,7 @@ export const Timer = React.memo(() => {
   const Information = React.useMemo(() => {
     return <Statistics />;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeEntries]);
+  }, [timeEntries, t]);
 
 
   const filteredTasks = useMemo(() => {
@@ -167,7 +167,7 @@ export const Timer = React.memo(() => {
               color={currentTimer ? "error" : "primary"}
               onClick={() => handleStartTimer()}
               disabled={!selected && !running}
-              sx={{ minHeight: '36px', minWidth: '6rem' }}
+              sx={{ minHeight: '2.25rem', minWidth: '6rem' }}
               variant="contained"
             >
               <Box gap="1rem" alignItems="center" display="flex">

@@ -29,6 +29,9 @@ export const getRunningTimerTime = (startDate: string, endDate: string) => {
 }
 
 export const calculateTotalTaskTime = (timeEntries: Array<ITimeEntry>) => {
+  if (!timeEntries) {
+    return 0;
+  }
   let totalTime = 0;
   timeEntries.forEach((element) => {
     totalTime += getRunningTimerTime(element.startDate, element.endDate) || 0;
@@ -55,14 +58,14 @@ export const convertTimeToHoursAndMinutes = (time: number) => {
   const hours = Math.floor(time / 3600000);
   const minutes = Math.floor((time % 3600000) / 60000);
   if (hours === 0 && minutes === 0) {
-    return { hours: 0, minutes: 1 };
+    return { hours: 0, minutes: 0 };
   }
   return { hours, minutes };
 }
 
 const convertToHoursAndMinutes = (time: number) => {
   const hours = Math.floor(time / 3600000);
-  const minutes = Math.floor((time - hours * 3600000) / 60000);
+  const minutes = Math.floor((time % 3600000) / 60000);
   const seconds = Math.floor((time - hours * 3600000 - minutes * 60000) / 1000);
   return { hours: hours.toString().padStart(2, '0'), minutes: minutes.toString().padStart(2, '0') }
 }
@@ -86,7 +89,7 @@ export const calculateTotalDayTime = ({ times }) => {
 }
 
 export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
-  const items = new Map<number, { task: TApiTaskItem, time: any, forced: any, allData: Array<any> }>()
+  const items = new Map<number, { task: TApiTaskItem, time: any, forced: any, allData: Array<any>, nonFormatted: number }>()
   if (!timers) {
     return [];
   }
@@ -97,6 +100,7 @@ export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
         return;
       }
       item.time += calculateTimeBetweenDates(timer.startDate, timer.endDate);
+      item.nonFormatted += calculateTimeBetweenDates(timer.startDate, timer.endDate);
       item.allData.push(timer)
     }
     else {
@@ -105,6 +109,7 @@ export const groupTimersByTask = (timers: Array<IProjectEntry>) => {
         time: calculateTimeBetweenDates(timer.startDate, timer.endDate),
         forced: timer.forced,
         allData: [timer],
+        nonFormatted: calculateTimeBetweenDates(timer.startDate, timer.endDate),
       })
     }
   })

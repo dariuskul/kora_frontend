@@ -9,6 +9,7 @@ import { Form } from "react-final-form";
 import { getReport } from "services/admin.service";
 import { TApiProjectItem } from "store/types/Project";
 import { IUser } from "store/types/User";
+import { useTranslation } from 'react-i18next';
 interface IFilters {
   projects: Array<TApiProjectItem>;
   users: Array<IUser>;
@@ -16,6 +17,7 @@ interface IFilters {
 }
 
 export const Filters: React.FC<IFilters> = ({ projects, users, setFile }) => {
+  const { t } = useTranslation();
 
   const onSubmit = async (values: any) => {
     setFile(null);
@@ -60,19 +62,19 @@ export const Filters: React.FC<IFilters> = ({ projects, users, setFile }) => {
                   disabled={submitting}
                   name="projects"
                   color="white"
-                  label="Select project"
+                  label={t('selectProject')}
                   labelId="Select project"
                 />
                 <DateInput
                   initialValue={moment().format('YYYY/MM/DD')}
-                  label="Date from"
+                  label={t('dateFrom')}
                   name="dateFrom"
                   disabled={submitting}
                   id="date-input"
                 />
                 <DateInput
                   initialValue={moment().format('YYYY/MM/DD')}
-                  label="Date to"
+                  label={t('dateTo')}
                   name="dateTo"
                   disabled={submitting}
                   id="date-input"
@@ -83,7 +85,7 @@ export const Filters: React.FC<IFilters> = ({ projects, users, setFile }) => {
                   type="submit"
                   variant="contained"
                 >
-                  Submit
+                  {t('submit')}
                 </Button>
               </Box>
             </form>

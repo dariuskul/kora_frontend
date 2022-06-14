@@ -3,6 +3,7 @@ import DateInput from 'components/inputs/DateInput';
 import moment from 'moment';
 import React from 'react';
 import { Form } from 'react-final-form';
+import { useTranslation } from 'react-i18next';
 import { getUsersPerformance } from 'services/admin.service';
 import { useAppSelector } from 'store/selectors';
 import { TApiProjectItem } from 'store/types/Project';
@@ -17,6 +18,7 @@ export const Filters: React.FC<IFilterResults> = ({ setFilterResults }) => {
   const { projects } = useAppSelector(s => s.projectsState);
   const [teamSelect, setTeamSelect] = React.useState<IUser | null>(null);
   const [projectsSelect, setProjectsSelect] = React.useState<Array<TApiProjectItem>>([]);
+  const { t } = useTranslation();
   const handleFilterSubmit = async (values: any) => {
     if (!teamSelect) return;
     const result = await getUsersPerformance(teamSelect?.id, projectsSelect.map(p => p.id), moment(values.date_from).format('YYYY-MM-DD') || moment().format('YYYY-MM-DD'), moment(values.date_to).format('YYYY-MM-DD') || moment().format('YYYY-MM-DD'));
@@ -36,8 +38,8 @@ export const Filters: React.FC<IFilterResults> = ({ setFilterResults }) => {
             >
               <Box display="flex" flexDirection="column" gap="1rem">
                 <Stack flexWrap='wrap' alignItems='center' direction="row" gap="1rem">
-                  <DateInput placeholder='' label='Date from' name="date_from" disabled={false} id={''} />
-                  <DateInput placeholder='' label='Date to' name="date_to" disabled={false} id={''} />
+                  <DateInput placeholder='' label={t('dateFrom')} name="date_from" disabled={false} id={''} />
+                  <DateInput placeholder='' label={t('dateTo')} name="date_to" disabled={false} id={''} />
                   <Autocomplete
                     id="tags-standard"
                     sx={{ minWidth: 220 }}
@@ -52,7 +54,7 @@ export const Filters: React.FC<IFilterResults> = ({ setFilterResults }) => {
                         InputLabelProps={{
                           shrink: true,
                         }}
-                        label="Team"
+                        label={t('team')}
                       />
                     )}
                   />
@@ -63,7 +65,7 @@ export const Filters: React.FC<IFilterResults> = ({ setFilterResults }) => {
                     type="submit"
                     variant="contained"
                   >
-                    Submit
+                    {t('submit')}
                   </Button>
                 </Stack>
               </Box>

@@ -14,7 +14,7 @@ export const TaskTime: React.FC<ITaskTime> = React.memo(({ timeSheets }) => {
 
   return (
     <Box>
-      <Typography>{hours}h {minutes}m</Typography>
+      <Typography fontWeight="600" fontSize="0.875rem">{hours}:{minutes}h</Typography>
     </Box>
   )
 })

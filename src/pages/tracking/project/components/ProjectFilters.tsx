@@ -4,6 +4,7 @@ import { SelectInput } from "components/inputs/Select";
 import React from "react";
 import { useState } from "react";
 import { Field, Form } from "react-final-form";
+import { useTranslation } from "react-i18next";
 import { getProjects } from "store/projects/actions";
 import { useAppSelector } from "store/selectors";
 import { useAppThunkDispatch } from "store/store";
@@ -25,6 +26,7 @@ const EAccessArr = [EAccess.All, EAccess.Public, EAccess.Private];
 
 export const ProjectFilters = () => {
   const dispatch = useAppThunkDispatch();
+  const { t } = useTranslation();
   const clients = useAppSelector(s => s.clientsState);
   const [filters, setFilters] = useState({
     status: EStatus.Active,
@@ -51,7 +53,7 @@ export const ProjectFilters = () => {
                   id="status"
                   disabled={submitting}
                   name="status"
-                  label="Status"
+                  label={t('status')}
                   labelId="status"
                 />
                 <SelectInput
@@ -61,7 +63,7 @@ export const ProjectFilters = () => {
                   id="Access"
                   disabled={submitting}
                   name="access"
-                  label="Access"
+                  label={t('access')}
                   labelId="Access"
                 />
                 <Field name="client" defaultValue={-1}>
@@ -72,14 +74,14 @@ export const ProjectFilters = () => {
                       sx={{ maxWidth: '10rem' }}
                       fullWidth
                     >
-                      <InputLabel id="client">Client</InputLabel>
+                      <InputLabel id="client">{t('client')}</InputLabel>
                       <Select
                         {...input}
                         fullWidth
                         variant={"outlined"}
                         value={input.value}
                         labelId="client"
-                        label="client"
+                        label={t('client')}
                       >
                         <MenuItem key='None' value={-1}>
                           None
@@ -95,7 +97,7 @@ export const ProjectFilters = () => {
                   )}
                 </Field>
                 <Button color="primary" variant="contained" type="submit">
-                  Apply
+                  {t('apply')}
                 </Button>
               </Box>
             </form>

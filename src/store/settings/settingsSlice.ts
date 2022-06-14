@@ -10,6 +10,7 @@ const settingsSlice = createSlice({
 
 export const {
   changeLanguage,
+  setTimerWillStop,
 } = settingsSlice.actions;
 
 

@@ -57,6 +57,7 @@ export type TApiTaskItem = {
   project: TApiProjectItem;
   timers: Array<ITimeEntry>;
   status: string;
+  taskLink?: string | null;
 }
 
 interface ICurrentTimer {
@@ -86,6 +87,7 @@ export interface IProjectEntry {
   task: TApiTaskItem,
   project: string;
   forced: boolean | null;
+  taskLink?: string | null;
 }
 
 export interface IDayEntry {

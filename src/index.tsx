@@ -12,7 +12,9 @@ import { ConfirmProvider } from 'material-ui-confirm';
 
 import './i18n';
 import { App } from 'App';
-
+import moment from "moment";
+import 'moment/locale/lt';
+moment().locale('lt');
 
 const { store, persistor } = configStore({} as never);
 

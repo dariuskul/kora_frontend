@@ -5,9 +5,19 @@ import { SelectInput } from 'components/inputs/Select';
 import { EditUserModal } from 'components/tracking/modals/EditUserModal';
 import React, { useState } from 'react';
 import { Form } from "react-final-form";
+import { useAppSelector } from 'store/selectors';
+
+//convert miliseconds to HH:MM:SS
+const formatTimeString = (time: number) => {
+  const hours = Math.floor(time / 3600000);
+  const minutes = Math.floor((time % 3600000) / 60000);
+  const seconds = Math.floor((time % 3600000 % 60000) / 1000);
+  return `${hours}:${minutes}:${seconds}`;
+}
 
 export const Profile = () => {
   const [open, setOpen] = useState(false);
+  const { timerWillStop } = useAppSelector(s => s.settingsState);
 
   return (
     <Paper>
@@ -19,7 +29,7 @@ export const Profile = () => {
         </Box>
         <Box>
           <Typography fontSize="1.5rem" variant="h3">
-            Timer
+            Timer ({formatTimeString(timerWillStop)})
           </Typography>
           <Box flexDirection="column" display="flex" mt="0.5rem">
             <NotificationsForm />
