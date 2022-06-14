@@ -85,5 +85,7 @@
   "create": "Create",
   "projectName": "Project name",
   "projectWillBevisibleToAll": "Project will be visible to all employees",
-  "fullName": "Full name"
+  "fullName": "Full name",
+  "role": "Role",
+  "emailAddress": "Email address"
 }

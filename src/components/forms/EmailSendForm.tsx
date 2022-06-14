@@ -17,7 +17,7 @@ export const EmailSendForm = () => {
   return (
     <Box>
       <Box alignItems="center" display="flex">
-        <Typography>Send daily summary</Typography>
+        <Typography>Send weekly summary</Typography>
         <Checkbox onChange={onDailyChange} checked={dailySummaries} />
       </Box>
     </Box>
